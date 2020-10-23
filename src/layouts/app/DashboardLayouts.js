@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 import Header from './components/Header';
 
 const DashboardLayouts = (props) => {
@@ -9,9 +10,9 @@ const DashboardLayouts = (props) => {
                 <div style={{ padding: '30px' }}>
                     <h3>Dashboard Layouts</h3>
                 </div>
-                <div style={{ padding: '30px' }}>
+                <Container className="my-4">
                     {props.children}
-                </div>
+                </Container>
             </div>
         </div>
     );

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
+import LogoImg from '../assets/img/logo/logo.svg';
 import { Link } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
-    Container,
     Button
 } from 'reactstrap';
 
@@ -15,9 +14,14 @@ const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     return (
-        <Container fluid>
+        <div className="shadow">
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">Fund.</NavbarBrand>
+                <Link className="navbar-brand logo" to="/">
+                    <img src={ LogoImg } alt="logo-fund" className="logo-img" />
+                    <div className="ml-2 font-weight-semibold logo-text">
+                        Fun<span className="text2">d.</span>
+                    </div>
+                </Link>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
@@ -36,7 +40,7 @@ const Header = (props) => {
                     </Nav>
                 </Collapse>
             </Navbar>
-        </Container>
+        </div>
     );
 }
 

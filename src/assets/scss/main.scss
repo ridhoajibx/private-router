@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import './fund-template/variables.scss';
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    margin: 0;
+}
+
+@import './fund-template/header.scss';
+@import './fund-template/sidebar.scss';

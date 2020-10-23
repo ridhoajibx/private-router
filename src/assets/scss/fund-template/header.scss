@@ -1,0 +1,16 @@
+.logo {
+    display: flex;
+    align-items: center;
+    .logo-img {
+        width: 30px;
+        height: auto;
+    }
+    .logo-text {
+        font-weight: 600;
+        font-size: 30px;
+        color: $primary-color;
+        .text2 {
+            color: $dark-color;
+        }
+    }
+}

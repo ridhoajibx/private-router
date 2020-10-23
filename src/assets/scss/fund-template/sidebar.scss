@@ -1,0 +1,61 @@
+.main {
+    display: flex;
+    width: 100%;
+    .sidebar-wrapper {
+        position: fixed;
+        z-index: 1;
+        top: 72px;
+        left: 0;
+        height: 100%;
+        width: 75px;
+        overflow-x: hidden;
+        background-color: #fff;
+        -webkit-box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
+        -moz-box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
+        box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
+        .toggle-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 1.5em;
+            cursor: pointer;
+            svg {
+                max-width: 100%;
+                width: 20%;
+                height: 35px;
+            }
+        }
+        .side-item {
+            a {
+                padding: .75em 1.5em;
+                text-decoration: none;
+                font-size: 16px;
+                color: $dark-color;
+                display: block;
+                border-bottom: 1px solid rgba(51, 48, 48, 0.255);
+                border-top: 1px solid rgba(51, 48, 48, 0.255);
+                &:hover {
+                    background: $primary-color;
+                    color: #fff;
+                }
+            }
+            a.active {
+                background: $primary-color;
+                color: #fff;
+            }
+        }
+    }
+    .content-wrapper {
+        margin-left: 75px;
+        padding: 0 1em;
+    }
+    @media (min-width: 1024px) {
+        .sidebar-wrapper {
+            position: fixed;
+            width: 250px;
+        }
+        .content-wrapper {
+            margin-left: 250px;
+        }
+    }
+}

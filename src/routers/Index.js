@@ -35,7 +35,8 @@ const Index = () => {
                 handleToggleSide={handleToggleSide}
             />
 
-            <PrivateRoute exact path="/app/date"
+            <PrivateRoute exact 
+                path="/app/date"
                 comp={DashboardLayouts}
                 child={Dates}
                 Auth={Auth}

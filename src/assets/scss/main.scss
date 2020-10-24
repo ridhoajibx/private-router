@@ -10,6 +10,10 @@ body {
     margin: 0;
 }
 
+.main {
+    margin-top: 100px;
+}
+
 @import './fund-template/header.scss';
 @import './fund-template/sidebar.scss';
 @import './fund-template/button.scss';

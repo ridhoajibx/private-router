@@ -1,20 +1,72 @@
 import React from 'react';
+import {
+    dashboard24HoursPerformanceChart,
+} from "../variables/charts";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { Container } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
+import { Line } from 'react-chartjs-2';
 
 const Dashboard = (props) => {
     console.log(props, "cek props");
     return (
-        <Container fluid>
-            <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
-                <span className="toggle-btn" onClick={props.handleToggleSide}>
-                    { !props.toggleSide ? <FaTimes /> : <FaBars /> }
-                    <h4>Dashboard</h4>
-                </span>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus laborum praesentium reprehenderit similique labore eum perferendis iusto voluptate laudantium iure alias, dicta facere est rem quis ipsa provident numquam placeat repellendus nihil molestiae? Non quidem soluta eum, deleniti facere velit atque voluptatibus vitae vero repellendus quae voluptate natus quibusdam. Iste!</p>
-            </div>
-        </Container>
+        <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
+            <span className="toggle-btn" onClick={props.handleToggleSide}>
+                {!props.toggleSide ? <FaTimes /> : <FaBars />}
+                <h4>Dashboard</h4>
+            </span>
+
+            <Row className="py-4">
+                <Col md="12">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle tag="h5">Last month spending</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Line
+                                data={dashboard24HoursPerformanceChart.data}
+                                options={dashboard24HoursPerformanceChart.options}
+                                width={400}
+                                height={100}
+                            />
+                        </CardBody>
+                    </Card>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col md="12">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle tag="h4">Transaction</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Table responsive>
+                                <thead className="text-primary">
+                                    <tr>
+                                        <th>Subscription</th>
+                                        <th>Amount</th>
+                                        <th className="text-right">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Netflix</td>
+                                        <td>$105,70</td>
+                                        <td className="text-right"><a href="#">Details</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spotify</td>
+                                        <td>$56,78</td>
+                                        <td className="text-right"><a href="#">Details</a></td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </CardBody>
+                    </Card>
+                </Col>
+            </Row>
+        </div>
     );
 }
 

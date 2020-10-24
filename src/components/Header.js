@@ -15,7 +15,7 @@ const Header = (props) => {
     const toggle = () => setIsOpen(!isOpen);
     return (
         <div className="shadow">
-            <Navbar color="light" light expand="md" className="header">
+            <Navbar color="light" light expand="md" className="header fixed-top">
                 <Link className="navbar-brand logo" to="/">
                     <img src={ LogoImg } alt="logo-fund" className="logo-img" />
                     <div className="ml-2 font-weight-semibold logo-text">

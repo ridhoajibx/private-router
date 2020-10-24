@@ -96,7 +96,7 @@ const User = (props) => {
                                             <Input
                                                 defaultValue="Indonesia"
                                                 placeholder="Country"
-                                                type="text"
+                                                type="text" 
                                             />
                                         </FormGroup>
                                     </Col>

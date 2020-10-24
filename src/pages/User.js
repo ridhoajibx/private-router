@@ -46,7 +46,7 @@ const User = (props) => {
                         <CardBody>
                             <Form>
                                 <Row>
-                                    <Col className="pr-1" md="6">
+                                    <Col md="6">
                                         <FormGroup>
                                             <label>Full Name</label>
                                             <Input
@@ -56,7 +56,7 @@ const User = (props) => {
                                             />
                                         </FormGroup>
                                     </Col>
-                                    <Col className="pl-1" md="6">
+                                    <Col md="6">
                                         <FormGroup>
                                             <label>Username</label>
                                             <Input
@@ -80,7 +80,7 @@ const User = (props) => {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col className="pr-1" md="6">
+                                    <Col md="6">
                                         <FormGroup>
                                             <label>City</label>
                                             <Input
@@ -90,7 +90,7 @@ const User = (props) => {
                                             />
                                         </FormGroup>
                                     </Col>
-                                    <Col className="px-1" md="6">
+                                    <Col md="6">
                                         <FormGroup>
                                             <label>Country</label>
                                             <Input

@@ -1,0 +1,20 @@
+.header {
+    z-index: 100;
+    box-shadow: 1px 1px 5px gray;
+    .logo {
+        display: flex;
+        align-items: center;
+        .logo-img {
+            width: 30px;
+            height: auto;
+        }
+        .logo-text {
+            font-weight: 600;
+            font-size: 30px;
+            color: $primary-color;
+            .text2 {
+                color: $dark-color;
+            }
+        }
+    }
+}

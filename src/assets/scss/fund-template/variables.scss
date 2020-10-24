@@ -3,3 +3,11 @@ $font-family :               'Poppins', sans-serif;
 
 $primary-color:              #7971EA !default;
 $dark-color:                 #333333 !default;
+
+.text-primary {
+    color: $primary-color;
+}
+
+.bg-primary {
+    background: $primary-color;
+}

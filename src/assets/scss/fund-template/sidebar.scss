@@ -1,39 +1,30 @@
+$side-width : 250px;
 .main {
-    display: flex;
+    display: block;
     width: 100%;
     .sidebar-wrapper {
-        position: fixed;
-        z-index: 1;
+        position: absolute;
+        width: 200px;
         top: 72px;
         left: 0;
         height: 100%;
-        width: 75px;
         overflow-x: hidden;
         background-color: #fff;
         -webkit-box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
         -moz-box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
         box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
-        .toggle-btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1em 1.5em;
-            cursor: pointer;
-            svg {
-                max-width: 100%;
-                width: 20%;
-                height: 35px;
-            }
-        }
+        transition: all ease 0.5s;
         .side-item {
+            transition: all ease 0.5s;
             a {
-                padding: .75em 1.5em;
+                padding: 0.75em 1.5em;
                 text-decoration: none;
                 font-size: 16px;
                 color: $dark-color;
                 display: block;
                 border-bottom: 1px solid rgba(51, 48, 48, 0.255);
                 border-top: 1px solid rgba(51, 48, 48, 0.255);
+                transition: all ease 0.8s;
                 &:hover {
                     background: $primary-color;
                     color: #fff;
@@ -44,10 +35,36 @@
                 color: #fff;
             }
         }
+        @media (min-width: 1024px) {
+            .toggle-btn {
+                justify-content: center;
+                svg {
+                    width: 20%;
+                }
+            }
+            .side-item {
+                display: block;
+            }
+        }
+    }
+    .sidebar-wrapper--show {
+        transform: translateX(0);
+    }
+    .sidebar-wrapper--show {
+        transform: translateX(-$side-width);
     }
     .content-wrapper {
-        margin-left: 75px;
+        transition: all .5s;
+        margin-left: 0px;
         padding: 0 1em;
+        .toggle-btn {
+            cursor: pointer;
+            svg {
+                float: right;
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
     @media (min-width: 1024px) {
         .sidebar-wrapper {
@@ -55,7 +72,33 @@
             width: 250px;
         }
         .content-wrapper {
-            margin-left: 250px;
+            margin-left: $side-width;
+            .toggle-btn {
+                float: none;
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+                cursor: pointer;
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+                h4 {
+                    margin: 0 0 0 5px;
+                }
+            }
         }
+        .content-wrapper--hide {
+            margin-left: $side-width;
+        }
+        .content-wrapper--hide {
+            margin-left: 1rem;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .main {
+        display: flex;
     }
 }

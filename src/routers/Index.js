@@ -8,6 +8,9 @@ import Home from '../pages/Home';
 import PrivateRoute from './PrivateRoute';
 
 const Index = () => {
+    const [toggleSide, setToggleSide] = useState(false);
+    const handleToggleSide = () => setToggleSide(!toggleSide)
+
     const [Auth, setAuth] = useState(false);
     const display = (auth) => {
         return ({
@@ -28,6 +31,8 @@ const Index = () => {
                 Auth={Auth}
                 setAuth={setAuth}
                 display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
             />
 
             <PrivateRoute exact path="/app/date"
@@ -36,6 +41,8 @@ const Index = () => {
                 Auth={Auth}
                 setAuth={setAuth}
                 display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
             />
 
             <Route path="*" render={() => {

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container } from 'reactstrap';
-
+import Jumbotron2 from '../components/Jumbotron';
+import Slide from '../components/Carousel';
+import Footer2 from '../components/Footer';
 const Home = () => {
-    return (
-        <div className="main">
-            <Container>
-                <h3>Home</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque amet, cupiditate iste voluptatem quam porro neque, nulla minus, reiciendis incidunt tempora soluta distinctio! Obcaecati cumque repellendus nisi in, hic ducimus temporibus reprehenderit distinctio eum nobis autem atque animi? Cumque sint inventore libero perferendis odit impedit eaque qui ut soluta similique.</p>
-            </Container>
+    return ( 
+        <div className="home">
+        <Jumbotron2 />  
+        <Slide />
+        <Footer2 />
         </div>
     );
 }

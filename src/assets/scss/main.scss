@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: $font-family;
+    font-family: $font-family-sans-serif;
     margin: 0;
 }
 
@@ -17,3 +17,6 @@ body {
 @import './fund-template/header.scss';
 @import './fund-template/sidebar.scss';
 @import './fund-template/button.scss';
+@import './fund-template/images.scss';
+@import './fund-template/cards/cards.scss';
+@import './fund-template/cards/cardUser.scss';

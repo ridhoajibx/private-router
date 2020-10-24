@@ -1,11 +1,18 @@
 import React from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { Container } from 'reactstrap';
 
-const Dates = () => {
+const Dates = (props) => {
     return (
-        <div className="content-wrapper">
-            <h3>Dates</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus laborum praesentium reprehenderit similique labore eum perferendis iusto voluptate laudantium iure alias, dicta facere est rem quis ipsa provident numquam placeat repellendus nihil molestiae? Non quidem soluta eum, deleniti facere velit atque voluptatibus vitae vero repellendus quae voluptate natus quibusdam. Iste!</p>
-        </div>
+        <Container fluid>
+            <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
+                <span className="toggle-btn" onClick={props.handleToggleSide}>
+                    { !props.toggleSide ? <FaTimes /> : <FaBars /> }
+                    <h4>Date</h4>
+                </span>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus laborum praesentium reprehenderit similique labore eum perferendis iusto voluptate laudantium iure alias, dicta facere est rem quis ipsa provident numquam placeat repellendus nihil molestiae? Non quidem soluta eum, deleniti facere velit atque voluptatibus vitae vero repellendus quae voluptate natus quibusdam. Iste!</p>
+            </div>
+        </Container>
     );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Col, Container, Row } from 'reactstrap';
-import Calendar from '../variables/Calendar';
+import Calendar from '../variables/calendar/Calendar';
 
 const Dates = (props) => {
     return (

@@ -1,0 +1,13 @@
+@import './variables.scss';
+button {
+    .k-button-group {
+        .k-button {
+            &:checked {
+                background-color: $primary-color;
+            }
+        }
+        .k-state-active {
+            background-color: $primary-color;
+        }
+    }
+}

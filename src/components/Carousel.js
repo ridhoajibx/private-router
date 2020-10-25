@@ -19,14 +19,24 @@ const items = [
       caption: 'BT SPORT'
     },
     {
-      src: 'https://www.logo.wine/a/logo/YouTube/YouTube-White-Full-Color-Dark-Background-Logo.wine.svg',
+      src: 'https://www.logo.wine/a/logo/Spotify/Spotify-Logo.wine.svg',
       altText: 'Slide 3',
-      caption: 'YOUTUBE'
+      caption: 'SPORTIFY'
     },
     {
-        src: 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-White-Dark-Background-Logo.wine.svg',
+        src: 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg',
         altText: 'Slide 4',
         caption: 'DISNEY+'
+      },
+      {
+        src: 'https://www.logo.wine/a/logo/Google_Stadia/Google_Stadia-Logo.wine.svg',
+        altText: 'Slide 4',
+        caption: 'STADIA'
+      },
+      {
+        src: 'https://www.logo.wine/a/logo/Viu_(streaming_media)/Viu_(streaming_media)-Logo.wine.svg',
+        altText: 'Slide 4',
+        caption: 'VIU'
       }
   ];
 
@@ -71,8 +81,17 @@ const Slide = (props) => {
       <style>
         {
           `.custom-tag {
+            max-width: 100%;
             background: black;
-            }`
+        
+            }
+            img{
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 30%;
+            }
+            `
         }
       </style>
       <Carousel

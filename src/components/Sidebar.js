@@ -14,6 +14,11 @@ const routesDashboard = [
       name: "Date",
       icon: "FaCalendar",
     },
+    {
+        path: "/app/Setting Password",
+        name: "setting Password",
+        icon: "FaCalendar",
+      },
 ]
 
 const Sidebar = (props) => {

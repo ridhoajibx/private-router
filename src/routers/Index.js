@@ -4,6 +4,7 @@ import DashboardLayouts from '../layouts/app/DashboardLayouts';
 import MainLayouts from '../layouts/main/MainLayouts';
 import Dashboard from '../pages/Dashboard';
 import Dates from '../pages/Dates';
+import setting from '../pages/setting';
 import Home from '../pages/Home';
 import PrivateRoute from './PrivateRoute';
 
@@ -39,6 +40,17 @@ const Index = () => {
                 path="/app/date"
                 comp={DashboardLayouts}
                 child={Dates}
+                Auth={Auth}
+                setAuth={setAuth}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
+
+            <PrivateRoute exact 
+                path="/app/Setting Password"
+                comp={DashboardLayouts}
+                child={setting}
                 Auth={Auth}
                 setAuth={setAuth}
                 display={display}

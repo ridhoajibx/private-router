@@ -16,11 +16,7 @@ const routesDashboard = [
     },
     {
         path: "/app/setting",
-<<<<<<< HEAD
         name: "Setting Password",
-=======
-        name: "Setting",
->>>>>>> 653c8f68900137f937f43bec9e982024812f594a
         icon: FaCog,
     },
 ]

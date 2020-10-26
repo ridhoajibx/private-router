@@ -4,7 +4,7 @@ import {
 } from "../variables/charts";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 
 const Dashboard = (props) => {
@@ -53,12 +53,12 @@ const Dashboard = (props) => {
                                     <tr>
                                         <td>Netflix</td>
                                         <td>$105,70</td>
-                                        <td className="text-right"><a href="#">Details</a></td>
+                                        <td className="text-right"><Button size='sm' color="primary">Details</Button></td>
                                     </tr>
                                     <tr>
                                         <td>Spotify</td>
                                         <td>$56,78</td>
-                                        <td className="text-right"><a href="#">Details</a></td>
+                                        <td className="text-right"><Button size='sm' color="primary">Details</Button></td>
                                     </tr>
                                 </tbody>
                             </Table>

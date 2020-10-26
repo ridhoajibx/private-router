@@ -10,7 +10,7 @@ const setting = (props) => {
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
                 {!props.toggleSide ? <FaTimes /> : <FaBars />}
-                <h4>Setting</h4>
+                <h4>Setting Password</h4>
             </span>
             <br></br>
             <br></br>

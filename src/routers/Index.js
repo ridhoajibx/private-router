@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import DashboardLayouts from '../layouts/app/DashboardLayouts';
 import MainLayouts from '../layouts/main/MainLayouts';
+import User from '../pages/User';
 import Dashboard from '../pages/Dashboard';
 import Dates from '../pages/Dates';
-import setting from '../pages/setting';
 import Home from '../pages/Home';
+import Setting from '../pages/Setting';
 import PrivateRoute from './PrivateRoute';
 
 const Index = () => {
@@ -36,7 +37,7 @@ const Index = () => {
                 handleToggleSide={handleToggleSide}
             />
 
-            <PrivateRoute exact 
+            <PrivateRoute exact
                 path="/app/date"
                 comp={DashboardLayouts}
                 child={Dates}
@@ -47,10 +48,21 @@ const Index = () => {
                 handleToggleSide={handleToggleSide}
             />
 
-            <PrivateRoute exact 
-                path="/app/Setting Password"
+            <PrivateRoute exact
+                path="/app/setting"
                 comp={DashboardLayouts}
-                child={setting}
+                child={Setting}
+                Auth={Auth}
+                setAuth={setAuth}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
+
+            <PrivateRoute exact
+                path="/app/user"
+                comp={DashboardLayouts}
+                child={User}
                 Auth={Auth}
                 setAuth={setAuth}
                 display={display}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LogoImg from '../assets/img/logo/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -26,11 +26,15 @@ const Header = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Link className="nav-link" to="/">Home</Link>
+                            <NavLink className="nav-link" exact to="/">Home</NavLink>
                         </NavItem>
 
                         <NavItem style={props.display(props.Auth)}>
-                            <Link className="nav-link" to="/app">App</Link>
+                            <NavLink className="nav-link" exact to="/app">App</NavLink>
+                        </NavItem>
+
+                        <NavItem style={props.display(props.Auth)}>
+                            <NavLink className="nav-link" to="/app/user">Profile</NavLink>
                         </NavItem>
 
                         <NavItem className="d-flex align-items-center">

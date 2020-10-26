@@ -14,6 +14,7 @@ const setting = (props) => {
             </span>
             <br></br>
             <br></br>
+            <br></br>
             <Form>
       <FormGroup>
         <Label for="Password">Password</Label>

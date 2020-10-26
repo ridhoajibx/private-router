@@ -1,16 +1,33 @@
-import React from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-
-const Setting = (props) => {
+import React from 'react'
+import { FaBars } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
+// import { Line } from 'react-chartjs-2';
+const setting = (props) => {
+    console.log(props, "cek props");
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
                 {!props.toggleSide ? <FaTimes /> : <FaBars />}
-                <h4>Setting</h4>
+                <h4>Setting Password</h4>
             </span>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta omnis quisquam nobis perferendis! Ut saepe explicabo totam delectus mollitia nostrum eligendi voluptate inventore repellat ipsum ipsa, maxime velit eum corrupti perspiciatis. Ullam voluptate perspiciatis odit quidem, vero dignissimos reiciendis ratione? Perspiciatis nihil, officiis omnis voluptates deleniti nesciunt eius maxime labore et laudantium, cum, nulla earum ad nobis quaerat eum. Iste incidunt aliquam deleniti, architecto ipsa officia! Cumque unde officiis, culpa dolorem maiores nesciunt iste est totam ab maxime delectus eius voluptates sit consequuntur, suscipit amet, fugit repellendus. Fugiat ratione tenetur earum enim doloremque similique iure ipsum, ipsa nemo, quia odio?</p>
-        </div>
-    );
+            <br></br>
+            <br></br>
+            <br></br>
+            <Form>
+      <FormGroup>
+        <Label for="Password">New Password</Label>
+        <Input type="Password" name="Password" id="Password" placeholder="Password" />
+      </FormGroup>
+      <FormGroup>
+        <Label for="confirmPassword">Confirm Password</Label>
+        <Input type="confirmpassword" name="confirmpassword" id="confirmPassword" placeholder="confirm password" />
+      </FormGroup>
+            </Form>
+            </div>
+
+    )
 }
 
-export default Setting;
+export default setting;

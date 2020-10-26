@@ -16,7 +16,7 @@ const routesDashboard = [
     },
     {
         path: "/app/setting",
-        name: "Setting",
+        name: "Setting Password",
         icon: FaCog,
     },
 ]

@@ -17,7 +17,7 @@ const setting = (props) => {
             <br></br>
             <Form>
       <FormGroup>
-        <Label for="Password">Password</Label>
+        <Label for="Password">New Password</Label>
         <Input type="Password" name="Password" id="Password" placeholder="Password" />
       </FormGroup>
       <FormGroup>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaCalendar, FaCog, FaHome } from 'react-icons/fa';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const routesDashboard = [
     {
@@ -27,9 +27,9 @@ const Sidebar = (props) => {
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
                 <img src={ProfileImg} alt="" width="100" className="rounded-circle img-thumb" />
-                <Link className="mt-2" to="/app/user">
+                <NavLink className="mt-2" to="/app/user">
                     Jumakri Ridho Fauzi
-                </Link>
+                </NavLink>
             </div>
             {
                 routesDashboard.map((item, index) => (

@@ -1,4 +1,10 @@
 export const defaultDate = new Date("2020-10-09T00:00:00.000Z");
+const currentYear = new Date().getFullYear();
+const currentMonth = new Date().getMonth();
+const currentDate = new Date().getDate();
+const currentHours = new Date().getHours();
+
+export const displayDate = new Date(Date.UTC(currentYear, currentMonth, currentDate, currentHours));
 export const data = [
     {
         id: 1,

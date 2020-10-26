@@ -8,7 +8,7 @@ import {
     WeekView,
     MonthView,
 } from '@progress/kendo-react-scheduler';
-import { data, defaultDate } from './Event.js';
+import { data, defaultDate, displayDate } from './Event.js';
 
 const group = {
     resources: ['Subscription'],
@@ -38,7 +38,7 @@ const Calendar = () => {
                 resources={resources}
 
                 data={data}
-                defaultDate={defaultDate}
+                defaultDate={displayDate}
 
                 timezone={"Etc/UTC"}
             >

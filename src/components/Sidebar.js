@@ -7,17 +7,17 @@ const routesDashboard = [
     {
         path: "/app",
         name: "Dashboard",
-        icon: FaHome
+        icon: < FaHome />
     },
     {
-        path: "/app/date",
-        name: "Date",
-        icon: FaCalendar,
+        path: "/app/schedule",
+        name: "Schedule",
+        icon: <FaCalendar />,
     },
     {
         path: "/app/setting",
         name: "Setting Password",
-        icon: FaCog,
+        icon: <FaCog />,
     },
 ]
 
@@ -34,8 +34,8 @@ const Sidebar = (props) => {
             {
                 routesDashboard.map((item, index) => (
                     <div key={index} className={`side-item`} >
-                        <NavLink exact className="" to={item.path}>
-                            {item.name}
+                        <NavLink exact className="d-flex align-items-center" to={item.path}>
+                            <span className="mr-2">{item.icon}</span> {item.name}
                         </NavLink>
                     </div>
                 ))

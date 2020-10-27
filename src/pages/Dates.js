@@ -9,7 +9,7 @@ const Dates = (props) => {
             <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
                 <span className="toggle-btn" onClick={props.handleToggleSide}>
                     { !props.toggleSide ? <FaTimes /> : <FaBars /> }
-                    <h4>Scedule</h4>
+                    <h4>Schedule</h4>
                 </span>
                 <Row className="my-2">
                     <Col lg='12'>

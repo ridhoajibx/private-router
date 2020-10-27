@@ -10,8 +10,8 @@ const routesDashboard = [
         icon: < FaHome />
     },
     {
-        path: "/app/scedule",
-        name: "Scedule",
+        path: "/app/schedule",
+        name: "Schedule",
         icon: <FaCalendar />,
     },
     {

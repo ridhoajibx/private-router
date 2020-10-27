@@ -38,7 +38,7 @@ const Index = () => {
             />
 
             <PrivateRoute exact
-                path="/app/scedule"
+                path="/app/schedule"
                 comp={DashboardLayouts}
                 child={Dates}
                 Auth={Auth}

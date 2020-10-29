@@ -19,6 +19,11 @@ const routesDashboard = [
         name: "Setting Password",
         icon: <FaCog />,
     },
+    {
+        path: "/app/Subscription",
+        name: "Subscription",
+        icon: <FaCog />,
+    },
 ]
 
 const Sidebar = (props) => {

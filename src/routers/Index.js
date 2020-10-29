@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import Dates from '../pages/Dates';
 import Home from '../pages/Home';
 import Setting from '../pages/Setting';
+import Subscription from '../pages/Subscribtion';
 import PrivateRoute from './PrivateRoute';
 
 const Index = () => {
@@ -63,6 +64,17 @@ const Index = () => {
                 path="/app/user"
                 comp={DashboardLayouts}
                 child={User}
+                Auth={Auth}
+                setAuth={setAuth}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
+
+            <PrivateRoute exact
+                path="/app/Subscription"
+                comp={DashboardLayouts}
+                child={Subscription}
                 Auth={Auth}
                 setAuth={setAuth}
                 display={display}

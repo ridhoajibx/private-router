@@ -6,7 +6,7 @@ const Footer2  = (props) => {
     return (
         <div>
             <br></br>
-        <Card style={{backgroundColor:'rgba(121, 113, 234, 1)',backgroundPosition: 'right',backgroundImage: `url(${imageb})`,backgroundRepeat: 'no-repeat',height:300}}>
+        <div style={{backgroundColor:'rgba(121, 113, 234, 1)',backgroundPosition: 'right',backgroundImage: `url(${imageb})`,backgroundRepeat: 'no-repeat',height:300}}>
         <br></br>
         <br></br>
         <Container>
@@ -19,8 +19,13 @@ const Footer2  = (props) => {
           <Button >JOIN NOW</Button>
         </p>
         </Container>
-      </Card>
       </div>
+      <Container>
+      <p> 2020 | Subsit </p>
+      </Container>
+      </div>
+      
+
         );
       }
 

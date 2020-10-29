@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
 
 const User = (props) => {
     return (
@@ -29,12 +29,8 @@ const User = (props) => {
                                     />
                                     <h5 className="title">Jumakri Ridho Fauzi</h5>
                                 </a>
-                                <p className="description">@ridhoajibx</p>
+                                {/* <p className="description">@ridhoajibx</p> */}
                             </div>
-                            <p className="description text-center">
-                                "I like the way you work it <br />
-                                No diggity <br />I wanna bag it up"
-                            </p>
                         </CardBody>
                     </Card>
                 </Col>
@@ -46,68 +42,24 @@ const User = (props) => {
                         <CardBody>
                             <Form>
                                 <Row>
-                                    <Col md="6">
+                                    <Col md="12">
+                                        <FormGroup>
+                                            <Label for="exampleFile">Avatar</Label>
+                                            <Input type="file" name="file" id="exampleFile" />
+                                            <FormText color="muted">
+                                                Upload your avatar here!
+                                            </FormText>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12">
                                         <FormGroup>
                                             <label>Full Name</label>
                                             <Input
                                                 defaultValue="Jumakri Ridho Fauzi"
                                                 placeholder="Full name"
                                                 type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md="6">
-                                        <FormGroup>
-                                            <label>Username</label>
-                                            <Input
-                                                defaultValue="ridhoajibx"
-                                                placeholder="Username"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md="12">
-                                        <FormGroup>
-                                            <label>Address</label>
-                                            <Input
-                                                defaultValue="Kampung Tengah, Nongsa"
-                                                placeholder="Home Address"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md="6">
-                                        <FormGroup>
-                                            <label>City</label>
-                                            <Input
-                                                defaultValue="Batam"
-                                                placeholder="City"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md="6">
-                                        <FormGroup>
-                                            <label>Country</label>
-                                            <Input
-                                                defaultValue="Indonesia"
-                                                placeholder="Country"
-                                                type="text" 
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md="12">
-                                        <FormGroup>
-                                            <label>About Me</label>
-                                            <Input
-                                                type="textarea"
-                                                defaultValue="Oh so, your weak rhyme You doubt I'll bother, reading into it"
                                             />
                                         </FormGroup>
                                     </Col>

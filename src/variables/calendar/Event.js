@@ -9,17 +9,15 @@ export const data = [
     {
         id: 1,
         title: 'Pay Cigarette',
-        Description: '100000',
         start: new Date("2020-10-27T11:30:00.000Z"),
         end: new Date("2020-10-27T12:00:00.000Z"),
         subscriptionId: 4,
         userId:  1,
-        recurrenceRule: "FREQ=DAILY;INTERVAL=1;UNTIL=2020-12-27T11:30:00.000Z",
+        recurrenceRule: "FREQ=DAILY;UNTIL=2020-12-27T11:30:00.000Z",
     },
     {
         id: 2,
         title: 'Pay spotify',
-        Description: '100000',
         start: new Date("2020-10-09T11:30:00.000Z"),
         end: new Date("2020-10-09T13:00:00.000Z"),
         subscriptionId: 1,
@@ -29,7 +27,6 @@ export const data = [
     {
         id: 3,
         title: 'Pay Netflix',
-        Description: '100000',
         start: new Date("2020-10-09T11:30:00.000Z"),
         end: new Date("2020-10-09T13:00:00.000Z"),
         subscriptionId: 2,
@@ -39,11 +36,10 @@ export const data = [
     {
         id: 4,
         title: 'Pay Youtube premium',
-        Description: '100000',
         start: new Date("2020-10-28T11:30:00.000Z"),
         end: new Date("2020-10-28T12:00:00.000Z"),
         subscriptionId: 3,
         userId: 1,
-        recurrenceRule: "FREQ=YEARLY;BYMONTH=10;UNTIL=2023-10-28T11:30:00.000Z",
+        recurrenceRule: "FREQ=YEARLY;UNTIL=2023-10-28T11:30:00.000Z",
     }
 ];

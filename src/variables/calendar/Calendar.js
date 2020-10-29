@@ -18,8 +18,8 @@ const resources = [
     {
         name: 'Subscription',
         data: [
-            { text: 'Netflix', value: 1, color: '#79d70f' },
-            { text: 'Spotify', value: 2, color: '#d32626' },
+            { text: 'Spotify', value: 1, color: '#79d70f' },
+            { text: 'Netflix', value: 2, color: '#d32626' },
             { text: 'Youtube', value: 3, color: '#ff414d' },
             { text: 'Cigarette', value: 4, color: '#070d59' }
         ],
@@ -34,9 +34,9 @@ const Calendar = () => {
     return (
         <div>
             <Scheduler
-                group={group}
-                resources={resources}
-
+                // group={group}
+                // resources={resources}
+                defaultView='month'
                 data={data}
                 defaultDate={displayDate}
 

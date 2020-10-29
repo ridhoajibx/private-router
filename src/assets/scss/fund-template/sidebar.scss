@@ -14,7 +14,7 @@ $side-width: 250px;
     box-shadow: 6px 7px 10px -5px rgba(0, 0, 0, 0.74);
     transition: all ease 0.5s;
     .side-item {
-        transition: all ease 0.5s;
+        transition: all ease 1s;
         a {
             padding: 0.75em 1.5em;
             text-decoration: none;
@@ -23,7 +23,6 @@ $side-width: 250px;
             display: block;
             border-bottom: 1px solid rgba(51, 48, 48, 0.255);
             border-top: 1px solid rgba(51, 48, 48, 0.255);
-            transition: all ease 0.8s;
             &:hover {
                 background: $primary-color;
                 color: #fff;

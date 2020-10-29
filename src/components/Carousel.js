@@ -27,17 +27,17 @@ const items = [
         src: 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg',
         altText: 'Slide 4',
         caption: 'DISNEY+'
-      },
-      {
+    },
+    {
         src: 'https://www.logo.wine/a/logo/Google_Stadia/Google_Stadia-Logo.wine.svg',
         altText: 'Slide 4',
         caption: 'STADIA'
-      },
-      {
+    },
+    {
         src: 'https://www.logo.wine/a/logo/Viu_(streaming_media)/Viu_(streaming_media)-Logo.wine.svg',
         altText: 'Slide 4',
         caption: 'VIU'
-      }
+    }
   ];
 
 const Slide = (props) => {

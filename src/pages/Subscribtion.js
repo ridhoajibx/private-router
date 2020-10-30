@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, CardImg, CardTitle, CardText, CardGroup,
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, CardGroup,
   CardSubtitle, CardBody} from 'reactstrap';
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
@@ -8,42 +8,54 @@ const items = [
     {
         id: '1',
       src: 'https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg',
-      description: '1231231241241',
+      Next_Payment: 'June 29 2020',
+      Duration:'Monthly',
+      Cost: '149.000',
       altText: 'Slide 1',
       caption: 'NETFLIX'
     },
     {
         id: '2',
       src: 'https://www.logo.wine/a/logo/BT_Sport/BT_Sport-Logo.wine.svg',
-      description: 'dfgkljdfjkgjjdlfkgjdklfgj',
+      Next_Payment: 'June 29 2020',
+      Duration:'Monthly',
+      Cost: '149.000',
       altText: 'Slide 2',
       caption: 'BT SPORT'
     },
     {
         id: '3',
       src: 'https://www.logo.wine/a/logo/Spotify/Spotify-Logo.wine.svg',
-      description: 'dfgkljdfjkgjjdlfkgjdklfgje23423423',
+      Next_Payment: 'June 29 2020',
+      Duration:'Monthly',
+      Cost: '149.000',
       altText: 'Slide 3',
       caption: 'SPORTIFY'
     },
     {
         id: '4',
         src: 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg',
-        description: 'dfgkljdfjkgjjdlfkgjd243423423423',
+        Next_Payment: 'June 29 2020',
+        Duration:'Monthly',
+        Cost: '149.000',
         altText: 'Slide 4',
         caption: 'DISNEY+'
     },
     {
         id: '5',
         src: 'https://www.logo.wine/a/logo/Google_Stadia/Google_Stadia-Logo.wine.svg',
-        description: 'dfgkljdfjkgjjdlfkgjdklfgj555555555555555',
+        Next_Payment: 'June 29 2020',
+        Duration:'Monthly',
+        Cost: '149.000',
         altText: 'Slide 4',
         caption: 'STADIA'
     },
     {
         id: '6',
         src: 'https://www.logo.wine/a/logo/Viu_(streaming_media)/Viu_(streaming_media)-Logo.wine.svg',
-        description: 'dfgkljdfjkgjjdlfkgjdklfgj687987979',
+        Next_Payment: 'June 29 2020',
+        Duration:'Monthly',
+        Cost: '149.000',
         altText: 'Slide 4',
         caption: 'VIU'
     }
@@ -115,6 +127,11 @@ const Subscription = (props) => {
         <ModalHeader>{data.caption}</ModalHeader>
         <ModalBody>
             <img style={{backgroundColor:"black"}} src={data.src} ></img>
+            <br></br>
+            <br></br>
+          <h6> Next Payment : {data.Next_Payment}</h6>
+          <h6> Duration : {data.Duration}</h6>
+          <h6> Cost : {data.Cost}</h6>
           {data.description}
         </ModalBody>
         <ModalFooter>

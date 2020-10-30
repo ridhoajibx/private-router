@@ -2,9 +2,15 @@ import React from 'react';
 import Jumbotron2 from '../components/Jumbotron';
 import Slide from '../components/Carousel';
 import Footer2 from '../components/Footer';
-const Home = () => {
+import Authentication from './Authentication';
+import './Authentication.scss';
+import { connect } from 'react-redux';
+
+const Home = (props) => {
     return ( 
         <div className="home">
+        { props.show ? <div className="back-drop"></div> : null}
+        <Authentication show={props.show}/>
         <Jumbotron2 />  
         <Slide />
         <Footer2 />
@@ -12,4 +18,9 @@ const Home = () => {
     );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        show: state.show
+    }
+}
+export default connect(mapStateToProps)(Home);

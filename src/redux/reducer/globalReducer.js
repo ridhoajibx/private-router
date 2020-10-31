@@ -20,10 +20,10 @@ const rootReducer = (state = globalState, action) => {
             show: false
         }
     }
-    if(action.type === 'AUTHENTICATED') {
+    if(action.type === 'REGISTER') {
         return {
             ...state,
-            
+            show: false
         }
     }
     return state;

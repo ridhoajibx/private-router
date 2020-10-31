@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LogoImg from '../assets/img/logo/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as action from '../redux/actions/authAction';
 import {
     Collapse,
     Navbar,
@@ -19,7 +20,6 @@ const Header = (props) => {
             <Nav className="ml-auto" navbar>
                         <NavItem>
                             <NavLink className="nav-link" exact to="/">Home</NavLink>
-
                         </NavItem>
 
                         <NavItem >
@@ -31,7 +31,7 @@ const Header = (props) => {
                         </NavItem>
 
                         <NavItem className="d-flex align-items-center">
-                            <Button color="primary" size="sm" onClick={() => props.setAuth(false)} >Logout</Button>
+                            <Button color="primary" size="sm" onClick={props.logout} >Logout</Button>
                         </NavItem>     
             </Nav>
             
@@ -48,6 +48,7 @@ const Header = (props) => {
             </Nav>
             
     );
+
     return (
         <div className="shadow">
             <Navbar color="light" light expand="md" className="header fixed-top">
@@ -77,13 +78,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleOpen: () => dispatch({type: 'SHOW'})
+        handleOpen: () => dispatch({type: 'SHOW'}),
+        handleSignup: () => dispatch({type: 'REGISTER'}),
+        logout: () => dispatch(action.logout())
     }
 }
-
-Header.propTypes = {
-    auth: React.PropTypes,
-    logout: React.PropTypes
-  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

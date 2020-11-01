@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './redux/reducer/globalReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
@@ -18,7 +19,7 @@ import {setCurrentUser} from './redux/actions/authAction';
 const store = createStore(
     rootReducer,
     compose(
-      applyMiddleware(thunk),
+      applyMiddleware(logger, thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );

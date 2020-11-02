@@ -1,10 +1,12 @@
 import React from 'react';
 import Jumbotron2 from '../components/Jumbotron';
-import Slide from '../components/Carousel';
+import Component from '../components/Carousel';
 import Footer2 from '../components/Footer';
 import Authentication from './Authentication';
 import './Authentication.scss';
 import { connect } from 'react-redux';
+import Carousel2 from '../components/Carousel';
+
 
 const Home = (props) => {
     return ( 
@@ -12,7 +14,7 @@ const Home = (props) => {
         { props.show ? <div className="back-drop"></div> : null}
         <Authentication show={props.show}/>
         <Jumbotron2 />  
-        <Slide />
+        <Carousel2 />
         <Footer2 />
         </div>
     );

@@ -8,7 +8,7 @@ const DashboardLayouts = (props) => {
         <div>
             <Header Auth={props.Auth} display={props.display} setAuth={ props.setAuth } />
             <Sidebar toggleSide={ props.toggleSide } />
-            <div fluid className="my-4">
+            <div className="my-4">
                 {props.children}
             </div>
         </div>

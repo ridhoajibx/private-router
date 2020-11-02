@@ -33,10 +33,16 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
+    "react-slick": "^0.27.12",
     "reactstrap": "^8.6.0",
     "redux": "^4.0.5",
+<<<<<<< HEAD
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
+=======
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1"
+>>>>>>> e37df4b8db6d47caccf42e0cb064665ae3c66a0f
   },
   "scripts": {
     "start": "react-scripts start",

@@ -68,6 +68,11 @@ const Index = (props) => {
                 path="/app/Subscription"
                 comp={DashboardLayouts}
                 child={Subscription}
+<<<<<<< HEAD
+=======
+                // Auth={Auth}
+                // setAuth={setAuth}
+>>>>>>> e37df4b8db6d47caccf42e0cb064665ae3c66a0f
                 display={display}
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}

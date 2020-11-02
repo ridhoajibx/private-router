@@ -17,7 +17,7 @@ const ModalTransaction = (props) => {
                         </div>
                         <div className='d-flex justify-content-between align-items-center'>
                             <div className="font-weight-bold">Price:</div>
-                            <span>${props.data.price}</span>
+                            <span>Rp {props.data.price}</span>
                         </div>
                         <div className='d-flex justify-content-between align-items-center'>
                             <div className="font-weight-bold">Date payment:</div>

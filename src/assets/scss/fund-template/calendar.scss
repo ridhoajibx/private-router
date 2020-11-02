@@ -1,13 +1,17 @@
 @import './variables.scss';
-button {
-    .k-button-group {
-        .k-button {
-            &:checked {
-                background-color: $primary-color;
-            }
+.k-button-group {
+    .k-button {
+        &:focus {
+            border-color: $primary-color ;
+            background-color: $primary-color;
         }
-        .k-state-active {
+        &.k-state-active {
+            border-color: $primary-color ;
             background-color: $primary-color;
         }
     }
+}
+.k-event {
+    color: $white-color;
+    background-color: $primary-color;
 }

@@ -65,7 +65,7 @@ const Dashboard = (props) => {
                                         dataTables.map((item, index) => (
                                             <tr key={index}>
                                                 <td>{item.subscription}</td>
-                                                <td>${item.price}</td>
+                                                <td>Rp {item.price}</td>
                                                 <td className="text-right"><button onClick={() => handleShowmodal(item)} className="btn btn-primary btn-sm">Details</button></td>
                                             </tr>
                                         ))

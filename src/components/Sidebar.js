@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
-import { FaCalendar, FaCog, FaHome } from 'react-icons/fa';
+import { FaBookmark, FaCalendar, FaCog, FaHome } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -23,7 +23,7 @@ const routesDashboard = [
     {
         path: "/app/Subscription",
         name: "Subscription",
-        icon: <FaCog />,
+        icon: <FaBookmark />,
     },
 ]
 

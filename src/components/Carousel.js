@@ -1,111 +1,113 @@
 import React, { useState } from 'react';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
-} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, CardGroup,
+  CardSubtitle, CardBody} from 'reactstrap';
+  import Slider from "react-slick";
 
-const items = [
+  const items = [
     {
+        id: '1',
       src: 'https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg',
+      Next_Payment: 'June 29 2020',
+      Duration:'Monthly',
+      Cost: '149.000',
       altText: 'Slide 1',
       caption: 'NETFLIX'
     },
     {
+        id: '2',
       src: 'https://www.logo.wine/a/logo/BT_Sport/BT_Sport-Logo.wine.svg',
+      Next_Payment: 'June 29 2020',
+      Duration:'Monthly',
+      Cost: '149.000',
       altText: 'Slide 2',
       caption: 'BT SPORT'
     },
     {
+        id: '3',
       src: 'https://www.logo.wine/a/logo/Spotify/Spotify-Logo.wine.svg',
+      Next_Payment: 'June 29 2020',
+      Duration:'Monthly',
+      Cost: '149.000',
       altText: 'Slide 3',
       caption: 'SPORTIFY'
     },
     {
+        id: '4',
         src: 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg',
+        Next_Payment: 'June 29 2020',
+        Duration:'Monthly',
+        Cost: '149.000',
         altText: 'Slide 4',
         caption: 'DISNEY+'
     },
     {
+        id: '5',
         src: 'https://www.logo.wine/a/logo/Google_Stadia/Google_Stadia-Logo.wine.svg',
+        Next_Payment: 'June 29 2020',
+        Duration:'Monthly',
+        Cost: '149.000',
         altText: 'Slide 4',
         caption: 'STADIA'
     },
     {
+        id: '6',
         src: 'https://www.logo.wine/a/logo/Viu_(streaming_media)/Viu_(streaming_media)-Logo.wine.svg',
+        Next_Payment: 'June 29 2020',
+        Duration:'Monthly',
+        Cost: '149.000',
         altText: 'Slide 4',
         caption: 'VIU'
     }
   ];
+  const Carousel2 = (props) => {
+    
+    const {
+        className
+      } = props;
+      const [modal, setModal] = useState(false);
+      const [data, setData] = useState({}); //hooks
+      const handleShowmodal = (items) =>
+       {
+           console.log (items) 
+           setData(items)
+           console.log("rio",data)
+           setModal(!modal)
 
-const Slide = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  }
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  }
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  }
-
-  const slides = items.map((item) => {
+        } ;
+      console.log(props, "cek props");
     return (
-      <CarouselItem
-        className="custom-tag"
-        tag="div"
-        key={item.id}
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-      >
-        <img src={item.src} alt={item.altText} />
-        <CarouselCaption className="text-muted"  captionHeader={item.caption} />
-      </CarouselItem>
-    );
-  });
-
-  return (
-    <div>
-      <style>
-        {
-          `.custom-tag {
-            max-width: 100%;
-            background: black;
-        
-            }
-            img{
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
-              width: 30%;
-            }
-            `
-        }
-      </style>
-      <Carousel
-        activeIndex={activeIndex}
-        next={next}
-        previous={previous}
-      >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-        {slides}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-        <CarouselControl direction="next"  directionText="Next" onClickHandler={next} />
-      </Carousel>
+        <div>
+    <br></br>
+    <br></br>
+          <Slider>
+            <Row>
+        {items.map((image,i)=>
+        <Col md={4}>
+        <img style={{backgroundColor:"black"}} src={image.src} onClick={()=> handleShowmodal(image)}>
+            </img> 
+            <br></br>
+            <br></br>
+        </Col>
+            )}
+       
+       
+      <Modal isOpen={modal} toggle = {() => setModal(false)} className={className}>
+        <ModalHeader>{data.caption}</ModalHeader>
+        <ModalBody>
+            <img style={{backgroundColor:"black"}} src={data.src} ></img>
+            <br></br>
+            <br></br>
+          {data.description}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="success" onClick={()=> setModal(false)}>Subscript</Button>
+        </ModalFooter>
+      </Modal>
+      </Row>
+      </Slider>
     </div>
-  );
+
+    );
 }
 
-export default Slide;
+export default Carousel2;

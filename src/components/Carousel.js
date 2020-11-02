@@ -82,7 +82,9 @@ const Carousel2 = (props) => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 1000,
+        speed: 1000,
         slidesToShow: 3,
         slidesToScroll: 3
     };

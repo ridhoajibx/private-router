@@ -12,7 +12,7 @@ export function setCurrentUser(user) {
 export function userSignupRequest(userData) {
     return dispatch => {
         return axios.post('https://peaceful-gorge-77974.herokuapp.com/users/register', userData).then(res => {
-            const token = res.userData.access_token;
+            const token = res.data.access_token;
             localStorage.setItem('jwtToken', token);
             setAuthorizationToken(token);
             dispatch(setCurrentUser(jwt.decode(token)));

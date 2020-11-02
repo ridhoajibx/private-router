@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './redux/reducer/globalReducer';
+import rootReducer from './redux/rootReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 import {setCurrentUser} from './redux/actions/authAction';
@@ -19,7 +19,7 @@ import {setCurrentUser} from './redux/actions/authAction';
 const store = createStore(
     rootReducer,
     compose(
-      applyMiddleware(logger, thunk),
+      applyMiddleware(thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );

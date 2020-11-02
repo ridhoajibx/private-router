@@ -29,6 +29,7 @@ export class Login extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.loginRequest(this.state);
+         
         if(validateForm(this.state.errors)) {
         console.info('Valid Form')
         }else{

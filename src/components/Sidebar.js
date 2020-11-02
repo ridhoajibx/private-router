@@ -32,7 +32,7 @@ const Sidebar = (props) => {
     return (
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
-                <img src={props.user.photo} alt="" width="100" className="rounded-circle img-thumb" />
+                <img src={props.user.photo ? props.user.photo : ProfileImg} alt="" width="100" className="rounded-circle img-thumb" />
                 <NavLink className="mt-2" to="/app/user">
                     {props.user.name}
                 </NavLink>

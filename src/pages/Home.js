@@ -11,8 +11,8 @@ import Carousel2 from '../components/Carousel';
 const Home = (props) => {
     return ( 
         <div className="home">
-        { props.show ? <div className="back-drop"></div> : null}
-        <Authentication show={props.show}/>
+        { props.global.show ? <div className="back-drop"></div> : null}
+        <Authentication show={props.global.show}/>
         <Jumbotron2 />  
         <Carousel2 />
         <Footer2 />
@@ -22,7 +22,7 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        show: state.show
+        global: state.global
     }
 }
 export default connect(mapStateToProps)(Home);

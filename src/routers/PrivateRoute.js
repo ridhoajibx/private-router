@@ -1,14 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-const PrivateRoute = ({ setAuth, Auth, comp:Component, child: Children, display, toggleSide, handleToggleSide, ...rest }) => {
-    console.log('ini auth', Auth);
+const PrivateRoute = ({ comp:Component, child: Children, display, toggleSide, handleToggleSide, auth, ...rest }) => {
     return (
         <Route
             {...rest}
             render={
-                props => Auth ?
-                (<Component {...props} display={ display } Auth={ Auth } setAuth={setAuth} toggleSide={toggleSide} handleToggleSide={handleToggleSide}>
+                props => auth ?
+                (<Component {...props} display={ display } toggleSide={toggleSide} handleToggleSide={handleToggleSide}>
                     <Children toggleSide={toggleSide} handleToggleSide={handleToggleSide} />
                 </Component>) :
                 (<Redirect to={{ pathname:'/' }} />)
@@ -17,4 +17,10 @@ const PrivateRoute = ({ setAuth, Auth, comp:Component, child: Children, display,
     );
 }
 
-export default PrivateRoute;
+const mapStateToProps = (state) => {
+    return {
+      auth: state.isAuthenticated,
+    };
+  };
+
+export default connect(mapStateToProps)(PrivateRoute);

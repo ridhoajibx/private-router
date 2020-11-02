@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Container } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
+import Calendar from '../variables/calendar/Calendar';
 
 const Dates = (props) => {
     return (
@@ -8,9 +9,13 @@ const Dates = (props) => {
             <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
                 <span className="toggle-btn" onClick={props.handleToggleSide}>
                     { !props.toggleSide ? <FaTimes /> : <FaBars /> }
-                    <h4>Date</h4>
+                    <h4>Schedule</h4>
                 </span>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus laborum praesentium reprehenderit similique labore eum perferendis iusto voluptate laudantium iure alias, dicta facere est rem quis ipsa provident numquam placeat repellendus nihil molestiae? Non quidem soluta eum, deleniti facere velit atque voluptatibus vitae vero repellendus quae voluptate natus quibusdam. Iste!</p>
+                <Row className="my-2">
+                    <Col lg='12'>
+                        <Calendar />
+                    </Col>
+                </Row>
             </div>
         </Container>
     );

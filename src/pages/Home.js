@@ -1,15 +1,28 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import Jumbotron2 from '../components/Jumbotron';
+import Component from '../components/Carousel';
+import Footer2 from '../components/Footer';
+import Authentication from './Authentication';
+import './Authentication.scss';
+import { connect } from 'react-redux';
+import Carousel2 from '../components/Carousel';
 
-const Home = () => {
-    return (
-        <div className="main">
-            <Container>
-                <h3>Home</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque amet, cupiditate iste voluptatem quam porro neque, nulla minus, reiciendis incidunt tempora soluta distinctio! Obcaecati cumque repellendus nisi in, hic ducimus temporibus reprehenderit distinctio eum nobis autem atque animi? Cumque sint inventore libero perferendis odit impedit eaque qui ut soluta similique.</p>
-            </Container>
+
+const Home = (props) => {
+    return ( 
+        <div className="home">
+        { props.show ? <div className="back-drop"></div> : null}
+        <Authentication show={props.show}/>
+        <Jumbotron2 />  
+        <Carousel2 />
+        <Footer2 />
         </div>
     );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        show: state.show
+    }
+}
+export default connect(mapStateToProps)(Home);

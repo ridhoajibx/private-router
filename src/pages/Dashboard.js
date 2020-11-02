@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     dashboard24HoursPerformanceChart,
 } from "../variables/charts";
+import { dataTables } from '../variables/data-tables';
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
+import ModalTransaction from '../components/modals/ModalTransaction';
 
 const Dashboard = (props) => {
+    const [modal, setModal] = useState(false);
+    const [data, setData] = useState({});
+    const handleShowmodal = (data) => {
+        setData(data)
+        setModal(!modal)
+    }
     console.log(props, "cek props");
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
@@ -15,6 +23,9 @@ const Dashboard = (props) => {
                 {!props.toggleSide ? <FaTimes /> : <FaBars />}
                 <h4>Dashboard</h4>
             </span>
+
+            {/* modal */}
+            <ModalTransaction modal={modal} setModal={setModal} data={data} />
 
             <Row className="py-4">
                 <Col md="12">
@@ -50,16 +61,15 @@ const Dashboard = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Netflix</td>
-                                        <td>$105,70</td>
-                                        <td className="text-right"><a href="#">Details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Spotify</td>
-                                        <td>$56,78</td>
-                                        <td className="text-right"><a href="#">Details</a></td>
-                                    </tr>
+                                    {
+                                        dataTables.map((item, index) => (
+                                            <tr key={index}>
+                                                <td>{item.subscription}</td>
+                                                <td>${item.price}</td>
+                                                <td className="text-right"><button onClick={() => handleShowmodal(item)} className="btn btn-primary btn-sm">Details</button></td>
+                                            </tr>
+                                        ))
+                                    }
                                 </tbody>
                             </Table>
                         </CardBody>

@@ -79,7 +79,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, Card
         <div>
     <br></br>
     <br></br>
-          <Slider>
+    <Slider dots={true} infinite={true} speed={1000} slidesToScroll={1} arrows={true} slidesToShow={1}>
             <Row>
         {items.map((image,i)=>
         <Col md={4}>

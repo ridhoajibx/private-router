@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
+import UploadAvatar from '../components/modals/UploadAvatar';
+
+import { connect } from 'react-redux';
+import { fetchUsers } from '../redux';
+
 
 const User = (props) => {
+    console.log(props, 'cek props user');
+    const [modal, setModal] = useState(false);
+    const [avatar, setAvatar] = useState({});
+    const handleShowmodal = (data) => {
+        setAvatar(data)
+        setModal(!modal)
+    }
+    useEffect(() => {
+        props.fetchUsers()
+    }, [])
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
@@ -14,22 +29,25 @@ const User = (props) => {
                 <Col md="4">
                     <Card className="card-user">
                         <div className="image">
-                            <img
-                                alt="..."
-                                src={ProfileImg}
-                            />
+                            {
+                                props.loading ? <h4>Loading...</h4> : props.error ? <h4>{ props.error }</h4> :
+                                    <CardImg
+                                        alt="..."
+                                        src={props.user.photo}
+                                    />
+                            }
                         </div>
                         <CardBody>
                             <div className="author">
-                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
                                     <img
                                         alt="..."
                                         className="avatar border-gray"
-                                        src={ProfileImg}
+                                        src={props.user.photo}
                                     />
-                                    <h5 className="title">Jumakri Ridho Fauzi</h5>
                                 </a>
-                                {/* <p className="description">@ridhoajibx</p> */}
+                                <h5 className="title">{props.user.name}</h5>
+                                <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
                             </div>
                         </CardBody>
                     </Card>
@@ -41,7 +59,7 @@ const User = (props) => {
                         </CardHeader>
                         <CardBody>
                             <Form>
-                                <Row>
+                                {/* <Row>
                                     <Col md="12">
                                         <FormGroup>
                                             <Label for="exampleFile">Avatar</Label>
@@ -51,7 +69,7 @@ const User = (props) => {
                                             </FormText>
                                         </FormGroup>
                                     </Col>
-                                </Row>
+                                </Row> */}
                                 <Row>
                                     <Col md="12">
                                         <FormGroup>
@@ -59,6 +77,18 @@ const User = (props) => {
                                             <Input
                                                 defaultValue="Jumakri Ridho Fauzi"
                                                 placeholder="Full name"
+                                                type="text"
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12">
+                                        <FormGroup>
+                                            <label>Date of birth</label>
+                                            <Input
+                                                defaultValue="10-12-1993"
+                                                placeholder="Your date of birth"
                                                 type="text"
                                             />
                                         </FormGroup>
@@ -80,8 +110,24 @@ const User = (props) => {
                     </Card>
                 </Col>
             </Row>
-        </div>
+            {/* modal */}
+            <UploadAvatar modal={modal} setModal={setModal} avatar={avatar} />
+        </div >
     );
 }
 
-export default User;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user.userData,
+        loading: state.user.loading,
+        error: state.user.error
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUsers: () => dispatch(fetchUsers())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

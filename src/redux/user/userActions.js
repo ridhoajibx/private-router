@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { 
-    FETCH_USERS_REQUEST, 
-    FETCH_USERS_SUCCESS, 
-    FETCH_USERS_FAILURE 
+import {
+    FETCH_USERS_REQUEST,
+    FETCH_USERS_SUCCESS,
+    FETCH_USERS_FAILURE
 } from './userTypes';
 
 export const fetchUsersRequest = () => {
@@ -28,7 +28,11 @@ const fetchUsersFailure = (error) => {
 export const fetchUsers = () => {
     return (dispatch) => {
         dispatch(fetchUsersRequest)
-        axios.get('https://jsonplaceholder.typicode.com/users')
+        axios.get('https://peaceful-gorge-77974.herokuapp.com/users/profile', {
+            headers: {
+                'access_token': localStorage.getItem("jwtToken")
+            }
+        })
             .then(response => {
                 const users = response.data;
                 dispatch(fetchUsersSuccess(users))

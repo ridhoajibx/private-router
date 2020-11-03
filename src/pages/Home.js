@@ -9,13 +9,13 @@ import Carousel2 from '../components/Carousel';
 
 
 const Home = (props) => {
-    return ( 
+    return (
         <div className="home">
-        { props.global.show ? <div className="back-drop"></div> : null}
-        <Authentication show={props.global.show}/>
-        <Jumbotron2 />  
-        <Carousel2 />
-        <Footer2 />
+            {props.global.show ? <div className="back-drop"></div> : null}
+            <Authentication show={props.global.show} />
+            <Jumbotron2 />
+            <Carousel2 />
+            <Footer2 />
         </div>
     );
 }

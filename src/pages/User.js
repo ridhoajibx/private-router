@@ -1,24 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row } from 'reactstrap';
 import UploadAvatar from '../components/modals/UploadAvatar';
 
 import { connect } from 'react-redux';
-import { fetchUsers } from '../redux';
+import { fetchUsers, updateUsers } from '../redux';
 
 
 const User = (props) => {
     console.log(props, 'cek props user');
     const [modal, setModal] = useState(false);
     const [avatar, setAvatar] = useState({});
+    const [user, setUser] = useState({name: "", dateOfBirth: ""})
     const handleShowmodal = (data) => {
         setAvatar(data)
         setModal(!modal)
     }
+
+    const onSubmit =(e)=> {
+        e.preventDefault(e);
+        console.log(user, 'cek user submit');
+        props.updateUsers(user);
+    }
+
     useEffect(() => {
         props.fetchUsers()
     }, [])
+
+    useEffect(() => {
+        setUser({
+            name: props.user.name,
+            dateOfBirth: props.user.dateOfBirth,
+        })
+        console.log(user, "this is new user state");
+    }, [props.user])
+
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
@@ -30,7 +47,6 @@ const User = (props) => {
                     <Card className="card-user">
                         <div className="image">
                             {
-                                props.loading ? <h4>Loading...</h4> : props.error ? <h4>{ props.error }</h4> :
                                     <CardImg
                                         alt="..."
                                         src={props.user.photo}
@@ -58,25 +74,16 @@ const User = (props) => {
                             <CardTitle tag="h5">Edit Profile</CardTitle>
                         </CardHeader>
                         <CardBody>
-                            <Form>
-                                {/* <Row>
-                                    <Col md="12">
-                                        <FormGroup>
-                                            <Label for="exampleFile">Avatar</Label>
-                                            <Input type="file" name="file" id="exampleFile" />
-                                            <FormText color="muted">
-                                                Upload your avatar here!
-                                            </FormText>
-                                        </FormGroup>
-                                    </Col>
-                                </Row> */}
+                            <Form onSubmit={ (e) => onSubmit(e) }>
                                 <Row>
                                     <Col md="12">
                                         <FormGroup>
                                             <label>Full Name</label>
                                             <Input
-                                                defaultValue="Jumakri Ridho Fauzi"
                                                 placeholder="Full name"
+                                                value={ user.name }
+                                                name="name"
+                                                onChange={ (e) => setUser({...user, name:e.target.value}) }
                                                 type="text"
                                             />
                                         </FormGroup>
@@ -87,9 +94,11 @@ const User = (props) => {
                                         <FormGroup>
                                             <label>Date of birth</label>
                                             <Input
-                                                defaultValue="1993-12-10"
                                                 placeholder="Your date of birth"
-                                                type="text"
+                                                type="date"
+                                                name="dateOfBirth"
+                                                value={ user.dateOfBirth }
+                                                onChange={ (e) => setUser({...user, dateOfBirth:e.target.value}) }
                                             />
                                         </FormGroup>
                                     </Col>
@@ -126,7 +135,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUsers: () => dispatch(fetchUsers())
+        fetchUsers: () => dispatch(fetchUsers()),
+        updateUsers: (payload) => dispatch(updateUsers(payload))
     }
 }
 

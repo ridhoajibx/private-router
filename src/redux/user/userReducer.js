@@ -1,7 +1,10 @@
 import {
     FETCH_USERS_REQUEST,
     FETCH_USERS_SUCCESS,
-    FETCH_USERS_FAILURE
+    FETCH_USERS_FAILURE,
+    UPDATE_USERS_REQUEST,
+    UPDATE_USERS_SUCCESS,
+    UPDATE_USERS_FAILURE
 } from './userTypes';
 
 const initialState = {
@@ -24,6 +27,24 @@ const reducer = (state = initialState, action) => {
                 error: ''
             }
         case FETCH_USERS_FAILURE:
+            return {
+                loading: true,
+                userData: [],
+                error: action.payload
+            }
+        case UPDATE_USERS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case UPDATE_USERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                userData: action.payload,
+                error: ''
+            }
+        case UPDATE_USERS_FAILURE:
             return {
                 loading: true,
                 userData: [],

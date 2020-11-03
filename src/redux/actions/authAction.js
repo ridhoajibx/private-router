@@ -12,7 +12,7 @@ export function setCurrentUser(user) {
 export function logout() {
   return dispatch => {
     localStorage.removeItem('jwtToken');
-    setAuthorizationToken(false);
+    // setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
   }
 }
@@ -22,7 +22,7 @@ export function loginRequest(data) {
       return axios.post('https://peaceful-gorge-77974.herokuapp.com/users/login', data).then(res => {
         const token = res.data.access_token;
         localStorage.setItem('jwtToken', token);
-        setAuthorizationToken(token);
+        // setAuthorizationToken(token);
         dispatch(setCurrentUser(jwt.decode(token)));
       });
     }

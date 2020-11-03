@@ -87,7 +87,7 @@ const User = (props) => {
                                         <FormGroup>
                                             <label>Date of birth</label>
                                             <Input
-                                                defaultValue="10-12-1993"
+                                                defaultValue="1993-12-10"
                                                 placeholder="Your date of birth"
                                                 type="text"
                                             />

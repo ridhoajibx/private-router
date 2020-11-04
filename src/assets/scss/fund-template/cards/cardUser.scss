@@ -27,6 +27,20 @@
         position: relative;
     }
 
+    .icons {
+        background-color: $primary-color;
+        padding: 1px;
+        width: 30px;
+        height: 30px;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 20px;
+        position: absolute;
+        bottom: 180px;
+        left: 200px;
+        cursor: pointer;
+    }
+
     .card-body{
         min-height: 240px;
     }

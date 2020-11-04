@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaCamera, FaTimes } from 'react-icons/fa';
 import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
 import UploadAvatar from '../components/modals/UploadAvatar';
 
@@ -109,13 +109,23 @@ const User = (props) => {
                                 </Row>
                                 <Row>
                                     <div className="update ml-auto mr-auto">
-                                        <Button
-                                            className="btn-round"
-                                            color="primary"
-                                            type="submit"
-                                        >
-                                            Update Profile
-                                        </Button>
+                                        {
+                                            props.loading === true ?
+                                                <Button
+                                                className="btn-round"
+                                                color="primary"
+                                                type="submit"
+                                            >
+                                                Update...<Spinner size="sm" color="white" />
+                                            </Button> :
+                                                <Button
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update Profile
+                                                </Button>
+                                        }
                                     </div>
                                 </Row>
                             </Form>

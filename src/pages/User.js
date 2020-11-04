@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
 import UploadAvatar from '../components/modals/UploadAvatar';
 
 import { connect } from 'react-redux';
@@ -12,13 +12,13 @@ const User = (props) => {
     console.log(props, 'cek props user');
     const [modal, setModal] = useState(false);
     const [avatar, setAvatar] = useState({});
-    const [user, setUser] = useState({name: "", dateOfBirth: ""})
+    const [user, setUser] = useState({ name: "", dateOfBirth: "" })
     const handleShowmodal = (data) => {
         setAvatar(data)
         setModal(!modal)
     }
 
-    const onSubmit =(e)=> {
+    const onSubmit = (e) => {
         e.preventDefault(e);
         console.log(user, 'cek user submit');
         props.updateUsers(user);
@@ -47,24 +47,28 @@ const User = (props) => {
                     <Card className="card-user">
                         <div className="image">
                             {
-                                    <CardImg
-                                        alt="..."
-                                        src={props.user.photo}
-                                    />
+                                props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
+                                <CardImg
+                                    alt="..."
+                                    src={props.user.photo}
+                                />
                             }
                         </div>
                         <CardBody>
                             <div className="author">
-                                <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
-                                    <img
-                                        alt="..."
-                                        className="avatar border-gray"
-                                        src={props.user.photo}
-                                    />
-                                </a>
+                            {
+                                props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
+                                    <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
+                                        <img
+                                            alt="..."
+                                            className="avatar border-gray"
+                                            src={props.user.photo}
+                                        />
+                                    </a>
+                                }
                                 <h5 className="title">{props.user.name}</h5>
                                 <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
-                            </div>
+                                </div>
                         </CardBody>
                     </Card>
                 </Col>
@@ -74,16 +78,16 @@ const User = (props) => {
                             <CardTitle tag="h5">Edit Profile</CardTitle>
                         </CardHeader>
                         <CardBody>
-                            <Form onSubmit={ (e) => onSubmit(e) }>
+                            <Form onSubmit={(e) => onSubmit(e)}>
                                 <Row>
                                     <Col md="12">
                                         <FormGroup>
                                             <label>Full Name</label>
                                             <Input
                                                 placeholder="Full name"
-                                                value={ user.name }
+                                                value={user.name}
                                                 name="name"
-                                                onChange={ (e) => setUser({...user, name:e.target.value}) }
+                                                onChange={(e) => setUser({ ...user, name: e.target.value })}
                                                 type="text"
                                             />
                                         </FormGroup>
@@ -97,8 +101,8 @@ const User = (props) => {
                                                 placeholder="Your date of birth"
                                                 type="date"
                                                 name="dateOfBirth"
-                                                value={ user.dateOfBirth }
-                                                onChange={ (e) => setUser({...user, dateOfBirth:e.target.value}) }
+                                                value={user.dateOfBirth}
+                                                onChange={(e) => setUser({ ...user, dateOfBirth: e.target.value })}
                                             />
                                         </FormGroup>
                                     </Col>

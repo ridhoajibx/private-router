@@ -46,27 +46,29 @@ const User = (props) => {
                         <div className="image">
                             {
                                 props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                                <CardImg
-                                    alt="..."
-                                    src={props.user.photo}
-                                />
+                                    <CardImg
+                                        alt="..."
+                                        src={props.user.photo}
+                                    />
                             }
                         </div>
                         <CardBody>
                             <div className="author">
-                            {
-                                props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                                    <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
-                                        <img
-                                            alt="..."
-                                            className="avatar border-gray"
-                                            src={props.user.photo}
-                                        />
-                                    </a>
+                                {
+                                    props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
+                                        <>
+                                            <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
+                                                <img
+                                                    alt="..."
+                                                    className="avatar border-gray"
+                                                    src={props.user.photo}
+                                                />
+                                            </a>
+                                            <h5 className="title">{props.user.name}</h5>
+                                            <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
+                                        </>
                                 }
-                                <h5 className="title">{props.user.name}</h5>
-                                <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
-                                </div>
+                            </div>
                         </CardBody>
                     </Card>
                 </Col>

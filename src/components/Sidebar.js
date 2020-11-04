@@ -39,13 +39,11 @@ const Sidebar = (props) => {
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
                 {
                     props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                        <>
-                            <img src={props.user.photo && props.user.photo} alt="" width="100" className="rounded-circle img-thumb" />
-                            <NavLink className="mt-2" to="/app/user">
-                                {props.user.name}
-                            </NavLink>
-                        </>
+                        <img src={props.user.photo && props.user.photo} alt="" width="100" className="rounded-circle img-thumb" />
                 }
+                <NavLink className="mt-2" to="/app/user">
+                    {props.user.name}
+                </NavLink>
             </div>
             {
                 routesDashboard.map((item, index) => (

@@ -40,9 +40,9 @@ const reducer = (state = initialState, action) => {
         case UPDATE_USERS_SUCCESS:
             return {
                 ...state,
-                loading: false,
-                userData: action.payload,
-                error: ''
+                loading : true,
+                userData : action.payload,
+                error : ''
             }
         case UPDATE_USERS_FAILURE:
             return {

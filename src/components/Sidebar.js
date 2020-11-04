@@ -33,7 +33,6 @@ const Sidebar = (props) => {
     useEffect(() => {
         props.fetchUsers()
     }, [])
-    // console.log(props, "cek props users");
     return (
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">

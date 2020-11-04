@@ -88,6 +88,7 @@ export const updateUsers = (action) => {
                         "name": action.name,
                         "dateOfBirth": action.dateOfBirth
                     }))
+                    dispatch(fetchUsers(users))
                 }
             })
             .catch(error => {

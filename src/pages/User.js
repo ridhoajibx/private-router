@@ -57,13 +57,14 @@ const User = (props) => {
                                 {
                                     props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
                                         <>
-                                            <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
+                                            <div>
                                                 <img
                                                     alt="..."
                                                     className="avatar border-gray"
                                                     src={props.user.photo}
                                                 />
-                                            </a>
+                                                <i onClick={() => handleShowmodal(props.user)} className="icons"><FaCamera /></i>
+                                            </div>
                                             <h5 className="title">{props.user.name}</h5>
                                             <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
                                         </>

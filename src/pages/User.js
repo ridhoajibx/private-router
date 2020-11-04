@@ -12,7 +12,7 @@ const User = (props) => {
     console.log(props, 'cek props user');
     const [modal, setModal] = useState(false);
     const [avatar, setAvatar] = useState({});
-    const [user, setUser] = useState({ name: "", dateOfBirth: "" })
+    const [user, setUser] = useState({})
     const handleShowmodal = (data) => {
         setAvatar(data)
         setModal(!modal)
@@ -20,7 +20,6 @@ const User = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault(e);
-        console.log(user, 'cek user submit');
         props.updateUsers(user);
     }
 
@@ -33,7 +32,6 @@ const User = (props) => {
             name: props.user.name,
             dateOfBirth: props.user.dateOfBirth,
         })
-        console.log(user, "this is new user state");
     }, [props.user])
 
     return (
@@ -140,7 +138,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchUsers: () => dispatch(fetchUsers()),
-        updateUsers: (payload) => dispatch(updateUsers(payload))
+        updateUsers: (user) => dispatch(updateUsers(user))
     }
 }
 

@@ -5,7 +5,10 @@ import {
     FETCH_USERS_FAILURE,
     UPDATE_USERS_REQUEST,
     UPDATE_USERS_SUCCESS,
-    UPDATE_USERS_FAILURE
+    UPDATE_USERS_FAILURE,
+    UPDATE_AVATAR_REQUEST,
+    UPDATE_AVATAR_SUCCESS,
+    UPDATE_AVATAR_FAILURE
 } from './userTypes';
 
 export const fetchUsersRequest = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaCamera, FaTimes } from 'react-icons/fa';
 import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
 import UploadAvatar from '../components/modals/UploadAvatar';
 
@@ -46,27 +46,28 @@ const User = (props) => {
                         <div className="image">
                             {
                                 props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                                <CardImg
-                                    alt="..."
-                                    src={props.user.photo}
-                                />
+                                    <CardImg
+                                        alt="..."
+                                        src={props.user.photo}
+                                    />
                             }
                         </div>
                         <CardBody>
                             <div className="author">
-                            {
-                                props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                                    <a href="#pablo" onClick={() => handleShowmodal(props.user)} >
-                                        <img
-                                            alt="..."
-                                            className="avatar border-gray"
-                                            src={props.user.photo}
-                                        />
-                                    </a>
+                                {
+                                    props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
+                                        <div>
+                                            <img
+                                                alt="..."
+                                                className="avatar border-gray"
+                                                src={props.user.photo}
+                                            />
+                                            <i className="icons" onClick={() => handleShowmodal(props.user)} ><FaCamera /></i>
+                                        </div>
                                 }
                                 <h5 className="title">{props.user.name}</h5>
                                 <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
-                                </div>
+                            </div>
                         </CardBody>
                     </Card>
                 </Col>
@@ -107,13 +108,23 @@ const User = (props) => {
                                 </Row>
                                 <Row>
                                     <div className="update ml-auto mr-auto">
-                                        <Button
-                                            className="btn-round"
-                                            color="primary"
-                                            type="submit"
-                                        >
-                                            Update Profile
-                                        </Button>
+                                        {
+                                            props.loading === true ?
+                                                <Button
+                                                className="btn-round"
+                                                color="primary"
+                                                type="submit"
+                                            >
+                                                Update...<Spinner size="sm" color="white" />
+                                            </Button> :
+                                                <Button
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update Profile
+                                                </Button>
+                                        }
                                     </div>
                                 </Row>
                             </Form>

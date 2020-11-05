@@ -6,8 +6,6 @@ import {
     UPDATE_USERS_SUCCESS,
     UPDATE_USERS_FAILURE,
     UPDATE_AVATAR_REQUEST,
-    UPDATE_AVATAR_SUCCESS,
-    UPDATE_AVATAR_FAILURE
 } from './userTypes';
 
 const initialState = {
@@ -42,7 +40,6 @@ const reducer = (state = initialState, action) => {
             }
         case UPDATE_USERS_SUCCESS:
             return {
-                ...state,
                 loading: true,
                 userData: action.payload,
                 error: ''
@@ -52,6 +49,12 @@ const reducer = (state = initialState, action) => {
                 loading: true,
                 userData: [],
                 error: action.payload
+            }
+        case UPDATE_AVATAR_REQUEST:
+            return {
+                ...state,
+                loading: false,
+                userData: action.payload
             }
         default: return state
     }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaBars, FaCamera, FaTimes } from 'react-icons/fa';
 import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
 import UploadAvatar from '../components/modals/UploadAvatar';
@@ -11,10 +10,8 @@ import { fetchUsers, updateUsers } from '../redux';
 const User = (props) => {
     console.log(props, 'cek props user');
     const [modal, setModal] = useState(false);
-    const [avatar, setAvatar] = useState({});
-    const [user, setUser] = useState({})
-    const handleShowmodal = (data) => {
-        setAvatar(data)
+    const [user, setUser] = useState({name: "", dateOfBirth: ""})
+    const handleShowmodal = () => {
         setModal(!modal)
     }
 
@@ -62,8 +59,8 @@ const User = (props) => {
                                                     alt="..."
                                                     className="avatar border-gray"
                                                     src={props.user.photo}
-                                                />
-                                                <i onClick={() => handleShowmodal(props.user)} className="icons"><FaCamera /></i>
+                                                ></img>
+                                                <i onClick={handleShowmodal} className="icons"><FaCamera /></i>
                                             </div>
                                             <h5 className="title">{props.user.name}</h5>
                                             <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
@@ -113,12 +110,12 @@ const User = (props) => {
                                         {
                                             props.loading === true ?
                                                 <Button
-                                                className="btn-round"
-                                                color="primary"
-                                                type="submit"
-                                            >
-                                                Update...<Spinner size="sm" color="white" />
-                                            </Button> :
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update...<Spinner size="sm" color="white" />
+                                                </Button> :
                                                 <Button
                                                     className="btn-round"
                                                     color="primary"
@@ -135,7 +132,11 @@ const User = (props) => {
                 </Col>
             </Row>
             {/* modal */}
-            <UploadAvatar modal={modal} setModal={setModal} avatar={avatar} />
+            <UploadAvatar
+                modal={modal}
+                setModal={setModal}
+                user={props.user}
+            />
         </div >
     );
 }
@@ -151,7 +152,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchUsers: () => dispatch(fetchUsers()),
-        updateUsers: (user) => dispatch(updateUsers(user))
+        updateUsers: (user) => dispatch(updateUsers(user)),
     }
 }
 

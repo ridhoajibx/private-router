@@ -39,7 +39,7 @@ const Sidebar = (props) => {
                 {
                     props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
                         <>
-                            <img src={props.user.photo && props.user.photo} alt="" width="100" className="rounded-circle img-thumb" />
+                            <img src={props.user.photo && props.user.photo} alt="" width="100" height="100" className="rounded-circle img-thumb" />
                             <NavLink className="mt-2" to="/app/user">
                                 {props.user.name}
                             </NavLink>

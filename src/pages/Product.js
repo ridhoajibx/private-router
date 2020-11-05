@@ -1,22 +1,17 @@
 import React from 'react';
-import Jumbotron2 from '../components/Jumbotron';
 import Footer2 from '../components/Footer';
 import Authentication from './Authentication';
 import './Authentication.scss';
 import { connect } from 'react-redux';
-import Carousel2 from '../components/Carousel';
-import { NavLink } from 'react-router-dom';
+import ProductSubscription from '../components/ProductSubs';
 
 
-
-const Home = (props) => {
+const Product = (props) => {
     return (
-        <div className="home">
+        <div className="Product">
             {props.global.show ? <div className="back-drop"></div> : null}
             <Authentication show={props.global.show} />
-            <Jumbotron2 />
-            <Carousel2 />
-            <NavLink className="nav-link" exact to="/Product">and see more...</NavLink>
+            <ProductSubscription />
             <Footer2 />
         </div>
     );
@@ -27,4 +22,4 @@ const mapStateToProps = (state) => {
         global: state.global
     }
 }
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Product);

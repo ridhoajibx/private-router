@@ -10,6 +10,7 @@ import Home from '../pages/Home';
 import Setting from '../pages/Setting';
 import Subscription from '../pages/Subscribtion';
 import PrivateRoute from './PrivateRoute';
+import Product from '../pages/Product';
 
 const Index = (props) => {
     const [toggleSide, setToggleSide] = useState(false);
@@ -29,6 +30,12 @@ const Index = (props) => {
                 </MainLayouts>
             </Route>
 
+            <Route exact path="/Product" >
+                <MainLayouts display={display} >
+                    <Product />
+                </MainLayouts>
+            </Route>
+
             <PrivateRoute exact path="/app"
                 comp={DashboardLayouts}
                 child={Dashboard}
@@ -36,6 +43,7 @@ const Index = (props) => {
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}
             />
+
 
             <PrivateRoute exact
                 path="/app/schedule"
@@ -68,8 +76,6 @@ const Index = (props) => {
                 path="/app/Subscription"
                 comp={DashboardLayouts}
                 child={Subscription}
-                // Auth={Auth}
-                // setAuth={setAuth}
                 display={display}
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}

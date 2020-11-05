@@ -22,6 +22,10 @@ const Header = (props) => {
                 <NavLink className="nav-link" exact to="/">Home</NavLink>
             </NavItem>
 
+            <NavItem>
+                <NavLink className="nav-link" exact to="/Product">Product</NavLink>
+            </NavItem>
+
             <NavItem >
                 <NavLink className="nav-link" exact to="/app">App</NavLink>
             </NavItem>

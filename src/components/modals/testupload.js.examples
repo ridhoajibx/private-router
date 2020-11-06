@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+<!-- import React, { useEffect, useState } from 'react';
 import profile from '../../assets/img/logo/avatar.svg';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Input, Label, Modal, ModalBody } from 'reactstrap';
-import { fetchUsers, updateAvatar } from '../../redux';
+import { updateAvatar } from '../../redux';
 import { FaCamera } from 'react-icons/fa';
 
 const UploadAvatar = (props) => {
-    const [avatar, setAvatar] = useState({})
-    const [preview, setPreview] = useState()
-
-    useEffect(() => {
-        props.fetchUsers()
-    }, [])
+    const [avatar, setAvatar] = useState({photo: ''})
+    const [preview, setPreview] = useState(props.user.photo)
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
         if (!avatar.photo) {
@@ -20,7 +16,6 @@ const UploadAvatar = (props) => {
         }
         const objectUrl = URL.createObjectURL(avatar.photo)
         setPreview(objectUrl)
-        // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)
     }, [avatar.photo])
 
@@ -31,7 +26,7 @@ const UploadAvatar = (props) => {
         }
 
         // I've kept this example simple by using the first image instead of multiple
-        setAvatar({...avatar, photo: e.target.files[0] })
+        setAvatar({photo: e.target.files[0] })
     }
 
     const onSubmitFile = e => {
@@ -85,9 +80,8 @@ const UploadAvatar = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUsers: () => dispatch(fetchUsers()),
         updateAvatar: (avatar) => dispatch(updateAvatar(avatar))
     }
 }
 
-export default connect(null, mapDispatchToProps) (UploadAvatar);
+export default connect(null, mapDispatchToProps) (UploadAvatar); -->

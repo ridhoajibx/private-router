@@ -60,11 +60,10 @@ const Header = (props) => {
                 <Link className="navbar-brand logo" to="/">
                     <img src={LogoImg} alt="logo-fund" className="logo-img" />
                     <div className="ml-2 font-weight-semibold logo-text">
-                        Fun<span className="text2">d.</span>
+                        Fun<span className="text2">D.</span>
                     </div>
                 </Link>
                 <NavbarToggler onClick={toggle} />
-                {/* { props.auth } */}
                 <Collapse isOpen={isOpen} navbar>
 
                     {props.auth ? userLink : guestLink}

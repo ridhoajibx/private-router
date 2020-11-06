@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { FaBars, FaCamera, FaTimes } from 'react-icons/fa';
 import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
-import UploadAvatar from '../components/modals/UploadAvatar';
 
 import { connect } from 'react-redux';
 import { fetchUsers, updateUsers } from '../redux';
+import UploadForm from '../components/modals/UploadForm';
+import Upload from '../components/formUpload/Upload';
 
 
 const User = (props) => {
     console.log(props, 'cek props user');
     const [modal, setModal] = useState(false);
-    const [user, setUser] = useState({name: "", dateOfBirth: ""})
+    const [user, setUser] = useState({
+        name: "",
+        dateOfBirth: "",
+        photo: "",
+        email: "",
+        password: ""
+    })
     const handleShowmodal = () => {
         setModal(!modal)
     }
@@ -28,6 +35,9 @@ const User = (props) => {
         setUser({
             name: props.user.name,
             dateOfBirth: props.user.dateOfBirth,
+            photo: props.user.photo,
+            email: props.user.email,
+            password: props.user.password,
         })
     }, [props.user])
 
@@ -40,34 +50,12 @@ const User = (props) => {
             <Row className="my-4">
                 <Col md="4">
                     <Card className="card-user">
-                        <div className="image">
-                            {
-                                props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                                    <CardImg
-                                        alt="..."
-                                        src={props.user.photo}
-                                    />
-                            }
-                        </div>
-                        <CardBody>
-                            <div className="author">
-                                {
-                                    props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                                        <>
-                                            <div>
-                                                <img
-                                                    alt="..."
-                                                    className="avatar border-gray"
-                                                    src={props.user.photo}
-                                                ></img>
-                                                <i onClick={handleShowmodal} className="icons"><FaCamera /></i>
-                                            </div>
-                                            <h5 className="title">{props.user.name}</h5>
-                                            <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
-                                        </>
-                                }
-                            </div>
-                        </CardBody>
+                        <Upload
+                            loading={props.loading}
+                            error={props.error}
+                            user={props.user}
+                            handleShowmodal={handleShowmodal}
+                        />
                     </Card>
                 </Col>
                 <Col md="8">
@@ -132,7 +120,7 @@ const User = (props) => {
                 </Col>
             </Row>
             {/* modal */}
-            <UploadAvatar
+            <UploadForm
                 modal={modal}
                 setModal={setModal}
                 user={props.user}

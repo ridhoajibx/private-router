@@ -6,11 +6,19 @@ import {
     UPDATE_USERS_SUCCESS,
     UPDATE_USERS_FAILURE,
     UPDATE_AVATAR_REQUEST,
+    UPDATE_AVATAR_SUCCESS,
+    UPDATE_AVATAR_FAILURE,
 } from './userTypes';
 
 const initialState = {
     loading: false,
-    userData: [],
+    userData: {
+        id:'',
+        name:'',
+        dateOfBirth: '',
+        photo: '',
+        password: ''
+    },
     error: ''
 }
 
@@ -30,7 +38,7 @@ const reducer = (state = initialState, action) => {
         case FETCH_USERS_FAILURE:
             return {
                 loading: true,
-                userData: [],
+                userData: {},
                 error: action.payload
             }
         case UPDATE_USERS_REQUEST:
@@ -40,21 +48,33 @@ const reducer = (state = initialState, action) => {
             }
         case UPDATE_USERS_SUCCESS:
             return {
-                loading: true,
-                userData: action.payload,
+                ...state,
+                userData: {...state.userData, ...action.payload},
+                loading: false,
                 error: ''
             }
         case UPDATE_USERS_FAILURE:
             return {
                 loading: true,
-                userData: [],
+                userData: {},
                 error: action.payload
             }
         case UPDATE_AVATAR_REQUEST:
             return {
                 ...state,
-                loading: false,
-                userData: action.payload
+                loading: true,
+            }
+        case UPDATE_AVATAR_SUCCESS:
+            return {
+                loading: true,
+                userData: action.payload,
+                error: ''
+            }
+        case UPDATE_AVATAR_FAILURE:
+            return {
+                loading: true,
+                userData: {},
+                error: ''
             }
         default: return state
     }

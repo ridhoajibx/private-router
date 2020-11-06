@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FaBars, FaCamera, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardImg, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
 
 import { connect } from 'react-redux';
 import { fetchUsers, updateUsers } from '../redux';

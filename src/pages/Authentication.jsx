@@ -42,6 +42,8 @@ class Authentication extends React.Component {
       
       <div className="Authentic"
         style={{
+            position: 'relative',
+            zIndex:100,
           transform: show ? 'translate(0vh)' : 'translate(-100vh)',
           opacity: show ? '1' : '0'
         }

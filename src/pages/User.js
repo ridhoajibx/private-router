@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchUsers, updateUsers } from '../redux';
 import UploadForm from '../components/modals/UploadForm';
 import Upload from '../components/formUpload/Upload';
+import UploadTest from '../components/modals/UploadTest';
 
 
 const User = (props) => {
@@ -53,8 +54,8 @@ const User = (props) => {
                         <Upload
                             loading={props.loading}
                             error={props.error}
-                            user={props.user}
-                            handleShowmodal={handleShowmodal}
+                            user={user}
+                            // handleShowmodal={handleShowmodal}
                         />
                     </Card>
                 </Col>
@@ -120,10 +121,10 @@ const User = (props) => {
                 </Col>
             </Row>
             {/* modal */}
-            <UploadForm
+            <UploadTest
                 modal={modal}
                 setModal={setModal}
-                user={props.user}
+                user={user}
             />
         </div >
     );

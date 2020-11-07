@@ -24,7 +24,7 @@ const Upload = (props) => {
                 'access_token': localStorage.getItem('jwtToken')
             }
         }
-        data.append('file', files[0])
+        data.append('photo', files[0])
 
         const options = {
             onUploadProgress: (progressEvent) => {

@@ -5,15 +5,18 @@ import { CardBody, CardImg, Form, Label, Progress, Spinner } from 'reactstrap';
 
 const Upload = (props) => {
     console.log(props, 'cek props upload');
-    const [avatar, setAvatar] = useState({
+    const { user, setUser } = props;
+    const [state, setState] = useState({
         photo: '',
         percentTage: 0
-    })
+    });
+
     useEffect(() => {
-        setAvatar({
-            photo: props.user.photo
+        setState({
+            ...state, 
+            photo: user.photo
         })
-    }, [])
+    }, [user.photo])
 
     const uploadFile = ({ target: { files } }) => {
         console.log(files[0])
@@ -26,39 +29,23 @@ const Upload = (props) => {
         }
         data.append('photo', files[0])
 
-        const options = {
-            onUploadProgress: (progressEvent) => {
-                const { loaded, total } = progressEvent;
-                let percent = Math.floor((loaded * 100) / total)
-                console.log(`${loaded}kb of ${total}kb | ${percent}%`);
-
-                if (percent < 100) {
-                    setAvatar({ percenTage: percent })
-                }
-            }
-        }
-
-        axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header, options)
+        axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header)
             .then(res => {
-                console.log(res)
-                setAvatar({ photo: res.data.url, percentTage: 100 }, () => {
+                setState({...state, percentTage: 100}, () => {
                     setTimeout(() => {
-                        setAvatar({ percentTage: 0 })
+                        setState({percentTage: 0})
                     }, 1000);
                 })
             })
     }
-    console.log(avatar, 'cek photo');
+    console.log(user, 'cek photo');
     return (
         <div>
             <div className="image">
                 <CardImg
                     alt="..."
-                    src={avatar.photo}
+                    src={state.photo}
                 />
-                {/* {
-                    props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
-                } */}
             </div>
 
             <CardBody>
@@ -67,26 +54,26 @@ const Upload = (props) => {
                         <img
                             alt="..."
                             className="avatar border-gray"
-                            src={props.user.photo}
+                            src={state.photo}
                         ></img>
                         <Form>
                             <Label for="uploadImg">
                                 <div>
-                                    <span className="icons-upload">Upload here! <FaCamera className="ml-2" /></span>
+                                    <span className="icons-upload">Upload Avatar<FaCamera className="ml-2" /></span>
                                 </div>
                                 <input id="uploadImg" type="file" style={{ display: 'none' }} onChange={uploadFile} />
                             </Label>
                         </Form>
-                        {
-                            avatar.percentTage > 0 &&
-                            <div>
-                                <div className="text-center">{avatar.percentTage}%</div>
-                                <Progress bar color="primary" active value={avatar.percentTage} />
-                            </div>
-                        }
                     </div>
-                    <h5 className="title">{props.user.name}</h5>
-                    <p className="description">Date of birth: {props.user.dateOfBirth ? props.user.dateOfBirth : 'not set'}</p>
+                    <h5 className="title">{user.name}</h5>
+                    <p className="description">Date of birth: {user.dateOfBirth ? user.dateOfBirth : 'not set'}</p>
+                    {
+                        state.percentTage > 0 &&
+                            <div>
+                                <Progress striped color="info" value={state.percentTage} />
+                                <div className="text-center">{state.percentTage}%</div>
+                            </div>
+                    }
                 </div>
             </CardBody>
         </div>

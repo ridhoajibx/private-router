@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaCamera } from 'react-icons/fa';
 import { CardBody, CardImg, Form, Label, Progress, Spinner } from 'reactstrap';
+import Swal from 'sweetalert2'
 
 const Upload = (props) => {
     console.log(props, 'cek props upload');
-    const { user, setUser } = props;
+    const { user } = props;
     const [state, setState] = useState({
         photo: '',
         percentTage: 0
@@ -18,24 +19,24 @@ const Upload = (props) => {
         })
     }, [user.photo])
 
-    const uploadFile = ({ target: { files } }) => {
-        console.log(files[0])
-        let data = new FormData();
+    const uploadFile = (e) => {
+        let file = e.target.files[0];
         let header = {
             headers: {
-                'Content-Type': 'multipart/form-data',
                 'access_token': localStorage.getItem('jwtToken')
             }
         }
-        data.append('photo', files[0])
+        let data = new FormData();
+        data.append('photo', file)
 
         axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header)
             .then(res => {
-                setState({...state, percentTage: 100}, () => {
-                    setTimeout(() => {
-                        setState({percentTage: 0})
-                    }, 1000);
-                })
+                console.log(res, 'cek response');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Great..',
+                    text: res.data.msg
+                  })
             })
     }
     console.log(user, 'cek photo');

@@ -1,9 +1,45 @@
-import React from 'react';
-import ProfileImg from '../assets/img/photo/mike.jpg';
+import React, { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, FormText, Input, Label, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
+
+import { connect } from 'react-redux';
+import { fetchUsers, updateUsers } from '../redux';
+import Upload from '../components/formUpload/Upload';
+
 
 const User = (props) => {
+    console.log(props, 'cek props user');
+    const [modal, setModal] = useState(false);
+    const [user, setUser] = useState({
+        name: "",
+        dateOfBirth: "",
+        photo: "",
+        email: "",
+        password: ""
+    })
+    const handleShowmodal = () => {
+        setModal(!modal)
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault(e);
+        props.updateUsers(user);
+    }
+
+    useEffect(() => {
+        props.fetchUsers()
+    }, [])
+
+    useEffect(() => {
+        setUser({
+            name: props.user.name,
+            dateOfBirth: props.user.dateOfBirth,
+            photo: props.user.photo,
+            email: props.user.email,
+            password: props.user.password,
+        })
+    }, [props.user])
+
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
@@ -13,25 +49,14 @@ const User = (props) => {
             <Row className="my-4">
                 <Col md="4">
                     <Card className="card-user">
-                        <div className="image">
-                            <img
-                                alt="..."
-                                src={ProfileImg}
-                            />
-                        </div>
-                        <CardBody>
-                            <div className="author">
-                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                    <img
-                                        alt="..."
-                                        className="avatar border-gray"
-                                        src={ProfileImg}
-                                    />
-                                    <h5 className="title">Jumakri Ridho Fauzi</h5>
-                                </a>
-                                {/* <p className="description">@ridhoajibx</p> */}
-                            </div>
-                        </CardBody>
+                        <Upload
+                            loading={props.loading}
+                            error={props.error}
+                            user={user}
+                            setUser={ setUser }
+                            fetchUsers={ props.fetchUsers }
+                            // handleShowmodal={handleShowmodal}
+                        />
                     </Card>
                 </Col>
                 <Col md="8">
@@ -40,39 +65,54 @@ const User = (props) => {
                             <CardTitle tag="h5">Edit Profile</CardTitle>
                         </CardHeader>
                         <CardBody>
-                            <Form>
-                                <Row>
-                                    <Col md="12">
-                                        <FormGroup>
-                                            <Label for="exampleFile">Avatar</Label>
-                                            <Input type="file" name="file" id="exampleFile" />
-                                            <FormText color="muted">
-                                                Upload your avatar here!
-                                            </FormText>
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
+                            <Form onSubmit={(e) => onSubmit(e)}>
                                 <Row>
                                     <Col md="12">
                                         <FormGroup>
                                             <label>Full Name</label>
                                             <Input
-                                                defaultValue="Jumakri Ridho Fauzi"
                                                 placeholder="Full name"
+                                                value={user.name}
+                                                name="name"
+                                                onChange={(e) => setUser({ ...user, name: e.target.value })}
                                                 type="text"
                                             />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row>
+                                    <Col md="12">
+                                        <FormGroup>
+                                            <label>Date of birth</label>
+                                            <Input
+                                                placeholder="Your date of birth"
+                                                type="date"
+                                                name="dateOfBirth"
+                                                value={user.dateOfBirth}
+                                                onChange={(e) => setUser({ ...user, dateOfBirth: e.target.value })}
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
                                     <div className="update ml-auto mr-auto">
-                                        <Button
-                                            className="btn-round"
-                                            color="primary"
-                                            type="submit"
-                                        >
-                                            Update Profile
-                                        </Button>
+                                        {
+                                            props.loading === true ?
+                                                <Button
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update...<Spinner size="sm" color="white" />
+                                                </Button> :
+                                                <Button
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update Profile
+                                                </Button>
+                                        }
                                     </div>
                                 </Row>
                             </Form>
@@ -80,8 +120,23 @@ const User = (props) => {
                     </Card>
                 </Col>
             </Row>
-        </div>
+        </div >
     );
 }
 
-export default User;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user.userData,
+        loading: state.user.loading,
+        error: state.user.error
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUsers: () => dispatch(fetchUsers()),
+        updateUsers: (user) => dispatch(updateUsers(user)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

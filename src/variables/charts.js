@@ -20,7 +20,7 @@ const dashboard24HoursPerformanceChart = {
                     pointRadius: 4,
                     pointHoverRadius: 4,
                     borderWidth: 3,
-                    data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 100000],
                 },
             ],
         };

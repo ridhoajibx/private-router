@@ -1,6 +1,6 @@
 import React from 'react';
 import '@progress/kendo-theme-bootstrap/dist/all.css';
-// import '../../assets/scss/fund-template/calendar.scss';
+import '../../assets/scss/fund-template/calendar.scss';
 import {
     Scheduler,
     AgendaView,

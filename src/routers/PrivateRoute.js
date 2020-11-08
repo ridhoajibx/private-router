@@ -19,7 +19,7 @@ const PrivateRoute = ({ comp:Component, child: Children, display, toggleSide, ha
 
 const mapStateToProps = (state) => {
     return {
-      auth: state.isAuthenticated,
+      auth: state.global.isAuthenticated,
     };
   };
 

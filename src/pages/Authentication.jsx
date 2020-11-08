@@ -37,10 +37,13 @@ class Authentication extends React.Component {
     const current = isLogginActive ? "Signup" : "Signin";
     const currentActive = isLogginActive ? "Signin" : "Signup";
     const {show} = this.props
+    console.log(show, 'this is show');
     return (
       
       <div className="Authentic"
         style={{
+            position: 'relative',
+            zIndex:100,
           transform: show ? 'translate(0vh)' : 'translate(-100vh)',
           opacity: show ? '1' : '0'
         }
@@ -90,4 +93,10 @@ Authentication.propTypes = {
   loginRequest: React.propTypes
 }
 
-export default connect(null, { userSignupRequest, loginRequest })(Authentication);
+const mapStateToProps = (state) => {
+    return {
+        global: state.global
+    }
+}
+
+export default connect(mapStateToProps, { userSignupRequest, loginRequest })(Authentication);

@@ -6,7 +6,7 @@ const globalState = {
     user: {}
 }
 
-const rootReducer = (state = globalState, action) => {
+const globalReducer = (state = globalState, action) => {
     if(action.type === 'SHOW') {
         return {
             ...state,
@@ -36,4 +36,4 @@ const rootReducer = (state = globalState, action) => {
     return state;
 }
 
-export default rootReducer;
+export default globalReducer;

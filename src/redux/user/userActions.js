@@ -6,9 +6,7 @@ import {
     UPDATE_USERS_REQUEST,
     UPDATE_USERS_SUCCESS,
     UPDATE_USERS_FAILURE,
-    UPDATE_AVATAR_REQUEST,
-    UPDATE_AVATAR_SUCCESS,
-    UPDATE_AVATAR_FAILURE,
+    UPDATE_AVATAR,
 } from './userTypes';
 
 export const fetchUsersRequest = () => {
@@ -96,56 +94,6 @@ export const updateUsers = (action) => {
             .catch(error => {
                 const errorMsg = error.message
                 dispatch(updateUsersFailure(errorMsg))
-            })
-    }
-}
-
-export const updateAvatarRequest = () => {
-    return {
-        type: UPDATE_AVATAR_REQUEST
-    }
-}
-const updateAvatarSuccess = (users) => {
-    return {
-        type: UPDATE_AVATAR_SUCCESS,
-        payload: users
-    }
-}
-const updateAvatarFailure = (error) => {
-    return {
-        type: UPDATE_AVATAR_FAILURE,
-        payload: error
-    }
-}
-
-export const updateAvatar = (action) => {
-    console.log(action, "cek action");
-    return (dispatch) => {
-        dispatch(updateAvatarRequest)
-        axios.put('https://peaceful-gorge-77974.herokuapp.com/users/editphoto',
-            {
-                "photo": action.photo
-            },
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'access_token': localStorage.getItem("jwtToken")
-                }
-            })
-            .then(response => {
-                const users = response.data;
-                if (users.msg === "Profile Updated!") {
-                    dispatch(updateAvatarSuccess(
-                        {
-                            "photo": action.photo
-                        }
-                    ))
-                    dispatch(fetchUsers())
-                }
-            })
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(updateAvatarFailure(errorMsg))
             })
     }
 }

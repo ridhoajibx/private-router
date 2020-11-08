@@ -9,7 +9,6 @@ import Upload from '../components/formUpload/Upload';
 
 const User = (props) => {
     console.log(props, 'cek props user');
-    const [modal, setModal] = useState(false);
     const [user, setUser] = useState({
         name: "",
         dateOfBirth: "",
@@ -17,9 +16,6 @@ const User = (props) => {
         email: "",
         password: ""
     })
-    const handleShowmodal = () => {
-        setModal(!modal)
-    }
 
     const onSubmit = (e) => {
         e.preventDefault(e);
@@ -52,7 +48,7 @@ const User = (props) => {
                         <Upload
                             loading={props.loading}
                             error={props.error}
-                            user={user}
+                            user={props.user}
                             setUser={ setUser }
                             fetchUsers={ props.fetchUsers }
                             // handleShowmodal={handleShowmodal}

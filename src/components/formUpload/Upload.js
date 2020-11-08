@@ -1,51 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { FaCamera } from 'react-icons/fa';
 import { CardBody, CardImg, Form, Label, Progress, Spinner } from 'reactstrap';
-import Swal from 'sweetalert2'
 
 const Upload = (props) => {
     console.log(props, 'cek props upload');
-    const { user } = props;
-    const [state, setState] = useState({
-        photo: '',
-        percentTage: 0
-    });
+    const { user, uploadFile } = props;
 
-    useEffect(() => {
-        setState({
-            ...state, 
-            photo: user.photo
-        })
-    }, [user.photo])
-
-    const uploadFile = (e) => {
-        let file = e.target.files[0];
-        let header = {
-            headers: {
-                'access_token': localStorage.getItem('jwtToken')
-            }
-        }
-        let data = new FormData();
-        data.append('photo', file)
-
-        axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header)
-            .then(res => {
-                console.log(res, 'cek response');
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Great..',
-                    text: res.data.msg
-                  })
-            })
-    }
-    console.log(user, 'cek photo');
     return (
         <div>
             <div className="image">
                 <CardImg
                     alt="..."
-                    src={state.photo}
+                    src={user.photo}
                 />
             </div>
 
@@ -55,7 +21,7 @@ const Upload = (props) => {
                         <img
                             alt="..."
                             className="avatar border-gray"
-                            src={state.photo}
+                            src={user.photo}
                         ></img>
                         <Form>
                             <Label for="uploadImg">
@@ -68,13 +34,6 @@ const Upload = (props) => {
                     </div>
                     <h5 className="title">{user.name}</h5>
                     <p className="description">Date of birth: {user.dateOfBirth ? user.dateOfBirth : 'not set'}</p>
-                    {
-                        state.percentTage > 0 &&
-                            <div>
-                                <Progress striped color="info" value={state.percentTage} />
-                                <div className="text-center">{state.percentTage}%</div>
-                            </div>
-                    }
                 </div>
             </CardBody>
         </div>

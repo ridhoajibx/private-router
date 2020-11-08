@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import {
     FETCH_USERS_REQUEST,
     FETCH_USERS_SUCCESS,
@@ -89,6 +90,11 @@ export const updateUsers = (action) => {
                         "name": action.name,
                         "dateOfBirth": action.dateOfBirth
                     }))
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Great..',
+                        text: users.msg
+                    })
                 }
             })
             .catch(error => {

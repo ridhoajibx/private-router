@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Avatar from '../../assets/img/logo/avatar.svg';
+import { connect } from 'react-redux';
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const validateForm = (errors) => {
@@ -29,7 +30,6 @@ export class Login extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.loginRequest(this.state);
-         
         if(validateForm(this.state.errors)) {
         console.info('Valid Form')
         }else{
@@ -61,7 +61,6 @@ export class Login extends Component {
 
             this.setState({errors, [name]: value});
       }
-    
     
     render() {
         const {email, password, errors} = this.state;
@@ -103,8 +102,8 @@ export class Login extends Component {
                 </div>
                 <div className="footer">
                     
-                    <button className="btn">
-                        SIGN IN
+                    <button className="btn" >
+                        SIGN IN 
                     </button>
                 </div>
                 </form>
@@ -115,4 +114,17 @@ export class Login extends Component {
 
 Login.propTypes = {
     loginRequest: React.PropTypes
+}
+  const mapDispatchToProps = (dispatch) => {
+      return {
+        handleShow: () => dispatch({type: 'SHOW_LOADER'}),
+        handleHide: () => dispatch({type: 'HIDE_LOADER'})
+      }
   }
+  const mapStateToProps = (state) => {
+    return {
+        isLoading: state.isLoading
+    }
+  
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

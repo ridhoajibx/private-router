@@ -18,6 +18,7 @@ export function logout() {
 }
 
 export function loginRequest(data) {
+  
     return dispatch => {
       return axios.post('https://peaceful-gorge-77974.herokuapp.com/users/login', data).then(res => {
         const token = res.data.access_token;
@@ -25,6 +26,18 @@ export function loginRequest(data) {
         setAuthorizationToken(token);
         dispatch(setCurrentUser(jwt.decode(token)));
       });
-    }
+    } 
+    
   }
-  
+
+  export const showLoader = () => dispatch => {
+    dispatch({
+      type: 'SHOW_LOADER'
+    }) 
+  }
+
+  export const hideLoader = () => dispatch => {
+    dispatch({
+      type: 'HIDE_LOADER'
+    }) 
+  }

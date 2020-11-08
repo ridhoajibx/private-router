@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2'
+
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
 
@@ -20,6 +23,28 @@ const User = (props) => {
     const onSubmit = (e) => {
         e.preventDefault(e);
         props.updateUsers(user);
+    }
+
+    const uploadFile = (e) => {
+        let file = e.target.files[0];
+        let header = {
+            headers: {
+                'access_token': localStorage.getItem('jwtToken')
+            }
+        }
+        let data = new FormData();
+        data.append('photo', file)
+
+        axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header)
+            .then(res => {
+                console.log(res, 'cek response');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Great..',
+                    text: res.data.msg
+                })
+                props.fetchUsers()
+            })
     }
 
     useEffect(() => {
@@ -49,6 +74,7 @@ const User = (props) => {
                             loading={props.loading}
                             error={props.error}
                             user={props.user}
+                            uploadFile={uploadFile}
                             setUser={ setUser }
                             fetchUsers={ props.fetchUsers }
                             // handleShowmodal={handleShowmodal}

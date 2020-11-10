@@ -34,7 +34,7 @@ export const data = [
         recurrenceRule: "FREQ=MONTHLY;UNTIL=2021-01-09T11:30:00.000Z",
     },
     {
-        id: 4,
+        // id: 4,
         title: 'Pay Youtube premium',
         start: new Date("2020-10-28T11:30:00.000Z"),
         end: new Date("2020-10-28T12:00:00.000Z"),

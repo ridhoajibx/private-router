@@ -45,6 +45,14 @@ const User = (props) => {
                 })
                 props.fetchUsers()
             })
+            .catch(error => {
+                const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ops..',
+                    text: errorMsg
+                })
+            })
     }
 
     useEffect(() => {

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.3.2",
+    "@fullcalendar/react": "^5.3.1",
     "@progress/kendo-date-math": "^1.5.1",
     "@progress/kendo-drawing": "^1.9.3",
     "@progress/kendo-licensing": "^1.0.1",

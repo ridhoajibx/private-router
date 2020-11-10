@@ -13,6 +13,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './redux/rootReducer';
 import jwt from 'jsonwebtoken';
 import {setCurrentUser} from './redux/actions/authAction';
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer,composeEnhancer(applyMiddleware(thunk)));

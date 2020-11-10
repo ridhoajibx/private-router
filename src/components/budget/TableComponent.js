@@ -7,7 +7,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteUser } from "../actions/userAction";
+// import { deleteUser } from "../actions/userAction";
 
 const { SearchBar } = Search;
 
@@ -21,7 +21,7 @@ const handleClick = (dispatch, id) => {
   })
   .then((willDelete) => {
     if (willDelete) {
-      dispatch(deleteUser(id))
+      dispatch()
       swal("Data User Sukses dihapus", {
         icon: "success",
       });

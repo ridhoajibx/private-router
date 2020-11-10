@@ -2,6 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 const globalState = {
     show: false,
     isAuthenticated: false,
+    isLoading: false,
     user: {}
 }
 
@@ -20,10 +21,16 @@ const globalReducer = (state = globalState, action) => {
             show: false
         }
     }
-    if(action.type === 'REGISTER') {
+    if(action.type === 'SHOW_LOADER') {
         return {
             ...state,
-            show: false
+            isLoading: true
+        }
+    }
+    if(action.type === 'HIDE_LOADER') {
+        return {
+            ...state,
+            isLoading: false
         }
     }
     return state;

@@ -35,8 +35,6 @@ export class Register extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
         e.preventDefault();
-        // let pass = e.target.password;
-        // let pass2 = e.target.password2;
         const { name, value } = e.target;
         let errors = this.state.errors;
 
@@ -53,19 +51,37 @@ export class Register extends Component {
                 ? ''
                 : 'Email is not valid!';
             break;
-        case 'password': 
-            errors.password = 
-            value.length < 8
-                ? 'Password must be 8 characters long!'
-                : '';
+        case 'password': {
+            // errors.password = 
+            // value.length < 8
+            //     ? 'Password must be 8 characters long!'
+            //     : '';
+            //     break;
+            let err;
+            if(value.length <8) {
+                err = 'Password must be 8 characters long!';
+            } else if (value !== this.state.password2) {
+                err = '';
+            }
+            errors.password = err;
             break;
-        case 'password2': 
-            errors.password2 = 
-            value.length < 8
-            // pass2.match(pass) && pass.match(pass2)
-                ? 'Password does not match!'
-                : '';
+            }
+        case 'password2': {
+            // errors.password = 
+            // value.length < 8
+            //     ? 'Password must be 8 characters long!'
+            //     : '';
+            //     break;
+            let err;
+            if(value.length <8) {
+                err = 'Password must be 8 characters long!';
+            } else if (value !== this.state.password) {
+                err = 'Password does not match!';
+            }
+            errors.password2 = err;
             break;
+            }
+       
         default:
             break;}
 
@@ -126,8 +142,7 @@ export class Register extends Component {
                                 value={this.state.password}
                                 onChange={this.onChange}
                                 autoComplete="off" noValidate/>
-                            <small>{errors.password.length > 0 && 
-                <span className='error'>{errors.password}</span>}</small>
+                            <small>{<span className='error'>{errors.password}</span>}</small>
                         </div> 
                         <div className="form-group">
                             <label className="confirm" htmlFor="password2">Confirm Password</label>
@@ -138,8 +153,7 @@ export class Register extends Component {
                                 value={this.state.password2}
                                 onChange={this.onChange}
                                 noValidate/>
-                            <small>{errors.password2.length > 0 && 
-                <span className='error'>{errors.password2}</span>}</small>
+                            <small>{<span className='error'>{errors.password2}</span>}</small>
                         </div> 
                     </div>
                 </div>

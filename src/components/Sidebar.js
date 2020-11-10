@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ProfileImg from '../assets/img/photo/mike.jpg';
 import { FaBookmark, FaCalendar, FaCog, FaHome } from 'react-icons/fa';
+import { AiFillWallet } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../redux';
@@ -27,6 +28,11 @@ const routesDashboard = [
         name: "Subscription",
         icon: <FaBookmark />,
     },
+    {
+        path: "/app/Budget",
+        name: "Budget",
+        icon: <AiFillWallet />,
+    }
 ]
 
 const Sidebar = (props) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import Jumbotron2 from '../components/Jumbotron';
 import Footer2 from '../components/Footer';
 import Authentication from './Authentication';
+import Loader from '../components/authentication/Loader';
 import './Authentication.scss';
 import { connect } from 'react-redux';
 import Carousel2 from '../components/Carousel';

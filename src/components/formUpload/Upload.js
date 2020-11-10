@@ -25,10 +25,10 @@ const Upload = (props) => {
                         ></img>
                         <Form>
                             <Label for="uploadImg">
-                                <div>
+                                <div className="mb-2">
                                     <span className="icons-upload">Upload Avatar<FaCamera className="ml-2" /></span>
                                 </div>
-                                <input id="uploadImg" type="file" style={{ display: 'none' }} onChange={uploadFile} />
+                                <input accept="image/*" id="uploadImg" type="file" style={{ display: 'none' }} onChange={uploadFile} />
                             </Label>
                         </Form>
                     </div>

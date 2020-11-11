@@ -81,7 +81,7 @@ const Setting = (props) => {
                 console.log(response, 'cek response');
             })
             .catch(error => {
-                const errorMsg = error.message
+                const errorMsg = error.data
                 Swal.fire({
                     icon: 'error',
                     title: 'opps..',

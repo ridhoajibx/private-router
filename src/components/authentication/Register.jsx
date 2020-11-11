@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import avatar from '../../assets/img/logo/avatar.svg';
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-const validateForm = (errors) => {
-  let valid = true;
-  Object.values(errors).forEach(
-    (val) => val.length > 0 && (valid = false)
-  );
-  return valid;
-}
+// const validateForm = (errors) => {
+//   let valid = true;
+//   Object.values(errors).forEach(
+//     (val) => val.length > 0 && (valid = false)
+//   );
+//   return valid;
+// }
 
 export class Register extends Component {
 
@@ -19,11 +19,13 @@ export class Register extends Component {
             email: '',
             password: '',
             password2: '',
+            dateOfBirth: '',
             errors: {
                 name: '',
                 email: '',
                 password: '',
-                password2: ''
+                password2: '',
+                dateOfBirth: ''
               }
 
         }
@@ -81,7 +83,13 @@ export class Register extends Component {
             errors.password2 = err;
             break;
             }
-       
+        case 'dateOfBirth': 
+            errors.dateOfBirth = 
+            value.length < 5
+            ? ''
+            : '';
+        break;
+            
         default:
             break;}
 
@@ -91,11 +99,11 @@ export class Register extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.userSignupRequest(this.state);
-        if(validateForm(this.state.errors)) {
-            console.info('Valid Form')
-            }else{
-            console.error('Invalid Form')
-            }
+        // if(validateForm(this.state.errors)) {
+        //     console.info('Valid Form')
+        //     }else{
+        //     console.error('Invalid Form')
+        //     }
     }
     render() {
 
@@ -154,6 +162,17 @@ export class Register extends Component {
                                 onChange={this.onChange}
                                 noValidate/>
                             <small>{<span className='error'>{errors.password2}</span>}</small>
+                        </div> 
+                        <div className="form-group">
+                            <label className="dateOfBirth" htmlFor="dateOfBirth">Date Of Birth</label>
+                            <input 
+                                type="date" 
+                                name="dateOfBirth" 
+                                placeholder="1990-01-01"
+                                value={this.state.dateOfBirth}
+                                onChange={this.onChange}
+                                noValidate/>
+                            <small>{<span className='error'>{errors.dateOfBirth}</span>}</small>
                         </div> 
                     </div>
                 </div>

@@ -14,14 +14,9 @@ const routesDashboard = [
         icon: < FaHome />
     },
     {
-        path: "/app/schedule",
-        name: "Schedule",
-        icon: <FaCalendar />,
-    },
-    {
-        path: "/app/setting",
-        name: "Setting Password",
-        icon: <FaCog />,
+        path: "/app/Budget",
+        name: "Budget",
+        icon: <AiFillWallet />,
     },
     {
         path: "/app/Subscription",
@@ -29,10 +24,15 @@ const routesDashboard = [
         icon: <FaBookmark />,
     },
     {
-        path: "/app/Budget",
-        name: "Budget",
-        icon: <AiFillWallet />,
-    }
+        path: "/app/schedule",
+        name: "Schedule",
+        icon: <FaCalendar />,
+    },
+    {
+        path: "/app/setting",
+        name: "Settings",
+        icon: <FaCog />,
+    },
 ]
 
 const Sidebar = (props) => {

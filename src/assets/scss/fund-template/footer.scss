@@ -1,19 +1,18 @@
-.jumbotron {
+.footer3 {
     position: relative;
-    background-color: $primary-color;
+    background-color: black;
     width: auto;
     padding: auto 0;
-    height: 400px;
+    height: 300px;
     .jumbo-text {
         margin: 5rem 5rem;
     }
-
     .button {
         padding-top: 10px;
         padding-left: 50px;
         padding-right: 50px;
         padding-bottom: 10px;
-        background-color: black;
+        background-color:$primary-color;
     }
     .hero-image {
         display: none;
@@ -29,14 +28,14 @@
             background-repeat: no-repeat;
             bottom: 0;
             left: 50%;
-            top: 0;
+            top:  0;
 
         }
     }
 }
 
 @media (min-width: 1024px) {
-    .jumbotron {
-        height: 700px;
+    .footer3 {
+        height: 350px;
     }
 }

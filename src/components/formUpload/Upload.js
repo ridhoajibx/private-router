@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCamera } from 'react-icons/fa';
+import loadingSvg from '../../assets/img/loading/loading.svg';
 import { CardBody, CardImg, Form, Label, Progress, Spinner } from 'reactstrap';
 
 const Upload = (props) => {
@@ -11,7 +12,7 @@ const Upload = (props) => {
             <div className="image">
                 <CardImg
                     alt="..."
-                    src={user.photo}
+                    src={!user.photo ? loadingSvg : user.photo}
                 />
             </div>
 
@@ -21,7 +22,7 @@ const Upload = (props) => {
                         <img
                             alt="..."
                             className="avatar border-gray"
-                            src={user.photo}
+                            src={!user.photo ? loadingSvg : user.photo}
                         ></img>
                         <Form>
                             <Label for="uploadImg">

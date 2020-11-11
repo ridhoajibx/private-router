@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ProfileImg from '../assets/img/photo/mike.jpg';
+import loadingSvg from '../assets/img/loading/loading.svg';
 import { FaBookmark, FaCalendar, FaCog, FaHome } from 'react-icons/fa';
 import { AiFillWallet } from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
@@ -14,14 +14,9 @@ const routesDashboard = [
         icon: < FaHome />
     },
     {
-        path: "/app/schedule",
-        name: "Schedule",
-        icon: <FaCalendar />,
-    },
-    {
-        path: "/app/setting",
-        name: "Setting Password",
-        icon: <FaCog />,
+        path: "/app/Budget",
+        name: "Budget",
+        icon: <AiFillWallet />,
     },
     {
         path: "/app/Subscription",
@@ -29,10 +24,15 @@ const routesDashboard = [
         icon: <FaBookmark />,
     },
     {
-        path: "/app/Budget",
-        name: "Budget",
-        icon: <AiFillWallet />,
-    }
+        path: "/app/schedule",
+        name: "Schedule",
+        icon: <FaCalendar />,
+    },
+    {
+        path: "/app/setting",
+        name: "Settings",
+        icon: <FaCog />,
+    },
 ]
 
 const Sidebar = (props) => {
@@ -43,9 +43,9 @@ const Sidebar = (props) => {
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
                 {
-                    props.loading ? <Spinner /> : props.error ? <h4>{props.error}</h4> :
+                    props.loading ? <Spinner color="primary" /> : props.error ? <h4>{props.error}</h4> :
                         <>
-                            <img src={props.user.photo && props.user.photo} alt="" width="100" height="100" className="rounded-circle img-thumb" />
+                            <img src={!props.user.photo ? loadingSvg :props.user.photo} alt="" width="100" height="100" className="rounded-circle img-thumb" />
                             <NavLink className="mt-2" to="/app/user">
                                 {props.user.name}
                             </NavLink>

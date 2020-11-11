@@ -85,12 +85,15 @@ const ProductSubscription = (props) => {
     <h1 style={{textAlign:'center'}}>PRODUCT</h1>
     <br></br>
     <br></br>
+    <br></br>
             <Row>
         {items.map((image,i)=>
         <Col md={4}>
         <img style={{backgroundColor:"black"}}  src={image.src} onClick={()=> handleShowmodal(image)}>
             </img> 
-            
+            <br></br>
+            <br></br>
+            <br></br>
             <br></br>
             <br></br>
         </Col>
@@ -102,6 +105,7 @@ const ProductSubscription = (props) => {
         <ModalHeader>{data.caption}</ModalHeader>
         <ModalBody>
             <img style={{backgroundColor:"black"}} src={data.src} ></img>
+            <br></br>
             <br></br>
             <br></br>
           <h6> Next Payment : {data.Next_Payment}</h6>

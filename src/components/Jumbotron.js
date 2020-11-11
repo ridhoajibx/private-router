@@ -2,7 +2,6 @@ import React from 'react';
 import { Jumbotron, Button, Col, Row } from 'reactstrap';
 
 const Jumbotron2 = (props) => {
-    const imageb = 'https://i.ibb.co/XJ6Hyd2/Oreti.png'
     return (
         <Jumbotron className="jumbotron">
             <Row>
@@ -12,7 +11,7 @@ const Jumbotron2 = (props) => {
                         <h1 style={{ color: "white", fontWeight: "bold" }}>Subscription </h1>
                         <h1 style={{ color: "white", fontWeight: "bold" }}>Manager.</h1>
                         <div>
-                            <Button color="secondary">JOIN NOW</Button>
+                            <Button className="button">JOIN NOW</Button>
                         </div>
                     </div>
                 </Col>

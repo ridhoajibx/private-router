@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
 import { Link, Route, Switch } from 'react-router-dom';
 import DashboardLayouts from '../layouts/app/DashboardLayouts';
 import MainLayouts from '../layouts/main/MainLayouts';
@@ -7,42 +8,48 @@ import Dashboard from '../pages/Dashboard';
 import Dates from '../pages/Dates';
 import Home from '../pages/Home';
 import Setting from '../pages/Setting';
+import Subscription from '../pages/Subscribtion';
 import PrivateRoute from './PrivateRoute';
+import Product from '../pages/Product';
+import Budget from '../pages/Budget';
 
-const Index = () => {
+const Index = (props) => {
     const [toggleSide, setToggleSide] = useState(false);
     const handleToggleSide = () => setToggleSide(!toggleSide)
 
-    const [Auth, setAuth] = useState(false);
     const display = (auth) => {
         return ({
             display: auth ? "block" : "none"
         })
     }
+
     return (
         <Switch>
             <Route exact path="/" >
-                <MainLayouts setAuth={setAuth} Auth={Auth} display={display} >
+                <MainLayouts display={display} >
                     <Home />
+                </MainLayouts>
+            </Route>
+
+            <Route exact path="/Product" >
+                <MainLayouts display={display} >
+                    <Product />
                 </MainLayouts>
             </Route>
 
             <PrivateRoute exact path="/app"
                 comp={DashboardLayouts}
                 child={Dashboard}
-                Auth={Auth}
-                setAuth={setAuth}
                 display={display}
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}
             />
 
+
             <PrivateRoute exact
-                path="/app/date"
+                path="/app/schedule"
                 comp={DashboardLayouts}
                 child={Dates}
-                Auth={Auth}
-                setAuth={setAuth}
                 display={display}
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}
@@ -52,8 +59,6 @@ const Index = () => {
                 path="/app/setting"
                 comp={DashboardLayouts}
                 child={Setting}
-                Auth={Auth}
-                setAuth={setAuth}
                 display={display}
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}
@@ -63,8 +68,24 @@ const Index = () => {
                 path="/app/user"
                 comp={DashboardLayouts}
                 child={User}
-                Auth={Auth}
-                setAuth={setAuth}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
+
+            <PrivateRoute exact
+                path="/app/Subscription"
+                comp={DashboardLayouts}
+                child={Subscription}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
+
+            <PrivateRoute exact
+                path="/app/Budget"
+                comp={DashboardLayouts}
+                child={Budget}
                 display={display}
                 toggleSide={toggleSide}
                 handleToggleSide={handleToggleSide}
@@ -86,4 +107,10 @@ const Index = () => {
     );
 }
 
-export default Index;
+const mapStateToProps = (state) => {
+    return {
+      auth: state.isAuthenticated,
+    };
+  };
+
+export default connect(mapStateToProps)(Index);

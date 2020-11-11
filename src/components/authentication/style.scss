@@ -1,0 +1,79 @@
+.base-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+        .title {
+            font-size: 24px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+        
+
+            .avatar {
+                width: 6em;
+                margin-left: 85px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .form {
+                margin-top: 1em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .form-group {
+                display: flex;
+                margin-top: -20px;
+                flex-direction: column;
+                align-items: center;
+                width: fit-content;
+                label {
+                    font-size: 14px;
+                    margin-left: -195px;
+                }
+                .mail {
+                    margin-left: -229px;
+                }
+                .confirm {
+                    margin-left: -140px;
+                }
+
+                input {
+                    margin-top: 2px;
+                    min-width: 18em;
+                    height: 32px;
+                    padding: 0px 6px;
+                    font-size: 14px;
+                    font-family: 'Open Sans', sans-serif;
+                    background-color: #f3f3f3;
+                    border: 0;
+                    border-radius: 4px;
+                    margin-bottom: 31px;
+                    transition: all 250ms ease-in-out;
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0px 0px 12px 0.8px #0e81ce96;
+                    }
+                }
+                small{
+                    color: red;
+                    margin-top: -29px;
+                }
+            }
+        }
+        .footer {
+            margin-top: -0.5em;
+
+        }
+}

@@ -1,9 +1,74 @@
-import React from 'react';
-import ProfileImg from '../assets/img/photo/mike.jpg';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2'
+
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
+
+import { connect } from 'react-redux';
+import { fetchUsers, updateUsers } from '../redux';
+import Upload from '../components/formUpload/Upload';
+
 
 const User = (props) => {
+    console.log(props, 'cek props user');
+    const [user, setUser] = useState({
+        name: "",
+        dateOfBirth: "",
+        photo: "",
+        email: "",
+        password: ""
+    })
+
+    const onSubmit = (e) => {
+        e.preventDefault(e);
+        props.updateUsers(user);
+    }
+
+    const uploadFile = (e) => {
+        let file = e.target.files[0];
+        let header = {
+            headers: {
+                'access_token': localStorage.getItem('jwtToken')
+            }
+        }
+        let data = new FormData();
+        data.append('photo', file)
+
+        axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header)
+            .then(res => {
+                console.log(res, 'cek response');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Great..',
+                    text: res.data.msg
+                })
+                props.fetchUsers()
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ops..',
+                    text: errorMsg
+                })
+            })
+    }
+
+    useEffect(() => {
+        props.fetchUsers()
+    }, [])
+
+    useEffect(() => {
+        setUser({
+            name: props.user.name,
+            dateOfBirth: props.user.dateOfBirth,
+            photo: props.user.photo,
+            email: props.user.email,
+            password: props.user.password,
+        })
+    }, [props.user])
+
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
@@ -13,29 +78,15 @@ const User = (props) => {
             <Row className="my-4">
                 <Col md="4">
                     <Card className="card-user">
-                        <div className="image">
-                            <img
-                                alt="..."
-                                src={ProfileImg}
-                            />
-                        </div>
-                        <CardBody>
-                            <div className="author">
-                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                    <img
-                                        alt="..."
-                                        className="avatar border-gray"
-                                        src={ProfileImg}
-                                    />
-                                    <h5 className="title">Jumakri Ridho Fauzi</h5>
-                                </a>
-                                <p className="description">@ridhoajibx</p>
-                            </div>
-                            <p className="description text-center">
-                                "I like the way you work it <br />
-                                No diggity <br />I wanna bag it up"
-                            </p>
-                        </CardBody>
+                        <Upload
+                            loading={props.loading}
+                            error={props.error}
+                            user={props.user}
+                            uploadFile={uploadFile}
+                            setUser={ setUser }
+                            fetchUsers={ props.fetchUsers }
+                            // handleShowmodal={handleShowmodal}
+                        />
                     </Card>
                 </Col>
                 <Col md="8">
@@ -44,24 +95,16 @@ const User = (props) => {
                             <CardTitle tag="h5">Edit Profile</CardTitle>
                         </CardHeader>
                         <CardBody>
-                            <Form>
+                            <Form onSubmit={(e) => onSubmit(e)}>
                                 <Row>
-                                    <Col md="6">
+                                    <Col md="12">
                                         <FormGroup>
                                             <label>Full Name</label>
                                             <Input
-                                                defaultValue="Jumakri Ridho Fauzi"
                                                 placeholder="Full name"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md="6">
-                                        <FormGroup>
-                                            <label>Username</label>
-                                            <Input
-                                                defaultValue="ridhoajibx"
-                                                placeholder="Username"
+                                                value={user.name}
+                                                name="name"
+                                                onChange={(e) => setUser({ ...user, name: e.target.value })}
                                                 type="text"
                                             />
                                         </FormGroup>
@@ -70,57 +113,36 @@ const User = (props) => {
                                 <Row>
                                     <Col md="12">
                                         <FormGroup>
-                                            <label>Address</label>
+                                            <label>Date of birth</label>
                                             <Input
-                                                defaultValue="Kampung Tengah, Nongsa"
-                                                placeholder="Home Address"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md="6">
-                                        <FormGroup>
-                                            <label>City</label>
-                                            <Input
-                                                defaultValue="Batam"
-                                                placeholder="City"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md="6">
-                                        <FormGroup>
-                                            <label>Country</label>
-                                            <Input
-                                                defaultValue="Indonesia"
-                                                placeholder="Country"
-                                                type="text" 
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md="12">
-                                        <FormGroup>
-                                            <label>About Me</label>
-                                            <Input
-                                                type="textarea"
-                                                defaultValue="Oh so, your weak rhyme You doubt I'll bother, reading into it"
+                                                placeholder="Your date of birth"
+                                                type="date"
+                                                name="dateOfBirth"
+                                                value={user.dateOfBirth}
+                                                onChange={(e) => setUser({ ...user, dateOfBirth: e.target.value })}
                                             />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <div className="update ml-auto mr-auto">
-                                        <Button
-                                            className="btn-round"
-                                            color="primary"
-                                            type="submit"
-                                        >
-                                            Update Profile
-                                        </Button>
+                                        {
+                                            props.loading === true ?
+                                                <Button
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update...<Spinner size="sm" color="white" />
+                                                </Button> :
+                                                <Button
+                                                    className="btn-round"
+                                                    color="primary"
+                                                    type="submit"
+                                                >
+                                                    Update Profile
+                                                </Button>
+                                        }
                                     </div>
                                 </Row>
                             </Form>
@@ -128,8 +150,23 @@ const User = (props) => {
                     </Card>
                 </Col>
             </Row>
-        </div>
+        </div >
     );
 }
 
-export default User;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user.userData,
+        loading: state.user.loading,
+        error: state.user.error
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUsers: () => dispatch(fetchUsers()),
+        updateUsers: (user) => dispatch(updateUsers(user)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

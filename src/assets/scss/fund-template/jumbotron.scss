@@ -1,0 +1,42 @@
+.jumbotron {
+    position: relative;
+    background-color: $primary-color;
+    width: auto;
+    padding: auto 0;
+    height: 400px;
+    .jumbo-text {
+        margin: 5rem 5rem;
+    }
+
+    .button {
+        padding-top: 10px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 10px;
+        background-color: black;
+    }
+    .hero-image {
+        display: none;
+    }
+    @media (min-width: 1024px) {
+        .jumbo-text {
+            margin: 10rem 5rem;
+        }
+        .hero-image {
+            display: block;
+            position: absolute;
+            background-image: url("https://i.ibb.co/XJ6Hyd2/Oreti.png");
+            background-repeat: no-repeat;
+            bottom: 0;
+            left: 50%;
+            top: 0;
+
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .jumbotron {
+        height: 700px;
+    }
+}

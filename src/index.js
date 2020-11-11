@@ -1,19 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './assets/scss/main.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './redux/rootReducer';
+import jwt from 'jsonwebtoken';
+import {setCurrentUser} from './redux/actions/authAction';
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer,composeEnhancer(applyMiddleware(thunk)));
+
+if (localStorage.jwtToken) {
+  store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+}
 
 ReactDOM.render(
-    <React.Fragment>
+    
         <Router>
+            <Provider store={store}>
             <App />
-        </Router>
-    </React.Fragment>,
+            </Provider>
+        </Router>,
     document.getElementById('root')
 );
 

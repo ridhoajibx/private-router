@@ -1,15 +1,31 @@
 import React from 'react';
 import Jumbotron2 from '../components/Jumbotron';
-import Slide from '../components/Carousel';
 import Footer2 from '../components/Footer';
-const Home = () => {
-    return ( 
+import Authentication from './Authentication';
+import Loader from '../components/authentication/Loader';
+import './Authentication.scss';
+import { connect } from 'react-redux';
+import Carousel2 from '../components/Carousel';
+import { NavLink } from 'react-router-dom';
+
+
+
+const Home = (props) => {
+    return (
         <div className="home">
-        <Jumbotron2 />  
-        <Slide />
-        <Footer2 />
+            {props.global.show ? <div className="back-drop"></div> : null}
+            <Authentication show={props.global.show} />
+            <Jumbotron2 />
+            <Carousel2 />
+            <NavLink className="nav-link" exact to="/Product">and see more...</NavLink>
+            <Footer2 />
         </div>
     );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        global: state.global
+    }
+}
+export default connect(mapStateToProps)(Home);

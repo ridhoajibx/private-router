@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Container} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Container, CardBody,Card} from 'reactstrap';
 
 const items = [
     {
@@ -76,23 +76,22 @@ const ProductSubscription = (props) => {
       console.log(props, "cek props");
     return (
         <div>
-            
+          
             <Container>
+            
     <br></br>
     <br></br>
     <br></br>
     <br></br>
     <h1 style={{textAlign:'center'}}>PRODUCT</h1>
     <br></br>
-    <br></br>
-    <br></br>
+    <Card>
+           <CardBody>
             <Row>
         {items.map((image,i)=>
         <Col md={4}>
-        <img style={{backgroundColor:"black"}}  src={image.src} onClick={()=> handleShowmodal(image)}>
+        <img alt="#" style={{backgroundColor:"black"}}  src={image.src} onClick={()=> handleShowmodal(image)}>
             </img> 
-            <br></br>
-            <br></br>
             <br></br>
             <br></br>
             <br></br>
@@ -106,8 +105,6 @@ const ProductSubscription = (props) => {
         <ModalBody>
             <img style={{backgroundColor:"black"}} src={data.src} ></img>
             <br></br>
-            <br></br>
-            <br></br>
           <h6> Next Payment : {data.Next_Payment}</h6>
           <h6> Duration : {data.Duration}</h6>
           <h6> Cost : {data.Cost}</h6>
@@ -119,7 +116,10 @@ const ProductSubscription = (props) => {
       </Modal>
       
       </Row>
+      </CardBody>
+      </Card>
       </Container>
+      
     </div>
 
     );

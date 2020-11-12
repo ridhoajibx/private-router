@@ -31,11 +31,13 @@ const Index = (props) => {
                 </MainLayouts>
             </Route>
 
-            <Route exact path="/Product" >
-                <MainLayouts display={display} >
-                    <Product />
-                </MainLayouts>
-            </Route>
+            <PrivateRoute exact path="/Product" 
+                comp={MainLayouts}
+                child={Product}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
 
             <PrivateRoute exact path="/app"
                 comp={DashboardLayouts}

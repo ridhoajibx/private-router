@@ -86,6 +86,7 @@ const Subscription = (props) => {
                 <br></br>
                 <br></br>
             </span>
+            
             <CardGroup>
       <Card>
         <CardBody>
@@ -111,8 +112,8 @@ const Subscription = (props) => {
     </CardGroup>
     <br></br>
     <br></br>
-    <br></br>
-    <br></br>
+    <Card>
+        <CardBody>
             <Row>
         {items.map((image,i)=>
         <Col md={4}>
@@ -139,7 +140,11 @@ const Subscription = (props) => {
         </ModalFooter>
       </Modal>
       </Row>
+      
+        </CardBody>
+        </Card>
     </div>
+    
 
     );
 }

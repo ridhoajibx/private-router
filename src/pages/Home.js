@@ -5,8 +5,6 @@ import Authentication from './Authentication';
 import Loader from '../components/authentication/Loader';
 import './Authentication.scss';
 import { connect } from 'react-redux';
-import Carousel2 from '../components/Carousel';
-import { NavLink } from 'react-router-dom';
 
 
 
@@ -16,8 +14,6 @@ const Home = (props) => {
             {props.global.show ? <div className="back-drop"></div> : null}
             <Authentication show={props.global.show} />
             <Jumbotron2 />
-            <Carousel2 />
-            <NavLink className="nav-link" exact to="/Product">and see more...</NavLink>
             <Footer2 />
         </div>
     );

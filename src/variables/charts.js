@@ -12,6 +12,7 @@ const dashboard24HoursPerformanceChart = {
                 "Aug",
                 "Sep",
                 "Oct",
+                "nov"
             ],
             datasets: [
                 {
@@ -20,7 +21,7 @@ const dashboard24HoursPerformanceChart = {
                     pointRadius: 4,
                     pointHoverRadius: 4,
                     borderWidth: 3,
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 100000],
+                    data: [20000, 10000, 80000, 60000, 155000, 200000, 75000, 40000, 65000, 160000, 55000],
                 },
             ],
         };

@@ -51,7 +51,7 @@ const Setting = (props) => {
         // this is code 
         e.preventDefault()
         let url = 'https://peaceful-gorge-77974.herokuapp.com/users/changepassword'
-        const config = {
+        let header = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'access_token': localStorage.getItem("jwtToken")
@@ -68,7 +68,7 @@ const Setting = (props) => {
         }
 
         if (!state.errors.password2) {
-            axios.put(url, JSON.stringify(data), config)
+            axios.put(url, JSON.stringify(data), header)
             .then(response => {
                 const password = response.data;
                 if (password.msg === "Password Changed!") {

@@ -63,12 +63,12 @@ const Setting = (props) => {
         // formData.append('password2', state.password2)
 
         let data = {
-            'password': state.password,
-            'password2': state.password2
+            password: state.password,
+            password2: state.password2
         }
 
         if (!state.errors.password2) {
-            axios.put(url, JSON.stringify(data), header)
+            axios.put(url, data, header)
             .then(response => {
                 const password = response.data;
                 if (password.msg === "Password Changed!") {

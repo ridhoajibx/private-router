@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import { Card, CardBody, Col, Container } from 'reactstrap';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import '../assets/scss/fund-template/calendar.scss';
+import { formatMoney } from '../variables/formatMoney';
 
 const Schedule = (props) => {
     const events = [
@@ -20,7 +21,7 @@ const Schedule = (props) => {
                 until: '2020-11-01' // will also accept '20120201'
             },
             extendedProps: {
-                cost: '10000',
+                cost: 10000,
                 repeat: 'daily'
             }
         },
@@ -32,7 +33,7 @@ const Schedule = (props) => {
                 until: '2020-11-14' // will also accept '20120201'
             },
             extendedProps: {
-                cost: '10000',
+                cost: 10000,
                 repeat: 'daily'
             }
         },
@@ -44,16 +45,17 @@ const Schedule = (props) => {
                 until: '2021-01-01' // will also accept '20120201'
             },
             extendedProps: {
-                cost: '75000',
+                cost: 75000,
                 repeat: 'monthly'
             }
         },
     ]
+    
     const handleEventClick = (data) => {
         Swal.fire({
             icon: 'info',
             title: data.event.title,
-            html: ` <b>Rp ${data.event.extendedProps.cost}</b> <br/>
+            html: ` <b>Rp. ${formatMoney(data.event.extendedProps.cost)}</b> <br/>
                     Pembayaran: ${data.event.extendedProps.repeat}`,
             showConfirmButton: true
         })

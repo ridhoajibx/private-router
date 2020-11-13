@@ -24,6 +24,9 @@ a {
         text-decoration: none;
     }
 }
+.swal2-styled.swal2-confirm {
+    background-color: $primary-color !important;
+}
 
 
 @import './fund-template/color.scss';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FullCalendar from '@fullcalendar/react'
 import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -6,52 +6,56 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import Swal from 'sweetalert2'
-import { Card, CardBody, Col, Container, Row } from 'reactstrap';
+import { Card, CardBody, Col, Container } from 'reactstrap';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import '../assets/scss/fund-template/calendar.scss';
 
 const Schedule = (props) => {
-    const [events, setEvents] = useState([
+    const events = [
         {
-            title: 'event 1',
-            start: '2020-11-04',
-            end: '2020-11-07',
+            title: 'Bayar rokok',
+            rrule: {
+                freq: 'daily',
+                dtstart: '2020-11-01', // will also accept '20120201T103000'
+                until: '2020-11-01' // will also accept '20120201'
+            },
             extendedProps: {
-                department: '10000'
+                cost: '10000',
+                repeat: 'daily'
             }
         },
         {
-            title: 'event 2',
-            start: '2020-11-08',
-            end: '2020-11-08',
+            title: 'Bayar sarapan',
+            rrule: {
+                freq: 'daily',
+                dtstart: '2020-11-08', // will also accept '20120201T103000'
+                until: '2020-11-14' // will also accept '20120201'
+            },
             extendedProps: {
-                department: '10000'
+                cost: '10000',
+                repeat: 'daily'
             }
         },
         {
-            title: 'event 1',
-            start: '2020-11-10',
-            end: '2020-11-10',
+            title: 'Bayar Netflix',
+            rrule: {
+                freq: 'monthly',
+                dtstart: '2020-11-01', // will also accept '20120201T103000'
+                until: '2021-01-01' // will also accept '20120201'
+            },
             extendedProps: {
-                department: '20000'
+                cost: '75000',
+                repeat: 'monthly'
             }
         },
-        {
-            title: 'event 1',
-            start: '2020-11-11',
-            end: '2020-11-12',
-            extendedProps: {
-                department: '30000'
-            }
-        }
-    ])
+    ]
     const handleEventClick = (data) => {
         Swal.fire({
-            icon: 'question',
+            icon: 'info',
             title: data.event.title,
-            text: `Rp ${data.event.extendedProps.department}`,
-            showConfirmButton: false,
-            timer: 1500
+            html: ` <b>Rp ${data.event.extendedProps.cost}</b> <br/>
+                    Pembayaran: ${data.event.extendedProps.repeat}`,
+            showConfirmButton: true
         })
     }
     return (
@@ -61,26 +65,24 @@ const Schedule = (props) => {
                     {!props.toggleSide ? <FaTimes /> : <FaBars />}
                     <h4>Schedule</h4>
                 </span>
-                <Row className="my-2">
-                    <Col lg='12'>
-                        <Card>
-                            <CardBody>
-                                <FullCalendar
-                                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, rrulePlugin]}
-                                    headerToolbar={{
-                                        left: 'prev,next today',
-                                        center: 'title',
-                                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                                    }}
-                                    initialView="dayGridMonth"
-                                    weekends={true}
-                                    events={events}
-                                    eventClick={handleEventClick}
-                                />
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                <Col lg='12'>
+                    <Card>
+                        <CardBody>
+                            <FullCalendar
+                                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, rrulePlugin]}
+                                headerToolbar={{
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                                }}
+                                initialView="dayGridMonth"
+                                weekends={true}
+                                events={events}
+                                eventClick={handleEventClick}
+                            />
+                        </CardBody>
+                    </Card>
+                </Col>
             </div>
         </Container>
     );

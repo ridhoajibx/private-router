@@ -1,12 +1,12 @@
-@import './variables.scss';
+@import "./variables.scss";
 .k-button-group {
     .k-button {
         &:focus {
-            border-color: $primary-color ;
+            border-color: $primary-color;
             background-color: $primary-color;
         }
         &.k-state-active {
-            border-color: $primary-color ;
+            border-color: $primary-color;
             background-color: $primary-color;
         }
     }
@@ -14,4 +14,23 @@
 .k-event {
     color: $white-color;
     background-color: $primary-color;
+}
+
+.fc {
+    .fc-button-primary {
+        border-color: $primary-color;
+        background-color: $primary-color;
+        &:hover{
+            border-color: $primary-states-color;
+            background-color: $primary-states-color;
+        }
+        &.fc-button-active, &:focus {
+            border-color: $primary-states-color !important;
+            background-color: $primary-states-color !important;
+        }
+    }
+    .fc-h-event {
+        border: 1px solid $primary-color;
+        background-color: $primary-color;
+    }
 }

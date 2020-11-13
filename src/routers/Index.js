@@ -5,7 +5,7 @@ import DashboardLayouts from '../layouts/app/DashboardLayouts';
 import MainLayouts from '../layouts/main/MainLayouts';
 import User from '../pages/User';
 import Dashboard from '../pages/Dashboard';
-import Dates from '../pages/Dates';
+import Dates from '../pages/Schedule';
 import Home from '../pages/Home';
 import Setting from '../pages/Setting';
 import Subscription from '../pages/Subscribtion';

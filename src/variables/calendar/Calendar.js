@@ -11,29 +11,12 @@ import {
 import { data, defaultDate, displayDate } from './Event.js';
 import { useInternationalization } from '@progress/kendo-react-intl';
 
-const group = {
-    resources: ['Subscription'],
-    orientation: 'vertical'
-}
-const resources = [
-    {
-        name: 'Subscription',
-        data: [
-            { text: 'Spotify', value: 1, color: '#79d70f' },
-            { text: 'Netflix', value: 2, color: '#d32626' },
-            { text: 'Youtube', value: 3, color: '#ff414d' },
-            { text: 'Cigarette', value: 4, color: '#070d59' }
-        ],
-        field: 'subscriptionId',
-        valueField: 'value',
-        textField: 'text',
-        colorField: 'color'
-    }
-]
 
 const Calendar = () => {
     const intl = useInternationalization();
     const [date, setDate] = useState(displayDate);
+    const [item, setItem] = useState({});
+    const [modal, setModal] = useState(false);
     const handleDateChange = useCallback(
         (event) => {
             setDate(event.value)
@@ -42,13 +25,11 @@ const Calendar = () => {
     return (
         <div>
             <Scheduler
-                // group={group}
-                // resources={resources}
                 defaultView='month'
                 data={data}
                 date={date}
-                onDataChange={handleDateChange}
-                editable={false}
+                // onDataChange={handleDateChange}
+                // editable={true}
                 defaultDate={displayDate}
 
                 timezone={"Etc/UTC"}

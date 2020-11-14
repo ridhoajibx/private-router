@@ -149,7 +149,7 @@ const ProductSubscription = (props) => {
       <Modal isOpen={modal} toggle = {() => setModal(false)} className={className}>
         <ModalHeader>{data.name}</ModalHeader>
         <ModalBody>
-            <img src={data.backdrop} ></img>
+            <img src={data.backdrop} alt='...'></img>
             <br></br>
           {/* <h6> Next Payment : {data.}</h6>
           <h6> Duration : {data.Duration}</h6>

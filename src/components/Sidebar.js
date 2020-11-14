@@ -36,9 +36,9 @@ const routesDashboard = [
 ]
 
 const Sidebar = (props) => {
-    useEffect(() => {
+    useEffect(()=> {
         props.fetchUsers()
-    }, [props])
+    }, [])
     return (
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUsers: () => dispatch(()=>fetchUsers())
+        fetchUsers: () => dispatch(fetchUsers())
     }
 }
 

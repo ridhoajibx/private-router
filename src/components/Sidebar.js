@@ -14,6 +14,11 @@ const routesDashboard = [
         icon: < FaHome />
     },
     {
+        path: "/app/schedule",
+        name: "Schedule",
+        icon: <FaCalendar />,
+    },
+    {
         path: "/app/Budget",
         name: "Budget",
         icon: <AiFillWallet />,
@@ -22,11 +27,6 @@ const routesDashboard = [
         path: "/app/Subscription",
         name: "Subscription",
         icon: <FaBookmark />,
-    },
-    {
-        path: "/app/schedule",
-        name: "Schedule",
-        icon: <FaCalendar />,
     },
     {
         path: "/app/setting",
@@ -38,7 +38,7 @@ const routesDashboard = [
 const Sidebar = (props) => {
     useEffect(() => {
         props.fetchUsers()
-    }, [])
+    }, [props])
     return (
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUsers: () => dispatch(fetchUsers())
+        fetchUsers: () => dispatch(()=>fetchUsers())
     }
 }
 

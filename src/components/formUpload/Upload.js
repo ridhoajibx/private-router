@@ -1,10 +1,10 @@
 import React from 'react';
 import { FaCamera } from 'react-icons/fa';
 import loadingSvg from '../../assets/img/loading/loading.svg';
-import { CardBody, CardImg, Form, Label, Progress, Spinner } from 'reactstrap';
+import { CardBody, CardImg, Form, Label } from 'reactstrap';
 
 const Upload = (props) => {
-    console.log(props, 'cek props upload');
+    // console.log(props, 'cek props upload');
     const { user, uploadFile } = props;
 
     return (

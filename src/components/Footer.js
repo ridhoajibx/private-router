@@ -3,9 +3,9 @@ import { Container } from 'reactstrap';
 
 const Footer3 = (props) => {
     return (
-        <Container fluid className="pb-2 fixed-bottom">
-            <div className="footer3">
-                <p>2020 | Subsit</p>
+        <Container fluid className="pb-2 absolute-bottom">
+            <div className="mb-3">
+                <p className="mb-0">2020 | Subsit</p>
             </div>
         </Container>
     );

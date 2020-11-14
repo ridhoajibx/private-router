@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import loadingSvg from '../assets/img/loading/loading.svg';
 import { FaBookmark, FaCalendar, FaCog, FaHome } from 'react-icons/fa';
 import { AiFillWallet } from "react-icons/ai";
@@ -36,6 +36,9 @@ const routesDashboard = [
 ]
 
 const Sidebar = (props) => {
+    useEffect(()=> {
+        props.fetchUsers()
+    }, [])
     return (
         <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">

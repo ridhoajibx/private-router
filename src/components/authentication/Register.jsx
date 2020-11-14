@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import avatar from '../../assets/img/logo/avatar.svg';
-
-const validEmailRegex = (/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i);
-// const validateForm = (errors) => {
-//   let valid = true;
-//   Object.values(errors).forEach(
-//     (val) => val.length > 0 && (valid = false)
-//   );
-//   return valid;
-// }
+import { validateEmail } from '../../variables/validator';
 
 export class Register extends Component {
 
@@ -49,7 +41,7 @@ export class Register extends Component {
         break;
         case 'email': 
             errors.email = 
-            validEmailRegex.test(value)
+            validateEmail(value)
                 ? ''
                 : 'Email is not valid!';
             break;

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Avatar from '../../assets/img/logo/avatar.svg';
 import { connect } from 'react-redux';
 
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+const validEmailRegex = (/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i);
+
 const validateForm = (errors) => {
   let valid = true;
   Object.values(errors).forEach(

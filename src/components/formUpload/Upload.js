@@ -2,6 +2,7 @@ import React from 'react';
 import { FaCamera } from 'react-icons/fa';
 import loadingSvg from '../../assets/img/loading/loading.svg';
 import { CardBody, CardImg, Form, Label } from 'reactstrap';
+import { formatDate } from '@fullcalendar/core';
 
 const Upload = (props) => {
     // console.log(props, 'cek props upload');
@@ -34,7 +35,7 @@ const Upload = (props) => {
                         </Form>
                     </div>
                     <h5 className="title">{user.name}</h5>
-                    <p className="description">Date of birth: {user.dateOfBirth ? user.dateOfBirth : 'not set'}</p>
+                    <p className="description">Date of birth: {user.dateOfBirth ? formatDate(user.dateOfBirth) : 'not set'}</p>
                 </div>
             </CardBody>
         </div>

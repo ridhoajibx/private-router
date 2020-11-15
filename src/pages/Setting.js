@@ -29,7 +29,7 @@ const Setting = (props) => {
                 } else if (value.length < 8) {
                     err = 'Password must be 8 characters long!';
                 } else {
-                    success = 'password id validated'
+                    success = 'password is validated'
                 }
                 errors.password = err;
                 valid.password = success;

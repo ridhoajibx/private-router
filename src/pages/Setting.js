@@ -53,15 +53,12 @@ const Setting = (props) => {
         let url = 'https://peaceful-gorge-77974.herokuapp.com/users/changepassword'
         let header = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
                 'access_token': localStorage.getItem("jwtToken")
             }
         }
 
-        // let formData = new FormData()
-        // formData.append('password', state.password)
-        // formData.append('password2', state.password2)
-
+        
         let data = {
             password: state.password,
             password2: state.password2
@@ -77,15 +74,18 @@ const Setting = (props) => {
                         title: 'Great..',
                         text: password.msg
                     })
+                } else {
+                    throw password
                 }
                 console.log(response, 'cek response');
             })
             .catch(error => {
-                const errorMsg = error.data
+                console.log(error.response.data.msg, 'cek error');
+                const errorMsg = error.response.data.msg
                 Swal.fire({
                     icon: 'error',
                     title: 'opps..',
-                    text: errorMsg.msg
+                    text: errorMsg
                 })
             })
         }

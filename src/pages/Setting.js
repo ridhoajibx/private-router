@@ -58,10 +58,7 @@ const Setting = (props) => {
             }
         }
 
-        // let formData = new FormData()
-        // formData.append('password', state.password)
-        // formData.append('password2', state.password2)
-
+        
         let data = {
             password: state.password,
             password2: state.password2

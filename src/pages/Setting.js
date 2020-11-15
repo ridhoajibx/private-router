@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { Form, FormGroup, Label, Input, Button, Card, CardBody, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Card, CardBody, Row, Col, CardHeader, CardTitle } from 'reactstrap';
 const Setting = (props) => {
     const [state, setState] = useState({
         password: "",
@@ -116,8 +116,6 @@ const Setting = (props) => {
         e.preventDefault()
         setHidden(!hidden)
     }
-    console.log(state.password, 'password');
-    console.log(state.password2, 'confirm password');
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>
@@ -127,6 +125,9 @@ const Setting = (props) => {
             <Row className="mt-5">
                 <Col sm="12">
                     <Card>
+                        <CardHeader>
+                            <CardTitle className="font-weight-bold">Change password</CardTitle>
+                        </CardHeader>
                         <CardBody>
                             <Form onSubmit={onSubmit}>
                                 <FormGroup>
@@ -141,7 +142,7 @@ const Setting = (props) => {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="password2">Confirm Password</Label>
-                                    <Input type={hidden ? 'password' : 'text'} name="password2" id="password" placeholder="Confirm password" value={state.password2} onChange={onHandler} />
+                                    <Input type={hidden ? 'password' : 'text'} name="password2" id="password2" placeholder="Confirm password" value={state.password2} onChange={onHandler} />
                                     <small className="mt-2">
                                         {state.errors.password2 ?
                                             <p className="mt-2 text-danger">{state.errors.password2}</p> :

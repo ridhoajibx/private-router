@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, CardGroup,
-  CardSubtitle, CardBody} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, CardGroup, CardBody} from 'reactstrap';
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 
@@ -117,8 +116,7 @@ const Subscription = (props) => {
             <Row>
         {items.map((image,i)=>
         <Col md={4}>
-        <img style={{backgroundColor:"black"}} src={image.src} onClick={()=> handleShowmodal(image)}>
-            </img> 
+        <img style={{backgroundColor:"black"}} src={image.src} onClick={()=> handleShowmodal(image)} alt='...' />
             <br></br>
             <br></br>
         </Col>
@@ -127,7 +125,7 @@ const Subscription = (props) => {
       <Modal isOpen={modal} toggle = {() => setModal(false)} className={className}>
         <ModalHeader>{data.caption}</ModalHeader>
         <ModalBody>
-            <img style={{backgroundColor:"black"}} src={data.src} ></img>
+            <img style={{backgroundColor:"black"}} src={data.src} alt='...' />
             <br></br>
             <br></br>
           <h6> Next Payment : {data.Next_Payment}</h6>

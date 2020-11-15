@@ -1,5 +1,5 @@
 import axios from 'axios';
-import setAuthorizationToken from '../../utils/setAuthorizationToken';
+// import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 
 export function setCurrentUser(user) {

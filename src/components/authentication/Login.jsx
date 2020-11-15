@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Avatar from '../../assets/img/logo/avatar.svg';
 import { connect } from 'react-redux';
+import { validateEmail } from '../../variables/validator';
 
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const validateForm = (errors) => {
   let valid = true;
   Object.values(errors).forEach(
@@ -46,7 +46,7 @@ export class Login extends Component {
         switch (name) {
         case 'email': 
             errors.email = 
-            validEmailRegex.test(value)
+            validateEmail(value)
                 ? ''
                 : 'Email is not valid!';
             break;

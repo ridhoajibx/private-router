@@ -14,6 +14,11 @@ const routesDashboard = [
         icon: < FaHome />
     },
     {
+        path: "/app/schedule",
+        name: "Schedule",
+        icon: <FaCalendar />,
+    },
+    {
         path: "/app/Budget",
         name: "Budget",
         icon: <AiFillWallet />,
@@ -24,11 +29,6 @@ const routesDashboard = [
         icon: <FaBookmark />,
     },
     {
-        path: "/app/schedule",
-        name: "Schedule",
-        icon: <FaCalendar />,
-    },
-    {
         path: "/app/setting",
         name: "Settings",
         icon: <FaCog />,
@@ -36,7 +36,7 @@ const routesDashboard = [
 ]
 
 const Sidebar = (props) => {
-    useEffect(() => {
+    useEffect(()=> {
         props.fetchUsers()
     }, [])
     return (

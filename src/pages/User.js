@@ -11,7 +11,6 @@ import Upload from '../components/formUpload/Upload';
 
 
 const User = (props) => {
-    console.log(props, 'cek props user');
     const [user, setUser] = useState({
         name: "",
         dateOfBirth: "",

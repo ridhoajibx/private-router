@@ -16,11 +16,11 @@ const AddExpense = (props) => {
                 <ModalBody>
                     <FormGroup>
                         <Label for="title">Title</Label>
-                        <Input type="text" name="email" id="title" placeholder="add title" />
+                        <Input type="text" name="title" id="title" placeholder="add title" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="cost">Cost</Label>
-                        <Input type="number" name="email" id="cost" placeholder="add cost" />
+                        <Input type="number" name="cost" id="cost" placeholder="add cost" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="repeat">Repeat</Label>

@@ -1,8 +1,7 @@
 import React from 'react';
 import closeImg from '../../../assets/img/logo/close.svg';
 import { Form, FormGroup, Input, Label, Modal, ModalBody } from 'reactstrap';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { FaTimes } from 'react-icons/fa';
+import { FaPlus, FaTimes } from 'react-icons/fa';
 
 const AddBudget = (props) => {
     return (
@@ -24,8 +23,8 @@ const AddBudget = (props) => {
                         <Input type="date" name="expired" id="expired" />
                     </FormGroup>
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
-                        <button className="btn btn-primary btn-sm">< AiOutlinePlus /> Add Budget</button>
-                        <button className="btn btn-danger btn-sm">< FaTimes /> Reset</button>
+                        <button className="btn btn-primary btn-sm"><FaPlus /> Add Budget</button>
+                        <button className="btn btn-danger btn-sm"><FaTimes /> Reset</button>
                     </div>
                 </ModalBody>
             </Form>

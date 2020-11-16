@@ -1,8 +1,7 @@
 import React from 'react';
 import closeImg from '../../../assets/img/logo/close.svg';
-import { Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, Row } from 'reactstrap';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { FaTimes } from 'react-icons/fa';
+import { Col, Form, FormGroup, Input, Label, Modal, ModalBody, Row } from 'reactstrap';
+import { FaPlus, FaTimes } from 'react-icons/fa';
 
 const AddExpense = (props) => {
     return (
@@ -45,7 +44,7 @@ const AddExpense = (props) => {
                         </Row>
                     </FormGroup>
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
-                        <button className="btn btn-primary btn-sm">< AiOutlinePlus /> Add Expenses</button>
+                        <button className="btn btn-primary btn-sm"><FaPlus /> Add Expenses</button>
                         <button className="btn btn-danger btn-sm">< FaTimes /> Reset</button>
                     </div>
                 </ModalBody>

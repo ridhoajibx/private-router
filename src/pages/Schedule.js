@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import FullCalendar from '@fullcalendar/react'
 import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -14,8 +14,8 @@ import { connect } from 'react-redux';
 import { fetchExpense } from '../redux';
 
 const Schedule = (props) => {
-    const [data, setData] = useState([]);
-    const [event, setEvent] = useState([]);
+    // const [data, setData] = useState([]);
+    // const [event, setEvent] = useState([]);
     const events = [
         {
             title: 'Bayar rokok',
@@ -64,16 +64,14 @@ const Schedule = (props) => {
         })
     }
 
-    useEffect(() => {
-        props.fetchExpense()
-    }, [])
+    // useEffect(() => {
+    //     props.fetchExpense()
+    // }, [])
 
-    useEffect(() => {
-        setData({ data: props.expense })
-    }, [props.expense]);
-    
-    console.log(data, 'ini data');
-    console.log(event, 'ini event');
+    // useEffect(() => {
+    //     setData({ data: props.expense })
+    // }, [props.expense]);
+
     return (
         <Container fluid>
             <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>

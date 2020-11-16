@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaPlus, FaTimes } from 'react-icons/fa';
 import { Card, CardBody, CardGroup, Col, Row } from 'reactstrap';
 import TableDummy from '../components/budget/TableDummy';
 import AddBudget from '../components/modals/budget/AddBudget';
@@ -105,12 +104,12 @@ const Budget = (props) => {
                     <CardGroup>
                         <Card>
                             <CardBody className="text-center" style={{ alignItems: 'center' }}>
-                                <button className="btn btn-primary" onClick={() => onClickModalBudget()} >< AiOutlinePlus /> Add Budget</button>
+                                <button className="btn btn-primary" onClick={() => onClickModalBudget()} ><FaPlus /> Add Budget</button>
                             </CardBody>
                         </Card>
                         <Card>
                             <CardBody className="text-center" style={{ alignItems: 'center' }}>
-                                <button className="btn btn-primary" onClick={() => onClickModalEx()}>< AiOutlinePlus /> Add Expenses</button>
+                                <button className="btn btn-primary" onClick={() => onClickModalEx()}><FaPlus /> Add Expenses</button>
                             </CardBody>
                         </Card>
                     </CardGroup>

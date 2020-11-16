@@ -3,6 +3,9 @@ img{
     object-fit: cover;
     object-position: center;
     border-radius: $border-radius-small;
+    &.imgProduct {
+        height: 250px;
+    }
 }
 .img-raised{
     box-shadow: $box-shadow-raised;

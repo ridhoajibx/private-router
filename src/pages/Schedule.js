@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react'
 import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -10,8 +10,12 @@ import { Card, CardBody, Col, Container } from 'reactstrap';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import '../assets/scss/fund-template/calendar.scss';
 import { formatMoney } from '../variables/formatMoney';
+import { connect } from 'react-redux';
+import { fetchExpense } from '../redux';
 
 const Schedule = (props) => {
+    const [data, setData] = useState([]);
+    const [event, setEvent] = useState([]);
     const events = [
         {
             title: 'Bayar rokok',
@@ -50,7 +54,9 @@ const Schedule = (props) => {
             }
         },
     ]
+
     
+
     const handleEventClick = (data) => {
         Swal.fire({
             icon: 'info',
@@ -60,6 +66,30 @@ const Schedule = (props) => {
             showConfirmButton: true
         })
     }
+
+    useEffect(() => {
+        props.fetchExpense()
+    }, [])
+
+    useEffect(() => {
+        setData({ data: props.expense })
+    }, [props.expense]);
+
+    // useEffect(() => {
+    //     getEvent(data)
+    // }, [data]);
+
+    const getEvent = (q) => {
+        // const q = data
+        q.map((item)=>(setEvent(
+            {
+                id: item.id,
+                title: item.title
+            }
+        )))
+    }
+    console.log(data, 'ini data');
+    console.log(event, 'ini event');
     return (
         <Container fluid>
             <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
@@ -90,4 +120,18 @@ const Schedule = (props) => {
     );
 }
 
-export default Schedule;
+const mapStateToProps = (state) => {
+    return {
+        expense: state.expense.expenses,
+        loading: state.expense.loading,
+        error: state.expense.error
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchExpense: () => dispatch(fetchExpense()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Schedule);

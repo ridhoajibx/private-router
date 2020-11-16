@@ -3,7 +3,11 @@ import {
     FETCH_EXPENSE_REQUEST,
     FETCH_EXPENSE_SUCCESS,
     FETCH_EXPENSE_FAILURE
+<<<<<<< HEAD
+} from './userTypes';
+=======
 } from './expenseTypes';
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
 
 export const fetchExpenseRequest = () => {
     return {
@@ -11,10 +15,17 @@ export const fetchExpenseRequest = () => {
     }
 }
 
+<<<<<<< HEAD
+export const fetchExpenseSuccess = (expense) => {
+    return {
+        type: FETCH_EXPENSE_SUCCESS,
+        payload: expense
+=======
 export const fetchExpenseSuccess = (expenses) => {
     return {
         type: FETCH_EXPENSE_SUCCESS,
         payload: expenses
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
     }
 }
 

@@ -1,221 +1,138 @@
-// import React, { useState } from 'react';
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Card, CardGroup,
-//   CardSubtitle, CardBody} from 'reactstrap';
-// import { FaBars } from "react-icons/fa";
-// import { FaTimes } from "react-icons/fa";
-// // import TableComponent from '../components/budget/TableComponent';
-
-// const Subscription = (props) => {
-    
-    // const {
-    //     className
-    //   } = props;
-    //   const [modal, setModal] = useState(false);
-    //   const [data, setData] = useState({}); //hooks
-    //   const handleShowmodal = (items) =>
-    //    {
-    //        console.log (items) 
-    //        setData(items)
-    //        console.log("rio",data)
-    //        setModal(!modal)
-
-    //     } ;
-//       console.log(props, "cek props");
-//     return (
-    //     <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
-    //         <span className="toggle-btn" onClick={props.handleToggleSide}>
-    //             {!props.toggleSide ? <FaTimes /> : <FaBars />}
-    //             <h4>BUDGET</h4>
-    //             <br></br>
-    //             <br></br>
-    //             <br></br>
-    //         </span>
-    //         <CardGroup>
-    //   <Card>
-    //     <CardBody>
-    //     <h1 style={{textAlign:'center',color:'purple'}}>
-    //         10
-    //     </h1>
-    //     <br></br>
-    //     <h5 style={{textAlign:'center'}}>INCOME</h5>
-    //    </CardBody>
-    //   </Card>
-    //   <Card>
-    //     <CardBody>
-    //       <h1 style={{textAlign:'center',color:'purple'}}>
-    //           4
-    //       </h1>
-    //       <br></br>
-    //       <h5 style={{textAlign:'center',}}>BUDGET</h5>
-    //     </CardBody>
-    //   </Card>
-    //   <Card>
-    //    <CardBody>
-    //    <h1 style={{textAlign:'center',color:'purple'}}>
-    //        1
-    //    </h1>
-    //    <br></br>
-    //    <h5 style={{textAlign:'center'}}>EXPENSES</h5>
-    //     </CardBody>
-    //   </Card>
-    // </CardGroup>
-    // <br></br>
-    // <br></br>
-    // <br></br>
-    // <br></br>
-    //         {/* <TableComponent /> */}
-    // </div>
-
-//     );
-// }
-
-// export Subscription;
-
-import React, { Component } from 'react';
-import { Card, CardGroup, CardBody} from 'reactstrap';
-// import { FaBars } from "react-icons/fa";
-// import { FaTimes } from "react-icons/fa";
+import React, { useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { Card, CardBody, CardGroup, Col, Row } from 'reactstrap';
 import TableDummy from '../components/budget/TableDummy';
-import { AiOutlinePlus } from "react-icons/ai";
-import AddBudget from '../components/budget/AddBudget';
-import { connect } from 'react-redux';
-import AddExpenses from '../components/budget/AddExpenses';
+import AddBudget from '../components/modals/budget/AddBudget';
+import AddExpense from '../components/modals/budget/AddExpense';
 
-export class Budget extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            expense: [{
-                title: 'Nonton',
-                cost: '20000',
-                repeat: 'No',
-                startdate: '15/11/2020',
-                limitdate: '15/11/2020'
-              },
-              {
-                title: 'Belanja',
-                cost: '100000',
-                repeat: 'Yes',
-                startdate: '15/11/2020',
-                limitdate: '15/11/2020'
-              },
-              {
-                title: 'Traktir',
-                cost: '30000',
-                repeat: 'No',
-                startdate: '15/11/2020',
-                limitdate: '15/11/2020'
-              },
-              {
-                title: 'Book',
-                cost: '30000',
-                repeat: 'No',
-                startdate: '15/11/2020',
-                limitdate: '15/11/2020'
-              },
-              {
-                title: 'Jalan',
-                cost: '300000',
-                repeat: 'No',
-                startdate: '15/11/2020',
-                limitdate: '15/11/2020'
-              },
-              {
-                title: 'Rental Mobil',
-                cost: '40000',
-                repeat: 'No',
-                startdate: '15/11/2020',
-                limitdate: '15/11/2020'
-              }]
-        };
+const data = [
+    {
+        title: 'Nonton',
+        cost: '20000',
+        repeat: 'No',
+        startdate: '15/11/2020',
+        limitdate: '15/11/2020'
+    },
+    {
+        title: 'Belanja',
+        cost: '100000',
+        repeat: 'Yes',
+        startdate: '15/11/2020',
+        limitdate: '15/11/2020'
+    },
+    {
+        title: 'Traktir',
+        cost: '30000',
+        repeat: 'No',
+        startdate: '15/11/2020',
+        limitdate: '15/11/2020'
+    },
+    {
+        title: 'Book',
+        cost: '30000',
+        repeat: 'No',
+        startdate: '15/11/2020',
+        limitdate: '15/11/2020'
+    },
+    {
+        title: 'Jalan',
+        cost: '300000',
+        repeat: 'No',
+        startdate: '15/11/2020',
+        limitdate: '15/11/2020'
+    },
+    {
+        title: 'Rental Mobil',
+        cost: '40000',
+        repeat: 'No',
+        startdate: '15/11/2020',
+        limitdate: '15/11/2020'
     }
-    render() {
-        return (
-            <div className={`content-wrapper`} >
-              {this.props.global ? <div className="back-drop" onClick={this.props.handleOpen}></div> : null}
-              {this.props.showExpense ? <div className="back-drop" onClick={this.props.handleExpense}></div> : null}
-            <span className="toggle-btn" >
-                <h4>BUDGET</h4>
-                <br></br>
-                <br></br>
-                <br></br>
-            </span>
-            
-            
-            <CardGroup>
-      <Card>
-        <CardBody>
-        <h1 style={{textAlign:'center',color:'purple'}}>
-            Rp. 10.000,00
-        </h1>
-        <br></br>
-        <h5 style={{textAlign:'center'}}>INCOME</h5>
-       </CardBody>
-      </Card>
-      <Card>
-        <CardBody>
-          <h1 style={{textAlign:'center',color:'purple'}}>
-          Rp. 9.680,00
-          </h1>
-          <br></br>
-          <h5 style={{textAlign:'center',}}>BUDGET</h5>
-        </CardBody>
-      </Card>
-      <Card>
-       <CardBody>
-       <h1 style={{textAlign:'center',color:'purple'}}>
-           Rp. 320,00
-       </h1>
-       <br></br>
-       <h5 style={{textAlign:'center'}}>EXPENSES</h5>
-        </CardBody>
-      </Card>
-    </CardGroup>
-    <br/>
-    <CardGroup>
-      <Card>
-        <CardBody className="text-center" style={{alignItems:'center'}}>
-          <button className="btn btn-primary" onClick={this.props.handleOpen} >< AiOutlinePlus /> Add Budget</button>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardBody className="text-center" style={{alignItems:'center'}}>
-          <button className="btn btn-primary" onClick={this.props.handleExpense}>< AiOutlinePlus /> Add Expenses</button>
-        </CardBody>
-      </Card>
-    </CardGroup>
+]
 
-    <br/>
-    
-    <AddBudget show={this.props.global}/>
-    <AddExpenses showExpense={this.props.showExpense}/>
-            <Card style={{padding:'20px'}}>
-            <span>
-                <h4 style={{marginLeft:'10px', marginBottom: '15px'}}>History</h4>
-            </span>
-            {/* <TableComponent /> */}
-            
-            <TableDummy expense={this.state.expense}/>
-            </Card>
-    </div>
-    // <>
-    // </>
-        )
+const Budget = (props) => {
+    const [modal, setModal] = useState(false)
+    const [modalEx, setModalEx] = useState(false)
+
+    const onClickModalBudget = () => {
+        setModal(!modal)
     }
+    const onClickModalEx = () => {
+        setModalEx(!modalEx)
+    }
+
+    return (
+        <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
+            <span className="toggle-btn" onClick={props.handleToggleSide}>
+                {!props.toggleSide ? <FaTimes /> : <FaBars />}
+                <h4>Budget</h4>
+            </span>
+
+            <Row>
+                <Col>
+                    <CardGroup className="mt-3">
+                        <Card>
+                            <CardBody className="text-center">
+                                <h4 className="text-primary">
+                                    Rp. 10.000.000,00
+                                </h4>
+                                <h6>INCOME</h6>
+                            </CardBody>
+                        </Card>
+                        <Card>
+                            <CardBody className="text-center">
+                                <h4 className="text-primary">
+                                    Rp. 9.680.000,00
+                                </h4>
+                                <h6>BUDGET</h6>
+                            </CardBody>
+                        </Card>
+                        <Card>
+                            <CardBody className="text-center">
+                                <h4 className="text-primary">
+                                    Rp. 320.000,00
+                                </h4>
+                                <h6>EXPENSES</h6>
+                            </CardBody>
+                        </Card>
+                    </CardGroup>
+                </Col>
+            </Row>
+
+            <Row className="mt-4">
+                <Col>
+                    <CardGroup>
+                        <Card>
+                            <CardBody className="text-center" style={{ alignItems: 'center' }}>
+                                <button className="btn btn-primary" onClick={() => onClickModalBudget()} >< AiOutlinePlus /> Add Budget</button>
+                            </CardBody>
+                        </Card>
+                        <Card>
+                            <CardBody className="text-center" style={{ alignItems: 'center' }}>
+                                <button className="btn btn-primary" onClick={() => onClickModalEx()}>< AiOutlinePlus /> Add Expenses</button>
+                            </CardBody>
+                        </Card>
+                    </CardGroup>
+                </Col>
+            </Row>
+
+            <Row className="mt-4">
+                <Col>
+                    <Card className="p-4">
+                        <span>
+                            <h4 style={{ marginLeft: '10px', marginBottom: '15px' }}>History</h4>
+                        </span>
+                        {/* <TableComponent /> */}
+
+                        <TableDummy expense={data} />
+                    </Card>
+                </Col>
+            </Row>
+            <AddBudget modal={modal} setModal={setModal} />
+            <AddExpense modalEx={modalEx} setModalEx={setModalEx} />
+        </div>
+    );
 }
 
-const mapStateToProps = (state) => {
-  return {
-      global: state.global.show,
-      showExpense: state.global.showExpense
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-      handleOpen: () => dispatch({ type: 'SHOW' }),
-      handleExpense: () => dispatch({type: 'SHOW_EXPENSE'})
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Budget);
+export default Budget;

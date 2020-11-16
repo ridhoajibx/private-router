@@ -103,7 +103,7 @@ export class Login extends Component {
                 </div>
                 <div className="footer">
                     
-                    <button className="btn" >
+                    <button className="btn btn-primary" >
                         SIGN IN 
                     </button>
                 </div>

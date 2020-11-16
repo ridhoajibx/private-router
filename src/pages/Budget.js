@@ -87,37 +87,37 @@ export class Budget extends Component {
         this.state = {
             expense: [{
                 title: 'Nonton',
-                cost: '$20',
+                cost: '20000',
                 repeat: 'No',
                 dueDate: '15/11/2020'
               },
               {
                 title: 'Belanja',
-                cost: '$100',
+                cost: '100000',
                 repeat: 'Yes',
                 dueDate: '15/11/2020'
               },
               {
                 title: 'Traktir',
-                cost: '$30',
+                cost: '30000',
                 repeat: 'No',
                 dueDate: '15/11/2020'
               },
               {
                 title: 'Book',
-                cost: '$30',
+                cost: '30000',
                 repeat: 'No',
                 dueDate: '15/11/2020'
               },
               {
                 title: 'Jalan',
-                cost: '$100',
+                cost: '300000',
                 repeat: 'No',
                 dueDate: '15/11/2020'
               },
               {
                 title: 'Rental Mobil',
-                cost: '$40',
+                cost: '40000',
                 repeat: 'No',
                 dueDate: '15/11/2020'
               }]
@@ -139,27 +139,27 @@ export class Budget extends Component {
             <CardGroup>
       <Card>
         <CardBody>
-        <h1 style={{textAlign:'center',color:'purple'}}>
-            $10.000,00
-        </h1>
+        <h3 style={{textAlign:'center',color:'purple'}}>
+            Rp. 10.000.000,00
+        </h3>
         <br></br>
         <h5 style={{textAlign:'center'}}>INCOME</h5>
        </CardBody>
       </Card>
       <Card>
         <CardBody>
-          <h1 style={{textAlign:'center',color:'purple'}}>
-          $9.680,00
-          </h1>
+          <h3 style={{textAlign:'center',color:'purple'}}>
+          Rp. 9.910,000,00
+          </h3>
           <br></br>
           <h5 style={{textAlign:'center',}}>BUDGET</h5>
         </CardBody>
       </Card>
       <Card>
        <CardBody>
-       <h1 style={{textAlign:'center',color:'purple'}}>
-           $320,00
-       </h1>
+       <h3 style={{textAlign:'center',color:'purple'}}>
+          Rp. 90.000,00
+       </h3>
        <br></br>
        <h5 style={{textAlign:'center'}}>EXPENSES</h5>
         </CardBody>

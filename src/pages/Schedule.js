@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, { useEffect, useState } from 'react';
->>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
 import FullCalendar from '@fullcalendar/react'
 import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -14,17 +10,12 @@ import { Card, CardBody, Col, Container } from 'reactstrap';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import '../assets/scss/fund-template/calendar.scss';
 import { formatMoney } from '../variables/formatMoney';
-<<<<<<< HEAD
-
-const Schedule = (props) => {
-=======
 import { connect } from 'react-redux';
 import { fetchExpense } from '../redux';
 
 const Schedule = (props) => {
     const [data, setData] = useState([]);
     const [event, setEvent] = useState([]);
->>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
     const events = [
         {
             title: 'Bayar rokok',
@@ -63,11 +54,7 @@ const Schedule = (props) => {
             }
         },
     ]
-<<<<<<< HEAD
-    
-=======
  
->>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
     const handleEventClick = (data) => {
         Swal.fire({
             icon: 'info',
@@ -77,8 +64,6 @@ const Schedule = (props) => {
             showConfirmButton: true
         })
     }
-<<<<<<< HEAD
-=======
 
     useEffect(() => {
         props.fetchExpense()
@@ -90,7 +75,6 @@ const Schedule = (props) => {
     
     console.log(data, 'ini data');
     console.log(event, 'ini event');
->>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
     return (
         <Container fluid>
             <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
@@ -121,9 +105,6 @@ const Schedule = (props) => {
     );
 }
 
-<<<<<<< HEAD
-export default Schedule;
-=======
 const mapStateToProps = (state) => {
     return {
         expense: state.expense.expenses,
@@ -139,4 +120,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
->>>>>>> b2b21923255464ccdd626f0870b316618fd6a936

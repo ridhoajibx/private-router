@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '../../assets/img/logo/avatar.svg';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import PropTypes from 'prop-types';
-=======
->>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
 import { validateEmail } from '../../variables/validator';
 
 const validateForm = (errors) => {

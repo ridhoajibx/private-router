@@ -54,9 +54,7 @@ const Schedule = (props) => {
             }
         },
     ]
-
-    
-
+ 
     const handleEventClick = (data) => {
         Swal.fire({
             icon: 'info',
@@ -74,20 +72,7 @@ const Schedule = (props) => {
     useEffect(() => {
         setData({ data: props.expense })
     }, [props.expense]);
-
-    // useEffect(() => {
-    //     getEvent(data)
-    // }, [data]);
-
-    const getEvent = (q) => {
-        // const q = data
-        q.map((item)=>(setEvent(
-            {
-                id: item.id,
-                title: item.title
-            }
-        )))
-    }
+    
     console.log(data, 'ini data');
     console.log(event, 'ini event');
     return (

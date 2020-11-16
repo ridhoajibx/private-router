@@ -79,6 +79,7 @@ const ProductSubscription = (props) => {
       const [modal, setModal] = useState(false);
       const [data, setData] = useState({}); //hooks
       const [APIProduct, setAPIProduct] = useState([]);
+      
       const handleShowmodal = (items) =>
        {
            console.log (items) 
@@ -114,6 +115,9 @@ const ProductSubscription = (props) => {
     useEffect(() => {
       product()
     }, [])
+
+
+
     return (
         <div>
           

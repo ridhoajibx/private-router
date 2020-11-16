@@ -10,42 +10,42 @@ const data = [
     {
         title: 'Nonton',
         cost: '20000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Belanja',
         cost: '100000',
-        repeat: 'Yes',
+        repeat: 'MONTHLY',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Traktir',
         cost: '30000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Book',
         cost: '30000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Jalan',
         cost: '300000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Rental Mobil',
         cost: '40000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     }

@@ -87,42 +87,42 @@ export class Budget extends Component {
         this.state = {
             expense: [{
                 title: 'Nonton',
-                cost: '$20',
+                cost: '20000',
                 repeat: 'No',
                 startdate: '15/11/2020',
                 limitdate: '15/11/2020'
               },
               {
                 title: 'Belanja',
-                cost: '$100',
+                cost: '100000',
                 repeat: 'Yes',
                 startdate: '15/11/2020',
                 limitdate: '15/11/2020'
               },
               {
                 title: 'Traktir',
-                cost: '$30',
+                cost: '30000',
                 repeat: 'No',
                 startdate: '15/11/2020',
                 limitdate: '15/11/2020'
               },
               {
                 title: 'Book',
-                cost: '$30',
+                cost: '30000',
                 repeat: 'No',
                 startdate: '15/11/2020',
                 limitdate: '15/11/2020'
               },
               {
                 title: 'Jalan',
-                cost: '$100',
+                cost: '300000',
                 repeat: 'No',
                 startdate: '15/11/2020',
                 limitdate: '15/11/2020'
               },
               {
                 title: 'Rental Mobil',
-                cost: '$40',
+                cost: '40000',
                 repeat: 'No',
                 startdate: '15/11/2020',
                 limitdate: '15/11/2020'

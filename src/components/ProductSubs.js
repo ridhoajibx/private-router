@@ -14,69 +14,6 @@ import axios from "axios";
 
 
 
-// const items = [
-//     {
-//         id: '1',
-//       src: 'https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg',
-//       Next_Payment: 'June 29 2020',
-//       Duration:'Monthly',
-//       Cost: '149.000',
-//       altText: 'Slide 1',
-//       caption: 'NETFLIX'
-//     },
-//     {
-//         id: '2',
-//       src: 'https://www.logo.wine/a/logo/BT_Sport/BT_Sport-Logo.wine.svg',
-//       Next_Payment: 'June 29 2020',
-//       Duration:'Monthly',
-//       Cost: '149.000',
-//       altText: 'Slide 2',
-//       caption: 'BT SPORT'
-//     },
-//     {
-//         id: '3',
-//       src: 'https://www.logo.wine/a/logo/Spotify/Spotify-Logo.wine.svg',
-//       Next_Payment: 'June 29 2020',
-//       Duration:'Monthly',
-//       Cost: '149.000',
-//       altText: 'Slide 3',
-//       caption: 'SPORTIFY'
-//     },
-//     {
-//         id: '4',
-//         src: 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg',
-//         Next_Payment: 'June 29 2020',
-//         Duration:'Monthly',
-//         Cost: '149.000',
-//         altText: 'Slide 4',
-//         caption: 'DISNEY+'
-//     },
-//     {
-//         id: '5',
-//         src: 'https://www.logo.wine/a/logo/Google_Stadia/Google_Stadia-Logo.wine.svg',
-//         Next_Payment: 'June 29 2020',
-//         Duration:'Monthly',
-//         Cost: '149.000',
-//         altText: 'Slide 4',
-//         caption: 'STADIA'
-//     },
-//     {
-//         id: '6',
-//         src: 'https://www.logo.wine/a/logo/Viu_(streaming_media)/Viu_(streaming_media)-Logo.wine.svg',
-//         Next_Payment: 'June 29 2020',
-//         Duration:'Monthly',
-//         Cost: '149.000',
-//         altText: 'Slide 4',
-//         caption: 'VIU'
-//     }
-//   ];
-
-// export const fetchProductRequest = () => {
-//   return {
-//       type: FETCH_PRODUCT_REQUEST
-//   }
-// }
-
 
 
 const ProductSubscription = (props) => {
@@ -149,7 +86,7 @@ const ProductSubscription = (props) => {
             // dispatch(fetchProductRequest)
             console.log("token",localStorage.getItem("jwtToken"));
             axios.get('https://peaceful-gorge-77974.herokuapp.com/product/all', {
-
+             
             headers: {
                     'access_token': localStorage.getItem("jwtToken")
                 }
@@ -169,7 +106,9 @@ const ProductSubscription = (props) => {
     useEffect(() => {
       product()
     }, [])
+    
 
+    
     return (
         <div>
           
@@ -206,12 +145,6 @@ const ProductSubscription = (props) => {
         <ModalHeader>{data.name}</ModalHeader>
         <ModalBody>
             <img src={data.backdrop} alt='...'></img>
-            <br></br>
-          {/* <h6> Next Payment : {data.}</h6>
-          <h6> Duration : {data.Duration}</h6>
-          <h6> Cost : {data.Cost}</h6> */}
-          {data.details}
-
             
           {data.details}
         {productServices.length !== 0 ? productServices.ProductServices.map(services => <div> <button>{services.service_type}</button> <p>{services.cost}</p></div>) : console.log("kosong")

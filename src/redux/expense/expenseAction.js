@@ -11,12 +11,13 @@ export const fetchExpenseRequest = () => {
     }
 }
 
-export const fetchExpenseSuccess = (expense) => {
+export const fetchExpenseSuccess = (expenses) => {
     return {
         type: FETCH_EXPENSE_SUCCESS,
-        payload: expense
+        payload: expenses
+    }
 }
-}
+
 export const fetchExpenseFailure = (error) => {
     return {
         type: FETCH_EXPENSE_FAILURE,

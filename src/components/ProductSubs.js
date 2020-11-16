@@ -1,212 +1,165 @@
-import React, { useState,useEffect } from 'react';
-import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem ,Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Container, CardBody,Card} from 'reactstrap';
-// import {
-//   FETCH_PRODUCT_REQUEST,
-// } from './userTypes';
+import React, { useState, useEffect } from 'react';
+import {
+    ButtonDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Row,
+    Col,
+    Container,
+    CardBody,
+    Card
+} from 'reactstrap';
 import axios from "axios";
 
-// export const fetchProductRequest = () => {
-//   return {
-//       type: FETCH_PRODUCT_REQUEST
-//   }
-// }
-
-
-
-
-
-
 const ProductSubscription = (props) => {
-    
+
     const {
         className
-      } = props;
-      const [modal, setModal] = useState(false);
-      const [data, setData] = useState({}); //hooks
-      const [APIProduct, setAPIProduct] = useState([]);
-      const [ProductId, setProductId]= useState();
-      const [productServices, setProductServices]= useState([]);
-      const [cost, setcost]= useState("");
-      const [serviceId, setserviceId]= useState("");
-      const [dropdownOpen, setDropdownOpen] = useState(false);;
-      const handleShowmodal = (items) =>
-       {
-        
+    } = props;
+    const [modal, setModal] = useState(false);
+    const [data, setData] = useState({}); //hooks
+    const [APIProduct, setAPIProduct] = useState([]);
+    const [ProductId, setProductId] = useState();
+    const [productServices, setProductServices] = useState([]);
+    const [cost, setcost] = useState("");
+    const [serviceId, setserviceId] = useState("");
+    const [dropdownOpen, setDropdownOpen] = useState(false);;
+    const handleShowmodal = (items) => {
+
         let id;
-        // if( items !== "" || items !== undefined ){
-        //   console.log (true)
-        // } else {
-        //   console.log(false)
-        // }
         if (items.name === 'Spotify') {
-          id = 1;
-          setProductId(1);
+            id = 1;
+            setProductId(1);
         } else if (items.name === 'Netflix') {
-          id = 2;
-          setProductId(2);
+            id = 2;
+            setProductId(2);
         } else if (items.name === 'Disney+') {
-          id = 3;
-          setProductId(3);
+            id = 3;
+            setProductId(3);
         } else {
-          id = 4;
-          setProductId(4);
+            id = 4;
+            setProductId(4);
         }
         productService(id)
-    
-          console.log ("ripqi",items.name) 
-           setData(items)
-           console.log("rio",data)
-           setModal(!modal)
+        setData(items)
+        setModal(!modal)
 
-        } ;
-      console.log(props, "cek props");
-      
-      const productService = (id) => {
-        console.log("masuk ke function product");
-            // dispatch(fetchProductRequest)
-            console.log("token",localStorage.getItem("jwtToken"));
-            axios.get(`https://peaceful-gorge-77974.herokuapp.com/product/${id}`, {
-             
+    };
+
+    const productService = (id) => {
+        axios.get(`https://peaceful-gorge-77974.herokuapp.com/product/${id}`, {
+
             headers: {
-                    'access_token': localStorage.getItem("jwtToken")
-                }
+                'access_token': localStorage.getItem("jwtToken")
+            }
+        })
+            .then(response => {
+                const productService = response.data;
+                setProductServices(productService);
             })
-                .then(response => {
-                    const productService = response.data;
-                    console.log("ripqiganteng",productService);
-                  setProductServices(productService);
-                    // dispatch(fetchUsersSuccess(users))
-                })
-                .catch(error => {
-                    const errorMsg = error.message
-                    console.log(errorMsg);
-                    // dispatch(fetchUsersFailure(errorMsg))
-                })
-        }
-   productService()
-     const product = () => {
-        console.log("masuk ke function product");
-            // dispatch(fetchProductRequest)
-            console.log("token",localStorage.getItem("jwtToken"));
-            axios.get('https://peaceful-gorge-77974.herokuapp.com/product/all', {
-             
-            headers: {
-                    'access_token': localStorage.getItem("jwtToken")
-                }
+            .catch(error => {
+                const errorMsg = error.message
+                console.log(errorMsg);
             })
-                .then(response => {
-                    const ProductData = response.data;
-                    console.log(ProductData);
-                    setAPIProduct(ProductData);
-                    // dispatch(fetchUsersSuccess(users))
-                })
-                .catch(error => {
-                    const errorMsg = error.message
-                    console.log(errorMsg);
-                    // dispatch(fetchUsersFailure(errorMsg))
-                })
-        }
+    }
+    productService()
+    const product = () => {
+        axios.get('https://peaceful-gorge-77974.herokuapp.com/product/all')
+            .then(response => {
+                const ProductData = response.data;
+                setAPIProduct(ProductData);
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                console.log(errorMsg);
+            })
+    }
     useEffect(() => {
-      product()
+        product()
     }, [])
-   
 
     const Subscript = () => {
-      console.log(ProductId,serviceId);
-          // dispatch(fetchProductRequest)
-          console.log("token",localStorage.getItem("jwtToken"));
-          axios.post(`https://peaceful-gorge-77974.herokuapp.com/product/${ProductId}/${serviceId}`, {
-           
-          headers: {
-                  'access_token': localStorage.getItem("jwtToken")
-              }
-          })
-              .then(response => {
-                  const ProductData = response.data;
-                  console.log(ProductData);
-                  // setAPIProduct(ProductData);
-                  // dispatch(fetchUsersSuccess(users))
-              })
-              .catch(error => {
-                  const errorMsg = error.message
-                  console.log(errorMsg);
-                  // dispatch(fetchUsersFailure(errorMsg))
-              })
-      }
- Subscript()
- 
+        axios.post(`https://peaceful-gorge-77974.herokuapp.com/product/${ProductId}/${serviceId}`,
+            {
+                headers: {
+                    'access_token': localStorage.getItem("jwtToken")
+                }
+            })
+            .then(response => {
+                const ProductData = response.data;
+                console.log(ProductData);
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                console.log(errorMsg);
+            })
+    }
+    Subscript()
+
     const toggle = () => setDropdownOpen(prevState => !prevState);
-    
+
     return (
         <div>
-          
+
             <Container>
-            
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <h1 style={{textAlign:'center'}}>PRODUCT</h1>
-    <br></br>
-    <Card>
-           <CardBody>
-            <Row>
-        {APIProduct.map((items,i)=>
-       
-        <Col md={4}>
-           <Card>
-        <CardBody>
-        <img alt="#" src={items.icon} onClick={()=> handleShowmodal(items)}>
-            </img> 
-            <br></br>
-            <br></br>
-            <br></br>
-            </CardBody>
-           </Card>
-        </Col>
-        
-          
-            )}
-            
-       
-      <Modal isOpen={modal} toggle = {() => setModal(false)} className={className}>
-        <ModalHeader>{data.name}</ModalHeader>
-        <ModalBody>
+                <div className="mt-5 pt-4">
+                    <h1 className="text-center mt-5">PRODUCT</h1>
+                </div>
+                <Card>
+                    <CardBody>
+                        <Row>
+                            {APIProduct.map((items, i) =>
+                                <Col key={i} md={4}>
+                                    <Card>
+                                        <CardBody>
+                                            <img alt="#" style={{ backgroundColor: "#e8e8e8" }} src={items.icon} onClick={() => handleShowmodal(items)} />
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            )}
 
-            
-            <img src={data.backdrop} alt='...'></img>
-            
-          {data.details}
-          <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>
-        Choose Services
-      </DropdownToggle>
-      <DropdownMenu>
 
-        {productServices.length !== 0 ? productServices.ProductServices.map(services =>
-              
-              <DropdownItem onClick= {()=>{setcost(services.cost); setserviceId(services.id)}}> {services.service_type}</DropdownItem>) : console.log("kosong")
-
- }
- 
- {console.log("id",serviceId)}
- 
-
-      </DropdownMenu>
-    </ButtonDropdown>
-{cost !== "" ? <p>cost : {cost}</p> : console.log("costa",cost)}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="success" onClick={()=> {setModal(false); Subscript() }}>Subscript</Button>
-        </ModalFooter>
-      </Modal>
-      
-      </Row>
-      </CardBody>
-      </Card>
-      </Container>
-      
-    </div>
+                            <Modal isOpen={modal} toggle={() => setModal(false)} className={className}>
+                                <ModalHeader>
+                                    {data.name}
+                                </ModalHeader>
+                                <ModalBody>
+                                    <div className="d-flex justify-content-center">
+                                        <img className="img-thumbnail imgProduct" src={data.backdrop} alt='...' />
+                                    </div>
+                                    <div>
+                                        {data.details}
+                                    </div>
+                                    <div className="d-flex justify-content-between align-items-center mt-2">
+                                        <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                                            <DropdownToggle caret>
+                                                Choose Services
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                {productServices.length !== 0 ? productServices.ProductServices.map(services =>
+                                                    <DropdownItem onClick={() => { setcost(services.cost); setserviceId(services.id) }}> {services.service_type}</DropdownItem>) : console.log("kosong")
+                                                }
+                                                {console.log("id", serviceId)}
+                                            </DropdownMenu>
+                                        </ButtonDropdown>
+                                        {cost && <div>Cost: {cost}</div>}
+                                    </div>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="success" onClick={() => { setModal(false); Subscript() }}>Subscript</Button>
+                                </ModalFooter>
+                            </Modal>
+                        </Row>
+                    </CardBody>
+                </Card>
+            </Container>
+        </div>
 
     );
 }

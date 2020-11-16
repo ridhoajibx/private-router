@@ -90,10 +90,8 @@ const Setting = (props) => {
                     } else {
                         throw password
                     }
-                    console.log(response, 'cek response');
                 })
                 .catch(error => {
-                    console.log(error.response.data.msg, 'cek error');
                     const errorMsg = error.response.data.msg
                     Swal.fire({
                         icon: 'error',

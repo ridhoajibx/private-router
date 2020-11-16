@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaPlus, FaTimes } from 'react-icons/fa';
 import { Card, CardBody, CardGroup, Col, Row } from 'reactstrap';
 import TableDummy from '../components/budget/TableDummy';
 import AddBudget from '../components/modals/budget/AddBudget';
@@ -10,42 +9,42 @@ const data = [
     {
         title: 'Nonton',
         cost: '20000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Belanja',
         cost: '100000',
-        repeat: 'Yes',
+        repeat: 'MONTHLY',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Traktir',
         cost: '30000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Book',
         cost: '30000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Jalan',
         cost: '300000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     },
     {
         title: 'Rental Mobil',
         cost: '40000',
-        repeat: 'No',
+        repeat: 'none',
         startdate: '15/11/2020',
         limitdate: '15/11/2020'
     }
@@ -105,12 +104,12 @@ const Budget = (props) => {
                     <CardGroup>
                         <Card>
                             <CardBody className="text-center" style={{ alignItems: 'center' }}>
-                                <button className="btn btn-primary" onClick={() => onClickModalBudget()} >< AiOutlinePlus /> Add Budget</button>
+                                <button className="btn btn-primary" onClick={() => onClickModalBudget()} ><FaPlus /> Add Budget</button>
                             </CardBody>
                         </Card>
                         <Card>
                             <CardBody className="text-center" style={{ alignItems: 'center' }}>
-                                <button className="btn btn-primary" onClick={() => onClickModalEx()}>< AiOutlinePlus /> Add Expenses</button>
+                                <button className="btn btn-primary" onClick={() => onClickModalEx()}><FaPlus /> Add Expenses</button>
                             </CardBody>
                         </Card>
                     </CardGroup>

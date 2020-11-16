@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import avatar from '../../assets/img/logo/avatar.svg';
 import { validateEmail } from '../../variables/validator';
+import PropTypes from 'prop-types';
+// import { validateEmail } from '../../variables/validator';
+
+const letters = RegExp(/^[A-Za-z]+$/);
+// const validateForm = (errors) => {
+//   let valid = true;
+//   Object.values(errors).forEach(
+//     (val) => val.length > 0 && (valid = false)
+//   );
+//   return valid;
+// }
 
 export class Register extends Component {
 
@@ -34,10 +45,15 @@ export class Register extends Component {
 
         switch (name) {
         case 'name': 
-            errors.name = 
-            value.length < 5
-            ? 'Full Name must be 5 characters long!'
-            : '';
+            let err;
+            if(value.length < 5) {
+                err = 'Full Name must be 5 characters long!';
+            } else if (letters.test(value)) {
+                err = '';
+            } else {
+                err = 'Name is not valid';
+            }
+            errors.name = err;
         break;
         case 'email': 
             errors.email = 
@@ -98,7 +114,6 @@ export class Register extends Component {
         //     }
     }
     render() {
-
     const {errors} = this.state;
         return <div className="base-container">
             <form onSubmit={this.onSubmit} noValidate>
@@ -180,5 +195,5 @@ export class Register extends Component {
 }
 
 Register.propTypes = {
-    userSignupRequest: React.propTypes
+    userSignupRequest: PropTypes.func
 }

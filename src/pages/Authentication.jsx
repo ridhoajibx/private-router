@@ -4,6 +4,7 @@ import { Login, Register } from "../components/authentication/index";
 import { connect } from "react-redux";
 import { userSignupRequest } from '../redux/actions/signupActions';
 import { loginRequest } from '../redux/actions/authAction';
+import PropTypes from 'prop-types';
 
 class Authentication extends React.Component {
   constructor(props) {
@@ -36,8 +37,7 @@ class Authentication extends React.Component {
     const { isLogginActive } = this.state;
     const current = isLogginActive ? "Signup" : "Signin";
     const currentActive = isLogginActive ? "Signin" : "Signup";
-    const {show} = this.props
-    console.log(show, 'this is show');
+    const {show} = this.props;
     return (
       
       <div className="Authentic"
@@ -89,9 +89,10 @@ const RightSide = props => {
 };
 
 Authentication.propTypes = {
-  userSignupRequest: React.propTypes,
-  loginRequest: React.propTypes
+  userSignupRequest: PropTypes.func,
+  loginRequest: PropTypes.func
 }
+
 
 const mapStateToProps = (state) => {
     return {

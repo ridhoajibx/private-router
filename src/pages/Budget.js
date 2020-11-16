@@ -73,67 +73,80 @@
 
 import React, { Component } from 'react';
 import { Card, CardGroup, CardBody} from 'reactstrap';
-import { FaBars } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
+// import { FaBars } from "react-icons/fa";
+// import { FaTimes } from "react-icons/fa";
 import TableDummy from '../components/budget/TableDummy';
 import { AiOutlinePlus } from "react-icons/ai";
+import AddBudget from '../components/budget/AddBudget';
+import { connect } from 'react-redux';
+import AddExpenses from '../components/budget/AddExpenses';
 
-export default class Budget extends Component {
+export class Budget extends Component {
     constructor(props) {
         super(props);
         this.state = {
             expense: [{
                 title: 'Nonton',
-                cost: '$20',
+                cost: '20000',
                 repeat: 'No',
-                dueDate: '15/11/2020'
+                startdate: '15/11/2020',
+                limitdate: '15/11/2020'
               },
               {
                 title: 'Belanja',
-                cost: '$100',
+                cost: '100000',
                 repeat: 'Yes',
-                dueDate: '15/11/2020'
+                startdate: '15/11/2020',
+                limitdate: '15/11/2020'
               },
               {
                 title: 'Traktir',
-                cost: '$30',
+                cost: '30000',
                 repeat: 'No',
-                dueDate: '15/11/2020'
+                startdate: '15/11/2020',
+                limitdate: '15/11/2020'
               },
               {
                 title: 'Book',
-                cost: '$30',
+                cost: '30000',
                 repeat: 'No',
-                dueDate: '15/11/2020'
+                startdate: '15/11/2020',
+                limitdate: '15/11/2020'
               },
               {
                 title: 'Jalan',
-                cost: '$100',
+                cost: '300000',
                 repeat: 'No',
-                dueDate: '15/11/2020'
+                startdate: '15/11/2020',
+                limitdate: '15/11/2020'
               },
               {
                 title: 'Rental Mobil',
-                cost: '$40',
+                cost: '40000',
                 repeat: 'No',
-                dueDate: '15/11/2020'
+                startdate: '15/11/2020',
+                limitdate: '15/11/2020'
               }]
         };
     }
     render() {
         return (
-            <div className={`content-wrapper`}>
+            <div className={`content-wrapper`} >
+              {this.props.global ? <div className="back-drop" onClick={this.props.handleOpen}></div> : null}
+              {this.props.showExpense ? <div className="back-drop" onClick={this.props.handleExpense}></div> : null}
             <span className="toggle-btn" >
                 <h4>BUDGET</h4>
                 <br></br>
                 <br></br>
                 <br></br>
             </span>
+            
+            
             <CardGroup>
       <Card>
         <CardBody>
         <h1 style={{textAlign:'center',color:'purple'}}>
-            $10.000,00
+            Rp. 10.000,00
         </h1>
         <br></br>
         <h5 style={{textAlign:'center'}}>INCOME</h5>
@@ -142,7 +155,7 @@ export default class Budget extends Component {
       <Card>
         <CardBody>
           <h1 style={{textAlign:'center',color:'purple'}}>
-          $9.680,00
+          Rp. 9.680,00
           </h1>
           <br></br>
           <h5 style={{textAlign:'center',}}>BUDGET</h5>
@@ -151,7 +164,7 @@ export default class Budget extends Component {
       <Card>
        <CardBody>
        <h1 style={{textAlign:'center',color:'purple'}}>
-           $320,00
+           Rp. 320,00
        </h1>
        <br></br>
        <h5 style={{textAlign:'center'}}>EXPENSES</h5>
@@ -162,17 +175,20 @@ export default class Budget extends Component {
     <CardGroup>
       <Card>
         <CardBody className="text-center" style={{alignItems:'center'}}>
-          <button className="btn btn-primary"  >< AiOutlinePlus /> Add Budget</button>
+          <button className="btn btn-primary" onClick={this.props.handleOpen} >< AiOutlinePlus /> Add Budget</button>
         </CardBody>
       </Card>
       <Card>
         <CardBody className="text-center" style={{alignItems:'center'}}>
-          <button className="btn btn-primary">< AiOutlinePlus /> Add Expenses</button>
+          <button className="btn btn-primary" onClick={this.props.handleExpense}>< AiOutlinePlus /> Add Expenses</button>
         </CardBody>
       </Card>
     </CardGroup>
 
     <br/>
+    
+    <AddBudget show={this.props.global}/>
+    <AddExpenses showExpense={this.props.showExpense}/>
             <Card style={{padding:'20px'}}>
             <span>
                 <h4 style={{marginLeft:'10px', marginBottom: '15px'}}>History</h4>
@@ -188,3 +204,18 @@ export default class Budget extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+  return {
+      global: state.global.show,
+      showExpense: state.global.showExpense
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      handleOpen: () => dispatch({ type: 'SHOW' }),
+      handleExpense: () => dispatch({type: 'SHOW_EXPENSE'})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Budget);

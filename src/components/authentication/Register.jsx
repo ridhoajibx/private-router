@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import avatar from '../../assets/img/logo/avatar.svg';
-import PropTypes from 'prop-types';
 import { validateEmail } from '../../variables/validator';
+import PropTypes from 'prop-types';
+// import { validateEmail } from '../../variables/validator';
 
 const letters = RegExp(/^[A-Za-z]+$/);
 // const validateForm = (errors) => {

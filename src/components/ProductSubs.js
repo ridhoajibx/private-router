@@ -4,6 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Container,
 //   FETCH_PRODUCT_REQUEST,
 // } from './userTypes';
 import axios from "axios";
+<<<<<<< HEAD
 
 // export const fetchProductRequest = () => {
 //   return {
@@ -70,6 +71,19 @@ import axios from "axios";
 //         caption: 'VIU'
 //     }
 //   ];
+=======
+
+// export const fetchProductRequest = () => {
+//   return {
+//       type: FETCH_PRODUCT_REQUEST
+//   }
+// }
+
+
+
+
+
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
 
 const ProductSubscription = (props) => {
     
@@ -79,10 +93,37 @@ const ProductSubscription = (props) => {
       const [modal, setModal] = useState(false);
       const [data, setData] = useState({}); //hooks
       const [APIProduct, setAPIProduct] = useState([]);
+<<<<<<< HEAD
       
+=======
+      const [ProductId, setProductId]= useState();
+      const [productServices, setProductServices]= useState([]);
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
       const handleShowmodal = (items) =>
        {
-           console.log (items) 
+        
+        let id;
+        // if( items !== "" || items !== undefined ){
+        //   console.log (true)
+        // } else {
+        //   console.log(false)
+        // }
+        if (items.name === 'Spotify') {
+          id = 1;
+          setProductId(1);
+        } else if (items.name === 'Netflix') {
+          id = 2;
+          setProductId(2);
+        } else if (items.name === 'Disney+') {
+          id = 3;
+          setProductId(3);
+        } else {
+          id = 4;
+          setProductId(4);
+        }
+        productService(id)
+    
+          console.log ("ripqi",items.name) 
            setData(items)
            console.log("rio",data)
            setModal(!modal)
@@ -90,12 +131,43 @@ const ProductSubscription = (props) => {
         } ;
       console.log(props, "cek props");
       
+<<<<<<< HEAD
+=======
+      const productService = (id) => {
+        console.log("masuk ke function product");
+            // dispatch(fetchProductRequest)
+            console.log("token",localStorage.getItem("jwtToken"));
+            axios.get(`https://peaceful-gorge-77974.herokuapp.com/product/${id}`, {
+             
+            headers: {
+                    'access_token': localStorage.getItem("jwtToken")
+                }
+            })
+                .then(response => {
+                    const productService = response.data;
+                    console.log("ripqiganteng",productService);
+                  setProductServices(productService);
+                    // dispatch(fetchUsersSuccess(users))
+                })
+                .catch(error => {
+                    const errorMsg = error.message
+                    console.log(errorMsg);
+                    // dispatch(fetchUsersFailure(errorMsg))
+                })
+        }
+   productService()
+
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
      const product = () => {
         console.log("masuk ke function product");
             // dispatch(fetchProductRequest)
             console.log("token",localStorage.getItem("jwtToken"));
             axios.get('https://peaceful-gorge-77974.herokuapp.com/product/all', {
+<<<<<<< HEAD
                
+=======
+             
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
             headers: {
                     'access_token': localStorage.getItem("jwtToken")
                 }
@@ -115,9 +187,15 @@ const ProductSubscription = (props) => {
     useEffect(() => {
       product()
     }, [])
+<<<<<<< HEAD
 
 
 
+=======
+    
+
+    
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
     return (
         <div>
           
@@ -154,11 +232,18 @@ const ProductSubscription = (props) => {
         <ModalHeader>{data.name}</ModalHeader>
         <ModalBody>
             <img src={data.backdrop} alt='...'></img>
+<<<<<<< HEAD
             <br></br>
           {/* <h6> Next Payment : {data.}</h6>
           <h6> Duration : {data.Duration}</h6>
           <h6> Cost : {data.Cost}</h6> */}
           {data.details}
+=======
+            
+          {data.details}
+        {productServices.length !== 0 ? productServices.ProductServices.map(services => <div> <button>{services.service_type}</button> <p>{services.cost}</p></div>) : console.log("kosong")
+}
+>>>>>>> b2b21923255464ccdd626f0870b316618fd6a936
         </ModalBody>
         <ModalFooter>
           <Button color="success" onClick={()=> setModal(false)}>Subscript</Button>

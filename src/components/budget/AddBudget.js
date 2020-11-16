@@ -33,6 +33,9 @@ export class AddBudget extends Component {
                </pre>
                     <input type="date" />
                </div>
+               <button className="btn" >
+                        Add
+                    </button>
             </div>
             </form>
             </Card>

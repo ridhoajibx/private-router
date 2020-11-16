@@ -18,8 +18,13 @@ const columns = [
       sort: true,
     },
     {
-      dataField: "dueDate",
-      text: "Due Date",
+      dataField: "startdate",
+      text: "Start Date",
+      sort: true,
+    },
+    {
+      dataField: "limitdate",
+      text: "Limit Date",
       sort: true,
     }]
 

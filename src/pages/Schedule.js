@@ -54,7 +54,6 @@ const Schedule = (props) => {
             }
         },
     ]
- 
     const handleEventClick = (data) => {
         Swal.fire({
             icon: 'info',

@@ -81,7 +81,6 @@ const ProductSubscription = (props) => {
                 })
         }
    productService()
-
      const product = () => {
         console.log("masuk ke function product");
             // dispatch(fetchProductRequest)

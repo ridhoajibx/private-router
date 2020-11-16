@@ -18,7 +18,7 @@ export const fetchExpenseSuccess = (expenses) => {
     }
 }
 
-const fetchExpenseFailure = (error) => {
+export const fetchExpenseFailure = (error) => {
     return {
         type: FETCH_EXPENSE_FAILURE,
         payload: error

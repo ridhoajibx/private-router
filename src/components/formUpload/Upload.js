@@ -1,9 +1,11 @@
 import React from 'react';
 import { FaCamera } from 'react-icons/fa';
-import { CardBody, CardImg, Form, Label, Progress, Spinner } from 'reactstrap';
+import loadingSvg from '../../assets/img/loading/loading.svg';
+import { CardBody, CardImg, Form, Label } from 'reactstrap';
+import { dateFormat } from '../../variables/validator';
 
 const Upload = (props) => {
-    console.log(props, 'cek props upload');
+    // console.log(props, 'cek props upload');
     const { user, uploadFile } = props;
 
     return (
@@ -11,7 +13,7 @@ const Upload = (props) => {
             <div className="image">
                 <CardImg
                     alt="..."
-                    src={user.photo}
+                    src={!user.photo ? loadingSvg : user.photo}
                 />
             </div>
 
@@ -21,19 +23,19 @@ const Upload = (props) => {
                         <img
                             alt="..."
                             className="avatar border-gray"
-                            src={user.photo}
+                            src={!user.photo ? loadingSvg : user.photo}
                         ></img>
                         <Form>
                             <Label for="uploadImg">
-                                <div>
+                                <div className="mb-2">
                                     <span className="icons-upload">Upload Avatar<FaCamera className="ml-2" /></span>
                                 </div>
-                                <input id="uploadImg" type="file" style={{ display: 'none' }} onChange={uploadFile} />
+                                <input accept="image/*" id="uploadImg" type="file" style={{ display: 'none' }} onChange={uploadFile} />
                             </Label>
                         </Form>
                     </div>
                     <h5 className="title">{user.name}</h5>
-                    <p className="description">Date of birth: {user.dateOfBirth ? user.dateOfBirth : 'not set'}</p>
+                    <p className="description">{user.dateOfBirth ? dateFormat(user.dateOfBirth) : 'not set'}</p>
                 </div>
             </CardBody>
         </div>

@@ -73,12 +73,11 @@
 
 import React, { Component } from 'react';
 import { Card, CardGroup, CardBody} from 'reactstrap';
-import { FaBars } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
+// import { FaBars } from "react-icons/fa";
+// import { FaTimes } from "react-icons/fa";
 import TableDummy from '../components/budget/TableDummy';
 import { AiOutlinePlus } from "react-icons/ai";
 import AddBudget from '../components/budget/AddBudget';
-// import AddExpenses from '../components/budget/AddExpenses';
 import { connect } from 'react-redux';
 import AddExpenses from '../components/budget/AddExpenses';
 
@@ -127,7 +126,8 @@ export class Budget extends Component {
     render() {
         return (
             <div className={`content-wrapper`} >
-              {this.props.global ? <div className="back-drop"></div> : null}
+              {this.props.global ? <div className="back-drop" onClick={this.props.handleOpen}></div> : null}
+              {this.props.showExpense ? <div className="back-drop" onClick={this.props.handleExpense}></div> : null}
             <span className="toggle-btn" >
                 <h4>BUDGET</h4>
                 <br></br>

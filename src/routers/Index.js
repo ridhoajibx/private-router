@@ -5,7 +5,7 @@ import DashboardLayouts from '../layouts/app/DashboardLayouts';
 import MainLayouts from '../layouts/main/MainLayouts';
 import User from '../pages/User';
 import Dashboard from '../pages/Dashboard';
-import Dates from '../pages/Dates';
+import Dates from '../pages/Schedule';
 import Home from '../pages/Home';
 import Setting from '../pages/Setting';
 import Subscription from '../pages/Subscribtion';
@@ -31,11 +31,13 @@ const Index = (props) => {
                 </MainLayouts>
             </Route>
 
-            <Route exact path="/Product" >
-                <MainLayouts display={display} >
-                    <Product />
-                </MainLayouts>
-            </Route>
+            <PrivateRoute exact path="/Product" 
+                comp={MainLayouts}
+                child={Product}
+                display={display}
+                toggleSide={toggleSide}
+                handleToggleSide={handleToggleSide}
+            />
 
             <PrivateRoute exact path="/app"
                 comp={DashboardLayouts}

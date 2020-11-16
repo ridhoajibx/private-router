@@ -11,7 +11,7 @@ export class AddBudget extends Component {
     }
     render() {
         const {show} = this.props;
-        return <div className="base-container" style={{
+        return <div className="base" style={{
             position: 'absolute',
             zIndex:100,
           transform: show ? 'translate(0vh)' : 'translate(-100vh)',
@@ -22,8 +22,16 @@ export class AddBudget extends Component {
             <div className="title"><h1>Add Budget</h1></div>
             <div className="form">
                <div className="form-group">
-               <label htmlFor="amount">Amount</label>
+                   <pre>
+               <label htmlFor="amount">Amount:  </label>
+               </pre>
                     <input />
+               </div>
+               <div className="form-group">
+                   <pre>
+               <label htmlFor="amount">Expire: </label>
+               </pre>
+                    <input type="date" />
                </div>
             </div>
             </form>

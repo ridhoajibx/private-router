@@ -62,6 +62,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
             }
+            // case FETCH_PRODUCT_REQUEST:
+            //     return {
+            //         ...state,
+            //         loading: true,
+            //     }  
         default: return state
     }
 }

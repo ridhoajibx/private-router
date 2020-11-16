@@ -1,8 +1,9 @@
-.base-container {
-    display: flex;
+.base {
+  display: inline-block;
   justify-content: center;
   align-items: center;
   position: absolute;
   z-index: 99;
-  margin: 80px auto;
+  margin-top: -100px;
+  margin-left: 300px;
 }

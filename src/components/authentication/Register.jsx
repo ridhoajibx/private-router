@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import avatar from '../../assets/img/logo/avatar.svg';
 import PropTypes from 'prop-types';
+import { validateEmail } from '../../variables/validator';
 
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const letters = RegExp(/^[A-Za-z]+$/);
 // const validateForm = (errors) => {
 //   let valid = true;
@@ -56,7 +56,7 @@ export class Register extends Component {
         break;
         case 'email': 
             errors.email = 
-            validEmailRegex.test(value)
+            validateEmail(value)
                 ? ''
                 : 'Email is not valid!';
             break;

@@ -1,32 +1,14 @@
 import React from 'react';
-import { Card, Button, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 
-const Footer2  = (props) => {
-    const imageb ='https://i.ibb.co/XJ6Hyd2/Oreti.png'
+const Footer3 = (props) => {
     return (
-        <div>
-            <br></br>
-        <div style={{backgroundColor:'rgba(121, 113, 234, 1)',backgroundPosition: 'right',backgroundImage: `url(${imageb})`,backgroundRepeat: 'no-repeat',height:300}}>
-        <br></br>
-        <br></br>
-        <Container>
-        <h1 style={{color:"black",fontWeight:"bold"}}>So what are you waiting for?</h1>
-      
-        <br></br>
-       
-        <p>
-        
-          <Button >JOIN NOW</Button>
-        </p>
+        <Container fluid className="pb-2 absolute-bottom">
+            <div className="mb-3">
+                <p className="mb-0">2020 | Subsit</p>
+            </div>
         </Container>
-      </div>
-      <Container>
-      <p> 2020 | Subsit </p>
-      </Container>
-      </div>
-      
+    );
+}
 
-        );
-      }
-
-export default Footer2;
+export default Footer3;

@@ -37,8 +37,7 @@ class Authentication extends React.Component {
     const { isLogginActive } = this.state;
     const current = isLogginActive ? "Signup" : "Signin";
     const currentActive = isLogginActive ? "Signin" : "Signup";
-    const {show} = this.props
-    console.log(show, 'this is show');
+    const {show} = this.props;
     return (
       
       <div className="Authentic"

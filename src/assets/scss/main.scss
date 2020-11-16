@@ -14,6 +14,21 @@ body {
     }    
 }
 
+a {
+    text-decoration: none;
+    font-size: 16px;
+    color: $dark-color;
+    &:hover {
+        // background: $primary-color;
+        color: #333;
+        text-decoration: none;
+    }
+}
+.swal2-styled.swal2-confirm {
+    background-color: $primary-color !important;
+}
+
+
 @import './fund-template/color.scss';
 @import './fund-template/button.scss';
 @import './fund-template/header.scss';
@@ -22,3 +37,4 @@ body {
 @import './fund-template/cards/cards.scss';
 @import './fund-template/cards/cardUser.scss';
 @import './fund-template/jumbotron.scss';
+@import './fund-template/footer.scss';

@@ -16,7 +16,7 @@ const Dashboard = (props) => {
         setData(data)
         setModal(!modal)
     }
-    console.log(props, "cek props");
+    // console.log(props, "cek props");
     return (
         <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={props.handleToggleSide}>

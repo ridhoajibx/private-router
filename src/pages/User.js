@@ -11,7 +11,6 @@ import Upload from '../components/formUpload/Upload';
 
 
 const User = (props) => {
-    console.log(props, 'cek props user');
     const [user, setUser] = useState({
         name: "",
         dateOfBirth: "",
@@ -44,6 +43,14 @@ const User = (props) => {
                     text: res.data.msg
                 })
                 props.fetchUsers()
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ops..',
+                    text: errorMsg
+                })
             })
     }
 

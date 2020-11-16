@@ -184,7 +184,7 @@ export class Register extends Component {
                     </div>
                 </div>
                 <div className="footer">
-                    <button className="btn">
+                    <button className="btn btn-primary">
                         SIGN UP
                     </button>
                 </div>

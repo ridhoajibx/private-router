@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '../../assets/img/logo/avatar.svg';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const validateForm = (errors) => {
@@ -113,7 +114,7 @@ export class Login extends Component {
 }
 
 Login.propTypes = {
-    loginRequest: React.PropTypes
+    loginRequest: PropTypes.func
 }
   const mapDispatchToProps = (dispatch) => {
       return {

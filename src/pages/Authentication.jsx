@@ -4,6 +4,7 @@ import { Login, Register } from "../components/authentication/index";
 import { connect } from "react-redux";
 import { userSignupRequest } from '../redux/actions/signupActions';
 import { loginRequest } from '../redux/actions/authAction';
+import PropTypes from 'prop-types';
 
 class Authentication extends React.Component {
   constructor(props) {
@@ -89,9 +90,10 @@ const RightSide = props => {
 };
 
 Authentication.propTypes = {
-  userSignupRequest: React.propTypes,
-  loginRequest: React.propTypes
+  userSignupRequest: PropTypes.func,
+  loginRequest: PropTypes.func
 }
+
 
 const mapStateToProps = (state) => {
     return {

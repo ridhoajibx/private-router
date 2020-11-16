@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 const globalState = {
     show: false,
+    showExpense: false,
     isAuthenticated: false,
     isLoading: false,
     user: {}
@@ -11,6 +12,12 @@ const globalReducer = (state = globalState, action) => {
         return {
             ...state,
             show: !state.show
+        }
+    }
+    if(action.type === 'SHOW_EXPENSE') {
+        return {
+            ...state,
+            showExpense: !state.showExpense
         }
     }
     if(action.type === 'SET_CURRENT_USER') {

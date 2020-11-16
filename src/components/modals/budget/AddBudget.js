@@ -16,7 +16,7 @@ const AddBudget = (props) => {
                 <ModalBody>
                     <FormGroup>
                         <Label for="amount">Amount</Label>
-                        <Input type="number" name="email" id="amount" placeholder="add amount" />
+                        <Input type="number" name="amount" id="amount" placeholder="add amount" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="expired">Expired</Label>

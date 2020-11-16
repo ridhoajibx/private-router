@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Container, CardBody,Card} from 'reactstrap';
+import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem ,Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col,Container, CardBody,Card} from 'reactstrap';
 // import {
 //   FETCH_PRODUCT_REQUEST,
 // } from './userTypes';
@@ -26,6 +26,9 @@ const ProductSubscription = (props) => {
       const [APIProduct, setAPIProduct] = useState([]);
       const [ProductId, setProductId]= useState();
       const [productServices, setProductServices]= useState([]);
+      const [cost, setcost]= useState("");
+      const [serviceId, setserviceId]= useState("");
+      const [dropdownOpen, setDropdownOpen] = useState(false);;
       const handleShowmodal = (items) =>
        {
         
@@ -106,8 +109,33 @@ const ProductSubscription = (props) => {
     useEffect(() => {
       product()
     }, [])
-    
+   
 
+    const Subscript = () => {
+      console.log(ProductId,serviceId);
+          // dispatch(fetchProductRequest)
+          console.log("token",localStorage.getItem("jwtToken"));
+          axios.post(`https://peaceful-gorge-77974.herokuapp.com/product/${ProductId}/${serviceId}`, {
+           
+          headers: {
+                  'access_token': localStorage.getItem("jwtToken")
+              }
+          })
+              .then(response => {
+                  const ProductData = response.data;
+                  console.log(ProductData);
+                  // setAPIProduct(ProductData);
+                  // dispatch(fetchUsersSuccess(users))
+              })
+              .catch(error => {
+                  const errorMsg = error.message
+                  console.log(errorMsg);
+                  // dispatch(fetchUsersFailure(errorMsg))
+              })
+      }
+ Subscript()
+ 
+    const toggle = () => setDropdownOpen(prevState => !prevState);
     
     return (
         <div>
@@ -144,14 +172,32 @@ const ProductSubscription = (props) => {
       <Modal isOpen={modal} toggle = {() => setModal(false)} className={className}>
         <ModalHeader>{data.name}</ModalHeader>
         <ModalBody>
+
+            
             <img src={data.backdrop} alt='...'></img>
             
           {data.details}
-        {productServices.length !== 0 ? productServices.ProductServices.map(services => <div> <button>{services.service_type}</button> <p>{services.cost}</p></div>) : console.log("kosong")
-}
+          <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret>
+        Choose Services
+      </DropdownToggle>
+      <DropdownMenu>
+
+        {productServices.length !== 0 ? productServices.ProductServices.map(services =>
+              
+              <DropdownItem onClick= {()=>{setcost(services.cost); setserviceId(services.id)}}> {services.service_type}</DropdownItem>) : console.log("kosong")
+
+ }
+ 
+ {console.log("id",serviceId)}
+ 
+
+      </DropdownMenu>
+    </ButtonDropdown>
+{cost !== "" ? <p>cost : {cost}</p> : console.log("costa",cost)}
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={()=> setModal(false)}>Subscript</Button>
+          <Button color="success" onClick={()=> {setModal(false); Subscript() }}>Subscript</Button>
         </ModalFooter>
       </Modal>
       

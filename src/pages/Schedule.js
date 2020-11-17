@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react'
 import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -14,8 +14,8 @@ import { connect } from 'react-redux';
 import { fetchExpense } from '../redux';
 
 const Schedule = (props) => {
-    // const [data, setData] = useState([]);
-    // const [event, setEvent] = useState([]);
+    const [data, setData] = useState([]);
+    const [event, setEvent] = useState([]);
     const events = [
         {
             title: 'Bayar rokok',
@@ -64,14 +64,52 @@ const Schedule = (props) => {
         })
     }
 
-    // useEffect(() => {
-    //     props.fetchExpense()
-    // }, [])
 
-    // useEffect(() => {
-    //     setData({ data: props.expense })
-    // }, [props.expense]);
+    useEffect(() => {
+        props.fetchExpense()
+    }, [])
 
+    useEffect(() => {
+        setData({ data: props.expense })
+    }, [props.expense]);
+
+    useEffect(() => {
+        let items =
+        [
+            {
+                id: 1,
+                title: "bayar kos",
+                cost: 500000,
+                repeat: 'monthly',
+                start_date: '2020-11-16',
+                limit_date: '2021-11-16'
+            }
+        ]
+        let dummy = [];
+        let query = ["id", 'title'];
+        // let spquery = ["rrule", "extendedProps"];
+        let query2 = ["cost", "start_date", "limit_date", "repeat"];
+        let dummy2 = {};
+        let nestObj = {};
+        items.map((item) => {
+            Object.keys(item).map((item2) => {
+                if (query.includes(item2)) {
+                    console.log(item2, 'cek item dummy2 query1');
+                    dummy2[item2] = item[item2];
+                } else if (query2.includes(item2)) {
+                    console.log(item2, 'cek item dummy2 query2');
+                    nestObj[item2] = item[item2];
+                    dummy2["rrule"] = nestObj;
+                    dummy2["extendedProps"] = nestObj;
+                }
+            }); 
+            dummy.push(dummy2); dummy2 = {};
+        }); 
+        console.log("HERE", dummy);
+        setEvent({event: dummy})
+    }, [])
+
+    console.log(event, 'cek event state');
     return (
         <Container fluid>
             <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>

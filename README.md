@@ -11,5 +11,5 @@ FunD is an easy interface application to many people, also has some features to 
 
 ### Application Demo
 
-<p align="center"><img src="./src/assets/img/demo/FE-DEMO.gif" width="200"></p>
+<p align="center"><img src="./src/assets/img/demo/FE-DEMO.gif" width="600"></p>
 

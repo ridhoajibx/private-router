@@ -84,8 +84,13 @@ const ProductSubscription = (props) => {
         product()
     }, [])
 
-    const Subscript = () => {
-        axios.post(`https://peaceful-gorge-77974.herokuapp.com/product/${ProductId}/${serviceId}`,
+    const Subscript = (e) => {
+        e.preventDefault()
+        let token = localStorage.getItem("jwtToken")
+        console.log(token)
+
+        console.log (`https://peaceful-gorge-77974.herokuapp.com/product/${ProductId}/${serviceId}`)
+        axios.post(`https://peaceful-gorge-77974.herokuapp.com/product/${ProductId}/${serviceId}`, null,
             {
                 headers: {
                     'access_token': localStorage.getItem("jwtToken")
@@ -96,11 +101,10 @@ const ProductSubscription = (props) => {
                 console.log(ProductData);
             })
             .catch(error => {
-                const errorMsg = error.message
-                console.log(errorMsg);
+                const errorMsg = error
+                console.log("rrr",errorMsg);
             })
     }
-    Subscript()
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
@@ -152,7 +156,7 @@ const ProductSubscription = (props) => {
                                     </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="success" onClick={() => { setModal(false); Subscript() }}>Subscript</Button>
+                                    <Button color="success" onClick={(event) => { setModal(false); Subscript(event) }}>Subscript</Button>
                                 </ModalFooter>
                             </Modal>
                         </Row>

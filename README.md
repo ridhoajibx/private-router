@@ -8,3 +8,8 @@
 
 # Demo
 <p  align="center"><img  src="./src/assets/img/demo/FE-DEMO.gif"  width="600"></p>
+
+# Team Front End
+- Jumakri Ridho Fauzi
+- Diky Darmawan
+- Rio Pratomo

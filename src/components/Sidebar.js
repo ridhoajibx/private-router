@@ -35,12 +35,12 @@ const routesDashboard = [
     },
 ]
 
-const Sidebar = ({fetchUsers, loading, error, user, toogleSide}) => {
+const Sidebar = ({fetchUsers, loading, error, user, toggleSide}) => {
     useEffect(()=> {
         fetchUsers()
     }, [fetchUsers])
     return (
-        <div className={`sidebar-wrapper sidebar-wrapper--${!toogleSide ? 'hide' : 'show'}`}>
+        <div className={`sidebar-wrapper sidebar-wrapper--${!toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
                 {
                     loading ? <Spinner color="primary" /> : error ? <h4>{error}</h4> :

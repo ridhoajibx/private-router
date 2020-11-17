@@ -30,7 +30,7 @@ deploy-staging:
     - apt-get update -qy
     - apt-get install -y ruby ruby-dev rubygems-integration
     - gem install dpl
-    - dpl --provider=heroku --app=stage-allstar --api-key=6a1e865c-a3f0-4f68-84ed-1251c76d5cb7
+    - dpl --provider=heroku --app=stage-fund --api-key=6a1e865c-a3f0-4f68-84ed-1251c76d5cb7
   only:
     - develop
 
@@ -44,6 +44,6 @@ deploy-production:
     - apt-get update -qy
     - apt-get install -y ruby ruby-dev rubygems-integration
     - gem install dpl
-    - dpl --provider=heroku --app=allstar-movies --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=fund-product --api-key=$HEROKU_API_KEY
   only:
     - master

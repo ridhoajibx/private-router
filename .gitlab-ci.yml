@@ -25,7 +25,7 @@ deploy-staging:
   stage: staging
   environment:
     name: staging
-    url: https://stage-fund.herokuapp.com
+    url: https://stage-fund.herokuapp.com 
   script:
     - apt-get update -qy
     - apt-get install -y ruby ruby-dev rubygems-integration

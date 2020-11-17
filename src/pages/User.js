@@ -36,7 +36,6 @@ const User = ({fetchUsers, updateUsers, toggleSide, handleToggleSide,userData, l
 
         axios.put("https://peaceful-gorge-77974.herokuapp.com/users/editphoto", data, header)
             .then(res => {
-                console.log(res, 'cek response');
                 Swal.fire({
                     icon: 'success',
                     title: 'Great..',

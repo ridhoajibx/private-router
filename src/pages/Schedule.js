@@ -13,47 +13,8 @@ import { formatMoney } from '../variables/formatMoney';
 import { connect } from 'react-redux';
 import { fetchExpense } from '../redux';
 
-const Schedule = (props) => {
-    const [data, setData] = useState([]);
+const Schedule = ({expense, fetchExpense, toggleSide, handleToggleSide}) => {
     const [event, setEvent] = useState([]);
-    const events = [
-        {
-            title: 'Bayar rokok',
-            rrule: {
-                freq: 'daily',
-                dtstart: '2020-11-01', // will also accept '20120201T103000'
-                until: '2020-11-01' // will also accept '20120201'
-            },
-            extendedProps: {
-                cost: 10000,
-                repeat: 'daily'
-            }
-        },
-        {
-            title: 'Bayar sarapan',
-            rrule: {
-                freq: 'daily',
-                dtstart: '2020-11-08', // will also accept '20120201T103000'
-                until: '2020-11-14' // will also accept '20120201'
-            },
-            extendedProps: {
-                cost: 10000,
-                repeat: 'daily'
-            }
-        },
-        {
-            title: 'Bayar Netflix',
-            rrule: {
-                freq: 'monthly',
-                dtstart: '2020-11-01', // will also accept '20120201T103000'
-                until: '2021-01-01' // will also accept '20120201'
-            },
-            extendedProps: {
-                cost: 75000,
-                repeat: 'monthly'
-            }
-        },
-    ]
     const handleEventClick = (data) => {
         Swal.fire({
             icon: 'info',
@@ -64,57 +25,36 @@ const Schedule = (props) => {
         })
     }
 
+    useEffect(() => {
+        fetchExpense()
+    }, [fetchExpense])
 
     useEffect(() => {
-        props.fetchExpense()
-    }, [])
+        if(expense.length){
+            let events = []
+            expense.forEach(e => {
+                events.push({
+                    title: e.title,
+                    rrule: {
+                        freq: e.repeat.toLowerCase(),
+                        dtstart: e.start_date, // will also accept '20120201T103000'
+                        until: e.limit_date, // will also accept '20120201'
+                    },
+                    extendedProps: {
+                        cost: e.cost,
+                        repeat: e.repeat.toLowerCase()
+                    }
+                })
+            })
+            setEvent(events)
+        }
+    }, [expense]);
 
-    useEffect(() => {
-        setData({ data: props.expense })
-    }, [props.expense]);
-
-    useEffect(() => {
-        let items =
-        [
-            {
-                id: 1,
-                title: "bayar kos",
-                cost: 500000,
-                repeat: 'monthly',
-                start_date: '2020-11-16',
-                limit_date: '2021-11-16'
-            }
-        ]
-        let dummy = [];
-        let query = ["id", 'title'];
-        // let spquery = ["rrule", "extendedProps"];
-        let query2 = ["cost", "start_date", "limit_date", "repeat"];
-        let dummy2 = {};
-        let nestObj = {};
-        items.map((item) => {
-            Object.keys(item).map((item2) => {
-                if (query.includes(item2)) {
-                    console.log(item2, 'cek item dummy2 query1');
-                    dummy2[item2] = item[item2];
-                } else if (query2.includes(item2)) {
-                    console.log(item2, 'cek item dummy2 query2');
-                    nestObj[item2] = item[item2];
-                    dummy2["rrule"] = nestObj;
-                    dummy2["extendedProps"] = nestObj;
-                }
-            }); 
-            dummy.push(dummy2); dummy2 = {};
-        }); 
-        console.log("HERE", dummy);
-        setEvent({event: dummy})
-    }, [])
-
-    console.log(event, 'cek event state');
     return (
         <Container fluid>
-            <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
-                <span className="toggle-btn" onClick={props.handleToggleSide}>
-                    {!props.toggleSide ? <FaTimes /> : <FaBars />}
+            <div className={`content-wrapper content-wrapper--${!toggleSide ? 'show' : 'hide'}`}>
+                <span className="toggle-btn" onClick={handleToggleSide}>
+                    {!toggleSide ? <FaTimes /> : <FaBars />}
                     <h4>Schedule</h4>
                 </span>
                 <Col lg='12'>
@@ -129,7 +69,7 @@ const Schedule = (props) => {
                                 }}
                                 initialView="dayGridMonth"
                                 weekends={true}
-                                events={events}
+                                events={event}
                                 eventClick={handleEventClick}
                             />
                         </CardBody>

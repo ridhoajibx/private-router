@@ -10,6 +10,7 @@
 <p  align="center"><img  src="./src/assets/img/demo/FE-DEMO.gif"  width="600"></p>
 
 # Flowchart
+
 ```mermaid
 graph LR
 A((Start)) -- yes --> B{Have an account?}

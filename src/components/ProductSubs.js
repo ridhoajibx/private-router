@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-    ButtonDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
     Button,
     Modal,
     ModalHeader,
@@ -23,14 +19,14 @@ const ProductSubscription = (props) => {
         className
     } = props;
     const [modal, setModal] = useState(false);
-    const [data, setData] = useState({}); //hooks
     const [APIProduct, setAPIProduct] = useState([]);
-    const [productServices, setProductServices] = useState([]);
-    const [cost, setcost] = useState("");
-    const [serviceId, setserviceId] = useState("");
-    const [dropdownOpen, setDropdownOpen] = useState(false);;
+    const [data, setData] = useState([])
+
     const handleShowmodal = (items) => {
-    
+        setData(items)
+        setModal(!modal)
+    }
+
     const product = () => {
         axios.get('https://peaceful-gorge-77974.herokuapp.com/product/all')
             .then(response => {
@@ -46,11 +42,9 @@ const ProductSubscription = (props) => {
         product()
     }, [])
 
-    const toggle = () => setDropdownOpen(prevState => !prevState);
 
     return (
         <div>
-
             <Container>
                 <div className="mt-5 pt-4">
                     <h1 className="text-center mt-5">PRODUCT</h1>
@@ -80,23 +74,9 @@ const ProductSubscription = (props) => {
                                     <div>
                                         {data.details}
                                     </div>
-                                    <div className="d-flex justify-content-between align-items-center mt-2">
-                                        <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                                            <DropdownToggle caret>
-                                                Choose Services
-                                            </DropdownToggle>
-                                            <DropdownMenu>
-                                                {productServices.length !== 0 ? productServices.ProductServices.map(services =>
-                                                    <DropdownItem onClick={() => { setcost(services.cost); setserviceId(services.id) }}> {services.service_type}</DropdownItem>) : console.log("kosong")
-                                                }
-                                                {console.log("id", serviceId)}
-                                            </DropdownMenu>
-                                        </ButtonDropdown>
-                                        {cost && <div>Cost: {cost}</div>}
-                                    </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="success" onClick={(event) => { setModal(false); Subscript(event) }}>Subscript</Button>
+                                    <Button color="success" onClick={(event) => setModal(false)}>Subscript</Button>
                                 </ModalFooter>
                             </Modal>
                         </Row>

@@ -10,7 +10,7 @@ import { fetchUsers, updateUsers } from '../redux';
 import Upload from '../components/formUpload/Upload';
 
 
-const User = (props) => {
+const User = ({fetchUsers, updateUsers, toggleSide, handleToggleSide,userData, loading, error }) => {
     const [user, setUser] = useState({
         name: "",
         dateOfBirth: "",
@@ -21,7 +21,7 @@ const User = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault(e);
-        props.updateUsers(user);
+        updateUsers(user);
     }
 
     const uploadFile = (e) => {
@@ -42,7 +42,7 @@ const User = (props) => {
                     title: 'Great..',
                     text: res.data.msg
                 })
-                props.fetchUsers()
+                fetchUsers()
             })
             .catch(error => {
                 const errorMsg = error.message
@@ -55,35 +55,35 @@ const User = (props) => {
     }
 
     useEffect(() => {
-        props.fetchUsers()
-    }, [])
+        fetchUsers()
+    }, [fetchUsers])
 
     useEffect(() => {
         setUser({
-            name: props.user.name,
-            dateOfBirth: props.user.dateOfBirth,
-            photo: props.user.photo,
-            email: props.user.email,
-            password: props.user.password,
+            name: userData.name,
+            dateOfBirth: userData.dateOfBirth,
+            photo: userData.photo,
+            email: userData.email,
+            password: userData.password,
         })
-    }, [props.user])
+    }, [userData])
 
     return (
-        <div className={`content-wrapper content-wrapper--${!props.toggleSide ? 'show' : 'hide'}`}>
-            <span className="toggle-btn" onClick={props.handleToggleSide}>
-                {!props.toggleSide ? <FaTimes /> : <FaBars />}
+        <div className={`content-wrapper content-wrapper--${!toggleSide ? 'show' : 'hide'}`}>
+            <span className="toggle-btn" onClick={handleToggleSide}>
+                {!toggleSide ? <FaTimes /> : <FaBars />}
                 <h4>Profile</h4>
             </span>
             <Row className="my-4">
                 <Col md="4">
                     <Card className="card-user">
                         <Upload
-                            loading={props.loading}
-                            error={props.error}
-                            user={props.user}
+                            loading={loading}
+                            error={error}
+                            user={userData}
                             uploadFile={uploadFile}
                             setUser={ setUser }
-                            fetchUsers={ props.fetchUsers }
+                            fetchUsers={ fetchUsers }
                             // handleShowmodal={handleShowmodal}
                         />
                     </Card>
@@ -126,7 +126,7 @@ const User = (props) => {
                                 <Row>
                                     <div className="update ml-auto mr-auto">
                                         {
-                                            props.loading === true ?
+                                            loading === true ?
                                                 <Button
                                                     className="btn-round"
                                                     color="primary"
@@ -155,7 +155,7 @@ const User = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user.userData,
+        userData: state.user.userData,
         loading: state.user.loading,
         error: state.user.error
     }

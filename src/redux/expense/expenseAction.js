@@ -3,7 +3,7 @@ import {
     FETCH_EXPENSE_REQUEST,
     FETCH_EXPENSE_SUCCESS,
     FETCH_EXPENSE_FAILURE
-} from './userTypes';
+} from './expenseTypes';
 
 export const fetchExpenseRequest = () => {
     return {
@@ -11,14 +11,14 @@ export const fetchExpenseRequest = () => {
     }
 }
 
-export const fetchExpenseSuccess = (expense) => {
+export const fetchExpenseSuccess = (expenses) => {
     return {
         type: FETCH_EXPENSE_SUCCESS,
-        payload: expense
+        payload: expenses
     }
 }
 
-const fetchExpenseFailure = (error) => {
+export const fetchExpenseFailure = (error) => {
     return {
         type: FETCH_EXPENSE_FAILURE,
         payload: error

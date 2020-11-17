@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '../../assets/img/logo/avatar.svg';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { validateEmail } from '../../variables/validator';
 
 const validateForm = (errors) => {
@@ -102,7 +103,7 @@ export class Login extends Component {
                 </div>
                 <div className="footer">
                     
-                    <button className="btn" >
+                    <button className="btn btn-primary" >
                         SIGN IN 
                     </button>
                 </div>
@@ -113,7 +114,7 @@ export class Login extends Component {
 }
 
 Login.propTypes = {
-    loginRequest: React.PropTypes
+    loginRequest: PropTypes.func
 }
   const mapDispatchToProps = (dispatch) => {
       return {

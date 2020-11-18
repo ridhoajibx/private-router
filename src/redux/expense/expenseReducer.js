@@ -2,6 +2,8 @@ import {
     FETCH_EXPENSE_REQUEST,
     FETCH_EXPENSE_SUCCESS,
     FETCH_EXPENSE_FAILURE,
+    ADD_EXPENSE,
+    UPDATE_EXPENSE
 } from './expenseTypes';
 
 const initialState = {
@@ -29,6 +31,18 @@ const reducer = (state = initialState, action) => {
                 expenses: {},
                 error: action.payload
             }
+        case ADD_EXPENSE:
+            return {
+                loading: true,
+                expense: {},
+                error: action.payload
+            }
+        case UPDATE_EXPENSE:
+                return {
+                    loading: true,
+                    expense: {},
+                    error: action.payload
+                }
         default: return state
     }
 }

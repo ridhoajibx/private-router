@@ -26,6 +26,10 @@ const columns = [
       dataField: "limitdate",
       text: "Limit Date",
       sort: true,
+    },
+    {
+      dataField: "action",
+      text: "Action"
     }]
 
 function TableDummy(props) {

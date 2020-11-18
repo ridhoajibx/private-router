@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import closeImg from '../../../assets/img/logo/close.svg';
 import { Col, Form, FormGroup, Input, Label, Modal, ModalBody, Row } from 'reactstrap';
 import { FaPlus, FaTimes } from 'react-icons/fa';
@@ -24,26 +24,27 @@ const AddExpense = (props) => {
             }
         }
 
+
         let data = {
             title: expense.title,
             cost: expense.cost,
             repeat: expense.repeat,
             start_date: expense.start_date,
-           limit_date: expense.limit_date
+            start_date: expense.limit_date
         }
 
         if (expense.valid) {
-            axios.post(url, data, header)
+            axios.put(url, data, header)
                 .then(response => {
-                    const expense = response.data;
-                    if (expense.msg === "Expense Added!") {
+                    const password = response.data;
+                    if (password.msg === "Password Changed!") {
                         Swal.fire({
                             icon: 'success',
                             title: 'Great..',
-                            text: expense.msg
+                            text: password.msg
                         })
                     } else {
-                        throw expense
+                        throw password
                     }
                 })
                 .catch(error => {
@@ -79,8 +80,7 @@ const AddExpense = (props) => {
                             type="text" 
                             name="title" 
                             id="title" 
-                            placeholder="add title" 
-                            onChange={(e) => setExpense({ ...expense, title: e.target.value })}/>
+                            placeholder="add title" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="cost">Cost</Label>
@@ -88,8 +88,7 @@ const AddExpense = (props) => {
                             type="number" 
                             name="cost" 
                             id="cost" 
-                            placeholder="add cost" 
-                            onChange={(e) => setExpense({ ...expense, cost: e.target.value })}/>
+                            placeholder="add cost" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="repeat">Repeat</Label>
@@ -110,16 +109,14 @@ const AddExpense = (props) => {
                                 <Input 
                                     type="date" 
                                     name="start_date" 
-                                    id="start_date"
-                                    onChange={(e) => setExpense({ ...expense, start_date: e.target.value })} />
+                                    id="start_date" />
                             </Col>
                             <Col sm="12" md="6">
                                 <Label for="limit_date">Limit date</Label>
                                 <Input 
                                     type="date" 
                                     name="limit_date" 
-                                    id="limit_date" 
-                                    onChange={(e) => setExpense({ ...expense, limit_date: e.target.value })}/>
+                                    id="limit_date" />
                             </Col>
                         </Row>
                     </FormGroup>

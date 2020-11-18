@@ -36,13 +36,13 @@ const Schedule = ({expense, fetchExpense, toggleSide, handleToggleSide}) => {
                 events.push({
                     title: e.title,
                     rrule: {
-                        freq: e.repeat.toLowerCase(),
-                        dtstart: e.start_date, // will also accept '20120201T103000'
-                        until: e.limit_date, // will also accept '20120201'
+                        freq: e.repeat ? e.repeat.toLowerCase() : 'daily',
+                        dtstart: e.start_date ? e.start_date : '', // will also accept '20120201T103000'
+                        until: e.limit_date ?e.limit_date : '', // will also accept '20120201'
                     },
                     extendedProps: {
                         cost: e.cost,
-                        repeat: e.repeat.toLowerCase()
+                        repeat: e.repeat ? e.repeat.toLowerCase() : 'daily'
                     }
                 })
             })

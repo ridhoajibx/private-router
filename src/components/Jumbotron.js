@@ -10,9 +10,6 @@ const Jumbotron2 = (props) => {
                         <h1 style={{ color: "white", fontWeight: "bold" }}>Stress Free</h1>
                         <h1 style={{ color: "white", fontWeight: "bold" }}>Expense</h1>
                         <h1 style={{ color: "white", fontWeight: "bold" }}>Tracker</h1>
-                        <div>
-                            <Button className="button">JOIN NOW</Button>
-                        </div>
                     </div>
                 </Col>
                 <Col md='6' sx='12' className="hero-image"></Col>

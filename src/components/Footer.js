@@ -5,7 +5,7 @@ const Footer3 = (props) => {
     return (
         <Container fluid className="pb-2 absolute-bottom">
             <div className="mb-3">
-                <p className="mb-0">2020 | Subsit</p>
+                <p className="mb-0">2020 | FunD</p>
             </div>
         </Container>
     );

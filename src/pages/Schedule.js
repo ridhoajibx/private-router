@@ -37,12 +37,12 @@ const Schedule = ({expense, fetchExpense, toggleSide, handleToggleSide}) => {
                     title: e.title,
                     rrule: {
                         freq: e.repeat ? e.repeat.toLowerCase() : 'daily',
-                        dtstart: e.start_date ? e.start_date : '', // will also accept '20120201T103000'
-                        until: e.limit_date ?e.limit_date : '', // will also accept '20120201'
+                        dtstart: e.start_date ? e.start_date : e.createdAt, // will also accept '20120201T103000'
+                        until: e.limit_date ? e.limit_date : e.createdAt, // will also accept '20120201'
                     },
                     extendedProps: {
                         cost: e.cost,
-                        repeat: e.repeat ? e.repeat.toLowerCase() : 'daily'
+                        repeat: e.repeat ? e.repeat.toLowerCase() : 'One time'
                     }
                 })
             })

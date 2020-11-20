@@ -63,6 +63,7 @@ export class Login extends Component {
                         <div className="form-group">
                             <label className="mail" htmlFor="email">Email</label>
                             <input 
+                            required
                             type="text" 
                             name="email" 
                             autoComplete="off" 
@@ -76,6 +77,7 @@ export class Login extends Component {
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input 
+                            required
                             type="password" 
                             name="password" 
                             autoComplete="off" 

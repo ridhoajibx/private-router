@@ -20,3 +20,15 @@ export const dateFormat = (date) => {
         year = d.getFullYear();
     return `${day}, ${monthNames[monthIndex]} ${year}`;
 }
+
+export const dateOnly = (date) => {
+    var monthNames = [
+        "Jan", "Feb", "Mar",
+        "Apr", "May", "Jun", "Jul",
+        "Aug", "Sep", "Oct",
+        "Nov", "Dec"
+      ];
+    var d = new Date(date),
+        monthIndex = d.getMonth()
+    return `${monthNames[monthIndex]}`;
+}

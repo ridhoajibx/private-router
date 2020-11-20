@@ -12,9 +12,25 @@ export function setCurrentUser(user) {
 
 export function logout() {
     return dispatch => {
-        localStorage.removeItem('jwtToken');
-        // setAuthorizationToken(false);
-        dispatch(setCurrentUser({}));
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Logout!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem('jwtToken');
+                dispatch(setCurrentUser({}));
+                Swal.fire(
+                    'Logout',
+                    'You have signed out',
+                    'success'
+                )
+            }
+        })
     }
 }
 

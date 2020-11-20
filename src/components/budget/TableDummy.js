@@ -1,42 +1,45 @@
 import React from 'react';
-import BootstrapTable from 'react-bootstrap-table-next';
+import { Card, CardBody, CardHeader, CardTitle, Col, Row, Table } from 'reactstrap';
 
-const columns = [
-    {
-      dataField: "title",
-      text: "Title",
-      sort: true
-    },
-    {
-      dataField: "cost",
-      text: "Cost",
-      sort: true,
-    },
-    {
-      dataField: "repeat",
-      text: "Repeat",
-      sort: true,
-    },
-    {
-      dataField: "startdate",
-      text: "Start Date",
-      sort: true,
-    },
-    {
-      dataField: "limitdate",
-      text: "Limit Date",
-      sort: true,
-    },
-    {
-      dataField: "action",
-      text: "Action"
-    }]
-
-function TableDummy(props) {
+function TableDummy({ expense }) {
     return (
-        <div>
-            <BootstrapTable keyField='title' data={props.expense} columns={columns}/>
-        </div>
+        <Row className="mt-4">
+            <Col md="12">
+                <Card>
+                    <CardHeader className="text-center">
+                        <CardTitle tag="h4">Transaction</CardTitle>
+                    </CardHeader>
+                    <CardBody>
+                        <Table responsive>
+                            <thead className="text-primary">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Cost</th>
+                                    <th>Repeat</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th className="text-right">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    expense.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{item.title}</td>
+                                            <td>Rp {item.cost}</td>
+                                            <td>{item.repeat}</td>
+                                            <td>{item.startdate}</td>
+                                            <td>{item.limitdate}</td>
+                                            <td className="text-right"><button className="btn btn-primary btn-sm">Edit</button></td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </Table>
+                    </CardBody>
+                </Card>
+            </Col>
+        </Row>
     )
 }
 

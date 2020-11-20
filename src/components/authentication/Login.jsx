@@ -4,14 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { validateEmail } from '../../variables/validator';
 
-const validateForm = (errors) => {
-  let valid = true;
-  Object.values(errors).forEach(
-    (val) => val.length > 0 && (valid = false)
-  );
-  return valid;
-}
-
 export class Login extends Component {
 
     constructor(props) {
@@ -31,11 +23,6 @@ export class Login extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.loginRequest(this.state);
-        if(validateForm(this.state.errors)) {
-        console.info('Valid Form')
-        }else{
-        console.error('Invalid Form')
-        }
       }
 
     onChange(e) {

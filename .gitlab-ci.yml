@@ -1,0 +1,49 @@
+image: node:14.15.1-buster 
+
+before_script:
+  - echo "Job $CI_JOB_NAME started."
+
+after_script:
+  - echo "Job $CI_JOB_NAME ended."
+
+stages:
+  - build
+  - staging
+  - production
+
+build:
+  type: build
+  script:
+    - npm install
+    - npm run build
+  except:
+    - master
+    - develop
+
+deploy-staging:
+  type: deploy
+  stage: staging
+  environment:
+    name: staging
+    url: https://stage-fund.herokuapp.com 
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
+    - dpl --provider=heroku --app=stage-fund --api-key=6a1e865c-a3f0-4f68-84ed-1251c76d5cb7
+  only:
+    - develop
+
+deploy-production:
+  type: deploy
+  stage: production
+  environment:
+    name: production
+    url: https://fund-product.herokuapp.com
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
+    - dpl --provider=heroku --app=fund-product --api-key=6a1e865c-a3f0-4f68-84ed-1251c76d5cb7
+  only:
+    - master

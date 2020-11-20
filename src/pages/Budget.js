@@ -116,18 +116,8 @@ const Budget = (props) => {
                 </Col>
             </Row>
 
-            <Row className="mt-4">
-                <Col>
-                    <Card className="p-4">
-                        <span>
-                            <h4 style={{ marginLeft: '10px', marginBottom: '15px' }}>History</h4>
-                        </span>
-                        {/* <TableComponent /> */}
+            <TableDummy expense={data} />
 
-                        <TableDummy expense={data} />
-                    </Card>
-                </Col>
-            </Row>
             <AddBudget modal={modal} setModal={setModal} />
             <AddExpense modalEx={modalEx} setModalEx={setModalEx} />
         </div>

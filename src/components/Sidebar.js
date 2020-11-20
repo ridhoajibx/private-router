@@ -35,19 +35,19 @@ const routesDashboard = [
     },
 ]
 
-const Sidebar = (props) => {
+const Sidebar = ({fetchUsers, loading, error, user, toggleSide}) => {
     useEffect(()=> {
-        props.fetchUsers()
-    }, [])
+        fetchUsers()
+    }, [fetchUsers])
     return (
-        <div className={`sidebar-wrapper sidebar-wrapper--${!props.toggleSide ? 'hide' : 'show'}`}>
+        <div className={`sidebar-wrapper sidebar-wrapper--${!toggleSide ? 'hide' : 'show'}`}>
             <div className="d-flex flex-column justify-content-center align-items-center my-4">
                 {
-                    props.loading ? <Spinner color="primary" /> : props.error ? <h4>{props.error}</h4> :
+                    loading ? <Spinner color="primary" /> : error ? <h4>{error}</h4> :
                         <>
-                            <img src={!props.user.photo ? loadingSvg :props.user.photo} alt="" width="100" height="100" className="rounded-circle img-thumb" />
+                            <img src={!user.photo ? loadingSvg :user.photo} alt="" width="100" height="100" className="rounded-circle img-thumb" />
                             <NavLink className="mt-2" to="/app/user">
-                                {props.user.name}
+                                {user.name}
                             </NavLink>
                         </>
                 }

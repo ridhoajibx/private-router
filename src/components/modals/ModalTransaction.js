@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, CardBody, Modal } from 'reactstrap';
 import { formatMoney } from '../../variables/formatMoney';
+import { dateFormat } from '../../variables/validator';
 
 const ModalTransaction = (props) => {
     return (
@@ -25,7 +26,7 @@ const ModalTransaction = (props) => {
                         </div>
                         <div className='d-flex justify-content-between align-items-center'>
                             <div className="font-weight-bold">Date:</div>
-                            <span>{props.data.start_date?props.data.start_date:props.data.createdAt}</span>
+                            <span>{props.data.start_date ? dateFormat(props.data.start_date) : dateFormat(props.data.createdAt)}</span>
                         </div>
                     </div>
                     <Button className="float-right" size="sm" color="danger" onClick={() => props.setModal(false)}>Close</Button>

@@ -3,8 +3,11 @@ import {
     FETCH_EXPENSE_REQUEST,
     FETCH_EXPENSE_SUCCESS,
     FETCH_EXPENSE_FAILURE,
+<<<<<<< HEAD
     ADD_EXPENSE,
     UPDATE_EXPENSE
+=======
+>>>>>>> a3cad5890df3dc54c0be8d360e088702eb1481f0
 } from './expenseTypes';
 
 export const fetchExpenseRequest = () => {
@@ -57,6 +60,7 @@ export const fetchExpense = () => {
             const errorMsg = error.message
             dispatch(fetchExpenseFailure(errorMsg))
         })
+<<<<<<< HEAD
     }
 }
 
@@ -76,6 +80,8 @@ export const updateExpense = () => {
             const errorMsg = error.message
             dispatch(fetchExpenseFailure(errorMsg))
         })
+=======
+>>>>>>> a3cad5890df3dc54c0be8d360e088702eb1481f0
     }
 }
 

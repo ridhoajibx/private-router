@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
     FETCH_EXPENSE_REQUEST,
     FETCH_EXPENSE_SUCCESS,
-    FETCH_EXPENSE_FAILURE
+    FETCH_EXPENSE_FAILURE,
 } from './expenseTypes';
 
 export const fetchExpenseRequest = () => {
@@ -33,13 +33,13 @@ export const fetchExpense = () => {
                 'access_token': localStorage.getItem("jwtToken")
             }
         })
-            .then(response => {
-                const expense = response.data;
-                dispatch(fetchExpenseSuccess(expense))
-            })
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(fetchExpenseFailure(errorMsg))
-            })
+        .then(response => {
+            const expense = response.data;
+            dispatch(fetchExpenseSuccess(expense))
+        })
+        .catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchExpenseFailure(errorMsg))
+        })
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Col, Row } from 'reactstrap';
+import { Jumbotron, Col, Row } from 'reactstrap';
 
 const Jumbotron2 = (props) => {
     return (

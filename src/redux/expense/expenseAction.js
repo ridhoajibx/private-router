@@ -49,25 +49,6 @@ export const fetchExpense = () => {
                 'access_token': localStorage.getItem("jwtToken")
             }
         })
-            .then(response => {
-                const expense = response.data;
-                dispatch(fetchExpenseSuccess(expense))
-            })
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(fetchExpenseFailure(errorMsg))
-            })
-    }
-}
-
-export const addExpense = () => {
-    return (dispatch) => {
-    dispatch(fetchExpenseRequest)
-    axios.post('https://peaceful-gorge-77974.herokuapp.com/expenses/add', {
-        headers: {
-            'access_token': localStorage.getItem("jwtToken")
-        }
-    })
         .then(response => {
             const expense = response.data;
             dispatch(fetchExpenseSuccess(expense))

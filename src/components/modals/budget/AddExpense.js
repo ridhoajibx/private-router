@@ -2,17 +2,31 @@ import React, { useState, useEffect } from 'react';
 import closeImg from '../../../assets/img/logo/close.svg';
 import { Col, Form, FormGroup, Input, Label, Modal, ModalBody, Row } from 'reactstrap';
 import { FaPlus, FaTimes } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+import { fetchExpense } from '../../../redux/expense/expenseAction';
+import { fetchBudget } from '../../../redux/budget/budgetAction';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { connect } from 'react-redux';
 
-const AddExpense = (props) => {
+const AddExpense = ({ fetchExpense, modalEx, setModalEx, fetchBudget }) => {
     const [expense, setExpense] = useState({
         title: "",
-        cost: "",
+        cost: 0,
         repeat: "",
         start_date: "",
         limit_date: ""
     })
+
+    useEffect(() => {
+        fetchExpense()
+    }, [fetchExpense])
+    
+    useEffect(() => {
+        fetchBudget()
+    }, [fetchBudget])
+
+    
 
     const onSubmit = (e) => {
         e.preventDefault(e);
@@ -32,46 +46,55 @@ const AddExpense = (props) => {
            limit_date: expense.limit_date
         }
 
-        if (expense.valid) {
+        
             axios.post(url, data, header)
                 .then(response => {
-                    const expense = response.data;
-                    if (expense.msg === "Expense Added!") {
+                    const expense = response;
+                    if (expense.status === 200) {
+                        fetchExpense()
+                        fetchBudget()
                         Swal.fire({
                             icon: 'success',
                             title: 'Great..',
-                            text: expense.msg
+                            text: 'Expense Added!'
                         })
+                        setModalEx(false)
+                        
                     } else {
                         throw expense
                     }
                 })
                 .catch(error => {
-                    const errorMsg = error.response.data.msg
+                    const errorMsg = error.message;
                     Swal.fire({
                         icon: 'error',
                         title: 'opps..',
                         text: errorMsg
                     })
                 })
+        
     }
-}
 
-    // const onHandler = (e) => {
-    //     e.preventDefault();
-    //     const { name, value } = e.target;
-    //     let errors = state.errors
-    //     let valid = state.valid
-    // }
+    const reset = (e) => {
+        setExpense({
+            title: "",
+            cost: 0,
+            repeat: "",
+            start_date: "",
+           limit_date: ""
+        })
+
+    }
+
     return (
-        <Modal isOpen={props.modalEx} toggle={() => props.setModalEx(false)}>
+        <Modal isOpen={modalEx} toggle={() => setModalEx(false)}>
             <div className="d-flex justify-content-between align-items-center px-4 pt-4">
                 <h4 className="mb-0">Add expense</h4>
                 <div style={{ cursor: 'pointer' }}>
-                    <img style={{ width: '20px' }} onClick={() => props.setModalEx(false)} src={closeImg} alt=".." />
+                    <img style={{ width: '20px' }} onClick={() => setModalEx(false)} src={closeImg} alt=".." />
                 </div>
             </div>
-            <Form className='mt-2'>
+            <Form className='mt-2' onSubmit={onSubmit}>
                 <ModalBody>
                     <FormGroup>
                         <Label for="title">Title</Label>
@@ -80,24 +103,29 @@ const AddExpense = (props) => {
                             name="title" 
                             id="title" 
                             placeholder="add title" 
-                            onChange={(e) => setExpense({ ...expense, title: e.target.value })}/>
+                            onChange={(e) => setExpense({ ...expense, title: e.target.value })}
+                            value={expense.title}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="cost">Cost</Label>
                         <Input 
+                            required
                             type="number" 
                             name="cost" 
                             id="cost" 
                             placeholder="add cost" 
-                            onChange={(e) => setExpense({ ...expense, cost: e.target.value })}/>
+                            onChange={(e) => setExpense({ ...expense, cost: e.target.value })}
+                            value={expense.cost}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="repeat">Repeat</Label>
                         <Input 
                             type="select" 
                             name="repeat" 
-                            id="repeat">
-                            <option value={null}>No Repeat</option>
+                            id="repeat"
+                            onChange={(e) => setExpense({ ...expense, repeat: e.target.value })}
+                            value={expense.repeat}>
+                            <option value="">No Repeat</option>
                             <option value="DAILY">Daily</option>
                             <option value="WEEKLY">Weekly</option>
                             <option value="MONTHLY">Monthly</option>
@@ -111,7 +139,8 @@ const AddExpense = (props) => {
                                     type="date" 
                                     name="start_date" 
                                     id="start_date"
-                                    onChange={(e) => setExpense({ ...expense, start_date: e.target.value })} />
+                                    onChange={(e) => setExpense({ ...expense, start_date: e.target.value })} 
+                                    value={expense.start_date}/>
                             </Col>
                             <Col sm="12" md="6">
                                 <Label for="limit_date">Limit date</Label>
@@ -119,13 +148,14 @@ const AddExpense = (props) => {
                                     type="date" 
                                     name="limit_date" 
                                     id="limit_date" 
-                                    onChange={(e) => setExpense({ ...expense, limit_date: e.target.value })}/>
+                                    onChange={(e) => setExpense({ ...expense, limit_date: e.target.value })}
+                                    value={expense.limit_date}/>
                             </Col>
                         </Row>
                     </FormGroup>
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
                         <button className="btn btn-primary btn-sm"><FaPlus /> Add Expenses</button>
-                        <button className="btn btn-danger btn-sm">< FaTimes /> Reset</button>
+                        <span className="btn btn-danger btn-sm" onClick={reset}>< FaTimes /> Reset</span>
                     </div>
                 </ModalBody>
             </Form>
@@ -133,4 +163,16 @@ const AddExpense = (props) => {
     );
 }
 
-export default AddExpense;
+AddExpense.propTypes = {
+    AddExpense: PropTypes.func
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchExpense: () => dispatch(fetchExpense()),
+        fetchBudget: () => dispatch(fetchBudget())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddExpense);

@@ -1,35 +1,34 @@
 import {
-    FETCH_BUDGET_REQUEST,
-    FETCH_BUDGET_SUCCESS,
-    FETCH_BUDGET_FAILURE
-} from './budgetTypes';
+    GET_TOTAL_REQUEST,
+    GET_TOTAL_SUCCESS,
+    GET_TOTAL_FAILURE
+} from './totalTypes';
 
 const initialState = {
     loading: false,
-    budgets: {},
+    totalExpenses: {},
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_BUDGET_REQUEST:
+        case GET_TOTAL_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_BUDGET_SUCCESS:
+        case GET_TOTAL_SUCCESS:
             return {
                 loading: false,
-                budgets: action.payload,
+                totalExpenses: action.payload,
                 error: ''
             }
-        case FETCH_BUDGET_FAILURE:
+        case GET_TOTAL_FAILURE:
             return {
                 loading: true,
-                budgets: {},
+                totalExpenses: {},
                 error: action.payload
             }
-                
         default: return state
     }
 }

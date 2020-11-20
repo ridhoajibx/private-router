@@ -1,32 +1,32 @@
 import {
-    FETCH_BUDGET_REQUEST,
-    FETCH_BUDGET_SUCCESS,
-    FETCH_BUDGET_FAILURE
-} from './budgetTypes';
+    FETCH_WALLET_REQUEST,
+    FETCH_WALLET_SUCCESS,
+    FETCH_WALLET_FAILURE
+} from './walletTypes';
 
 const initialState = {
     loading: false,
-    budgets: {},
+    wallets: {},
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_BUDGET_REQUEST:
+        case FETCH_WALLET_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_BUDGET_SUCCESS:
+        case FETCH_WALLET_SUCCESS:
             return {
                 loading: false,
-                budgets: action.payload,
+                wallets: action.payload,
                 error: ''
             }
-        case FETCH_BUDGET_FAILURE:
+        case FETCH_WALLET_FAILURE:
             return {
                 loading: true,
-                budgets: {},
+                wallets: {},
                 error: action.payload
             }
                 

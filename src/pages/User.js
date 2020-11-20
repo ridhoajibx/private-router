@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Row, Spinner } from 'reactstrap';
-
 import { connect } from 'react-redux';
 import { fetchUsers, updateUsers } from '../redux';
 import Upload from '../components/formUpload/Upload';

@@ -1,34 +1,35 @@
 import {
-    FETCH_EXPENSE_REQUEST,
-    FETCH_EXPENSE_SUCCESS,
-    FETCH_EXPENSE_FAILURE
-} from './expenseTypes';
+    FETCH_WALLET_REQUEST,
+    FETCH_WALLET_SUCCESS,
+    FETCH_WALLET_FAILURE
+} from './walletTypes';
 
 const initialState = {
     loading: false,
-    expenses: {},
+    wallets: {},
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_EXPENSE_REQUEST:
+        case FETCH_WALLET_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_EXPENSE_SUCCESS:
+        case FETCH_WALLET_SUCCESS:
             return {
                 loading: false,
-                expenses: action.payload,
+                wallets: action.payload,
                 error: ''
             }
-        case FETCH_EXPENSE_FAILURE:
+        case FETCH_WALLET_FAILURE:
             return {
                 loading: true,
-                expenses: {},
+                wallets: {},
                 error: action.payload
             }
+                
         default: return state
     }
 }

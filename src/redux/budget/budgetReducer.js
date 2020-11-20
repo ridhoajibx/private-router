@@ -1,34 +1,35 @@
 import {
-    FETCH_EXPENSE_REQUEST,
-    FETCH_EXPENSE_SUCCESS,
-    FETCH_EXPENSE_FAILURE
-} from './expenseTypes';
+    FETCH_BUDGET_REQUEST,
+    FETCH_BUDGET_SUCCESS,
+    FETCH_BUDGET_FAILURE
+} from './budgetTypes';
 
 const initialState = {
     loading: false,
-    expenses: {},
+    budgets: {},
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_EXPENSE_REQUEST:
+        case FETCH_BUDGET_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_EXPENSE_SUCCESS:
+        case FETCH_BUDGET_SUCCESS:
             return {
                 loading: false,
-                expenses: action.payload,
+                budgets: action.payload,
                 error: ''
             }
-        case FETCH_EXPENSE_FAILURE:
+        case FETCH_BUDGET_FAILURE:
             return {
                 loading: true,
-                expenses: {},
+                budgets: {},
                 error: action.payload
             }
+                
         default: return state
     }
 }

@@ -5,7 +5,7 @@ import { dateFormat } from '../../variables/validator';
 
 const ModalTransaction = (props) => {
     return (
-        <Modal isOpen={props.modal} toggle={() => props.setModal(false)}>
+        <Modal className="modal-dialog modal-dialog-centered modal-dialog-scrollable" isOpen={props.modal} toggle={() => props.setModal(false)}>
             <Card className="mb-0">
                 <button type="button" className="close position-absolute text-white" onClick={() => props.setModal(false)}>
                     <span aria-hidden="true">&times;</span>

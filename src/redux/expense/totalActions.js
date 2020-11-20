@@ -37,6 +37,7 @@ export const getTotalExpenses = () => {
         dispatch(getTotalRequest)
         axios.get(url, header)
             .then(response => {
+                console.log(response,'cek response total');
                 const total = response.data;
                 dispatch(getTotalSuccess(total))
             })

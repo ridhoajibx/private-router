@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     loading: false,
-    totalExpenses: [],
+    totalExpenses: {},
     error: ''
 }
 
@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
         case GET_TOTAL_FAILURE:
             return {
                 loading: true,
-                totalExpenses: [],
+                totalExpenses: {},
                 error: action.payload
             }
         default: return state

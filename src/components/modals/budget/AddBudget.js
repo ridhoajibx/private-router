@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 const AddBudget = ({ fetchBudget, modal, setModal, fetchExpense}) => {
     const [budget, setBudget] = useState({
-        amount: "",
+        set_budget: "",
         limit_date: ""
     })
 
@@ -33,7 +33,7 @@ const AddBudget = ({ fetchBudget, modal, setModal, fetchExpense}) => {
         }
 
         let data = {
-            amount: budget.amount,
+            set_budget: budget.set_budget,
             limit_date: budget.limit_date
         }
 
@@ -47,13 +47,11 @@ const AddBudget = ({ fetchBudget, modal, setModal, fetchExpense}) => {
                             title: 'Great..',
                             text: 'Budget Added!'
                         })
+                        fetchBudget()
                         setModal(false)
-                        
                     } else {
                         throw budget
                     }
-                    fetchBudget()
-                    fetchExpense()
                 })
                 .catch(error => {
                     const errorMsg = error.message;
@@ -72,6 +70,7 @@ const AddBudget = ({ fetchBudget, modal, setModal, fetchExpense}) => {
         })
 
     }
+
     return (
         <Modal isOpen={modal} toggle={() => setModal(false)}>
             <div className="d-flex justify-content-between align-items-center px-4 pt-4">
@@ -83,14 +82,14 @@ const AddBudget = ({ fetchBudget, modal, setModal, fetchExpense}) => {
             <Form className='mt-2' onSubmit={onSubmit}>
                 <ModalBody>
                     <FormGroup>
-                        <Label for="amount">Amount</Label>
+                        <Label for="set_budget">Amount</Label>
                         <Input 
                             type="number" 
-                            name="amount" 
-                            id="amount" 
+                            name="set_budget" 
+                            id="set_budget" 
                             placeholder="add amount" 
-                            value={budget.amount}
-                            onChange={(e) => setBudget({ ...budget, amount: e.target.value })}/>
+                            value={budget.set_budget}
+                            onChange={(e) => setBudget({ ...budget, set_budget: e.target.value })}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="expired">Expired</Label>

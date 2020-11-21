@@ -9,8 +9,10 @@ import { fetchBudget } from '../redux/budget/budgetAction';
 import { getTotalExpenses } from '../redux/expense/totalActions';
 import { fetchWallet } from '../redux/wallet/walletAction';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudget, budget, getTotalExpenses, total, fetchWallet, wallet}) => {
+const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudget, budget, getTotalExpenses, total, fetchWallet, wallet }) => {
     const [modal, setModal] = useState(false);
     const [modalEx, setModalEx] = useState(false);
     const [expenseData, setExpenseData] = useState([]);
@@ -21,7 +23,7 @@ const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudg
     }
     const onClickModalEx = () => {
         setModalEx(!modalEx)
-    }    
+    }
 
     useEffect(() => {
         fetchExpense()
@@ -73,6 +75,46 @@ const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudg
             setBudgetData(budgets)
         }
     }, [budget]);
+
+    const deleteExpense = async (e, id) => {
+        let url = `https://peaceful-gorge-77974.herokuapp.com/expenses/delete/${id}`
+        let header = {
+            params: {
+                id: id
+            },
+            headers: {
+                'access_token': localStorage.getItem("jwtToken")
+            }
+        }
+        try {
+            await axios.delete(url, header)
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'yes, delete!'
+            }).then((result) => {
+                fetchExpense()
+                getTotalExpenses()
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'deleted',
+                        'You have deleted expense',
+                        'success'
+                    )
+                }
+            })
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'oops',
+                text: error.message
+            })
+        }
+    }
     return (
         <div className={`content-wrapper content-wrapper--${!toggleSide ? 'show' : 'hide'}`}>
             <span className="toggle-btn" onClick={handleToggleSide}>
@@ -94,13 +136,16 @@ const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudg
                         </Card>
                         <Card>
                             <CardBody className="text-center">
-                            {
-                                budgetData.map((item, index) => (
-                                <h4 className="text-primary" key={index}>
-                                    Rp. {formatMoney(item.set_budget)}
-                                </h4>))
-                            }
-                                
+                                {budgetData.length ?
+                                    budgetData.map((item, index) => (
+                                        <h4 className="text-primary" key={index}>
+                                            Rp. {formatMoney(item.set_budget)}
+                                        </h4>)) :
+                                    <h4 className="text-primary">
+                                        Rp. {formatMoney(0)}
+                                    </h4>
+                                }
+
                                 <h6>BUDGET</h6>
                             </CardBody>
                         </Card>
@@ -149,11 +194,14 @@ const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudg
                                         <th>Repeat</th>
                                         <th>Start Date</th>
                                         <th>Limit Date</th>
-                                        {/* <th className="text-right">Details</th> */}
+                                        <th className="text-right">Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
+                                    {!expenseData.length ?
+                                        <tr>
+                                            <td>let's add an expense</td>
+                                        </tr> :
                                         expenseData.map((item, index) => (
                                             <tr key={index}>
                                                 <td>{item.title}</td>
@@ -161,7 +209,9 @@ const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudg
                                                 <td>{item.repeat ? item.repeat.toLowerCase() : 'One time'}</td>
                                                 <td>{item.start_date ? item.start_date : item.createdAt}</td>
                                                 <td>{item.limit_date ? item.limit_date : item.createdAt}</td>
-                                                {/* <td className="text-right"><button className="btn btn-primary btn-sm">Details</button></td> */}
+                                                <td className="text-right">
+                                                    <button onClick={(e) => deleteExpense(e, item.id)} className="btn btn-danger btn-sm">Delete</button>
+                                                </td>
                                             </tr>
                                         ))
                                     }
@@ -172,12 +222,12 @@ const Budget = ({ toggleSide, handleToggleSide, fetchExpense, expense, fetchBudg
                 </Col>
             </Row>
 
-            <AddBudget 
-                modal={modal} 
-                setModal={setModal}/>
-            <AddExpense 
-                modalEx={modalEx} 
-                setModalEx={setModalEx}/>
+            <AddBudget
+                modal={modal}
+                setModal={setModal} />
+            <AddExpense
+                modalEx={modalEx}
+                setModalEx={setModalEx} />
         </div>
     );
 }

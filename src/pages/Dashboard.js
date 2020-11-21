@@ -67,14 +67,17 @@ const Dashboard = ({ toggleSide, handleToggleSide, fetchExpense, expense }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
+                                    {expenseData ?
                                         expenseData.map((item, index) => (
                                             <tr key={index}>
                                                 <td>{item.title}</td>
                                                 <td>Rp {formatMoney(item.cost)}</td>
                                                 <td className="text-right"><button onClick={() => handleShowmodal(item)} className="btn btn-primary btn-sm">Details</button></td>
                                             </tr>
-                                        ))
+                                        )) :
+                                        <tr>
+                                            <td>let's add an expense</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </Table>

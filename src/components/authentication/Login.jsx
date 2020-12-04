@@ -63,6 +63,7 @@ export class Login extends Component {
                         <div className="form-group">
                             <label className="mail" htmlFor="email">Email</label>
                             <input 
+                            autofocus
                             required
                             type="text" 
                             name="email" 
